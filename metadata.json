@@ -1,0 +1,6 @@
+{
+  "name": "OmniMind",
+  "description": "منصة تطوير مدعومة بوكلاء ذكاء اصطناعي متعددين مع بيئة تشغيل آمنة لإدارة المشاريع البرمجية الكبيرة",
+  "requestFramePermissions": [],
+  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
+}

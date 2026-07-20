@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_game_builder">منصة بناء الألعاب والتطبيقات (APK)</string>
+    <string name="app_game_builder_desc">خصّص وبنِ لعبتك أو تطبيقك لـ APK والعبها فوراً!</string>
+    <string name="app_name">أومني مايند</string>
+    <string name="begin_setup">ابدأ الإعداد</string>
+    <string name="budget_unlimited">0 يعني بلا حدود</string>
+    <string name="choose_environment">اختر مظهرك الخاص</string>
+    <string name="choose_environment_desc">اختر السمة اللونية التي تناسب بيئة عملك.</string>
+    <string name="complete_setup">إتمام الإعداد</string>
+    <string name="connect_intelligence">ربط مفتاح الذكاء الاصطناعي</string>
+    <string name="connect_intelligence_desc">يعمل أومني مايند محلياً ولكنه يحتاج لمزوّد ذكاء اصطناعي لتشغيل الوكلاء. يتم تشفير وحفظ مفاتيحك بأمان على جهازك.</string>
+    <string name="gemini_api_key">مفتاح Gemini API</string>
+    <string name="key_security_note">سيتم استخدام المفتاح للطلبات المباشرة من جهازك فقط، دون أي خوادم وسيطة.</string>
+    <string name="monthly_budget">حد الميزانية الشهري ($) - اختياري</string>
+    <string name="recent_projects">المشاريع الأخيرة</string>
+    <string name="theme_aurora">أورورا</string>
+    <string name="theme_aurora_desc">مضيء، حيوي، تركواز دافئ</string>
+    <string name="theme_continue_btn">متابعة</string>
+    <string name="theme_ember">إمبير</string>
+    <string name="theme_ember_desc">دافئ، داكن، برتقالي ناري</string>
+    <string name="theme_obsidian">أوبسيديان</string>
+    <string name="theme_obsidian_desc">داكن، أنيق، بنفسجي عميق</string>
+    <string name="welcome_subtitle">منظومة عمل الذكاء الاصطناعي لتطوير وهندسة البرمجيات المتكاملة.</string>
+    <string name="welcome_title">مرحباً بك في أومني مايند</string>
+    <string name="what_to_build">ماذا تريد أن تبني اليوم؟</string>
+    <string name="what_to_build_placeholder">اكتب ما تريد بناءه أو تعديله في مشروعك...</string>
+</resources>

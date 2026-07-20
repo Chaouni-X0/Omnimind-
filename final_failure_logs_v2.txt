@@ -1,0 +1,341 @@
+build	Build with Gradle	﻿2026-07-18T12:24:47.8542691Z ##[group]Run ./gradlew assembleDebug --stacktrace
+build	Build with Gradle	2026-07-18T12:24:47.8543179Z ^[[36;1m./gradlew assembleDebug --stacktrace^[[0m
+build	Build with Gradle	2026-07-18T12:24:47.8598905Z shell: /usr/bin/bash -e {0}
+build	Build with Gradle	2026-07-18T12:24:47.8599229Z env:
+build	Build with Gradle	2026-07-18T12:24:47.8599598Z   JAVA_HOME: /opt/hostedtoolcache/Java_Temurin-Hotspot_jdk/21.0.11-10/x64
+build	Build with Gradle	2026-07-18T12:24:47.8600198Z   JAVA_HOME_21_X64: /opt/hostedtoolcache/Java_Temurin-Hotspot_jdk/21.0.11-10/x64
+build	Build with Gradle	2026-07-18T12:24:47.8600664Z ##[endgroup]
+build	Build with Gradle	2026-07-18T12:24:48.2289776Z Downloading https://services.gradle.org/distributions/gradle-9.3.1-bin.zip
+build	Build with Gradle	2026-07-18T12:24:50.4664701Z .............10%.............20%.............30%.............40%.............50%.............60%.............70%.............80%.............90%.............100%
+build	Build with Gradle	2026-07-18T12:24:52.0105852Z 
+build	Build with Gradle	2026-07-18T12:24:52.0166152Z Welcome to Gradle 9.3.1!
+build	Build with Gradle	2026-07-18T12:24:52.0178266Z 
+build	Build with Gradle	2026-07-18T12:24:52.0195176Z Here are the highlights of this release:
+build	Build with Gradle	2026-07-18T12:24:52.0195800Z  - Test reporting improvements
+build	Build with Gradle	2026-07-18T12:24:52.0196384Z  - Error and warning improvements
+build	Build with Gradle	2026-07-18T12:24:52.0196904Z  - Build authoring improvements
+build	Build with Gradle	2026-07-18T12:24:52.0197205Z 
+build	Build with Gradle	2026-07-18T12:24:52.0197599Z For more details see https://docs.gradle.org/9.3.1/release-notes.html
+build	Build with Gradle	2026-07-18T12:24:52.0198121Z 
+build	Build with Gradle	2026-07-18T12:24:52.1109572Z Starting a Gradle Daemon (subsequent builds will be faster)
+build	Build with Gradle	2026-07-18T12:26:05.4097227Z 
+build	Build with Gradle	2026-07-18T12:26:05.4154409Z > Configure project :app
+build	Build with Gradle	2026-07-18T12:26:05.4175930Z WARNING: The option setting 'android.disallowKotlinSourceSets=false' is experimental.
+build	Build with Gradle	2026-07-18T12:26:05.4177135Z The current default is 'true'.
+build	Build with Gradle	2026-07-18T12:26:13.1097326Z 
+build	Build with Gradle	2026-07-18T12:26:13.1105697Z > Task :app:preBuild UP-TO-DATE
+build	Build with Gradle	2026-07-18T12:26:13.1125309Z > Task :app:preDebugBuild UP-TO-DATE
+build	Build with Gradle	2026-07-18T12:26:13.2109397Z > Task :app:mergeDebugNativeDebugMetadata NO-SOURCE
+build	Build with Gradle	2026-07-18T12:26:13.3116024Z > Task :app:generateDebugBuildConfig
+build	Build with Gradle	2026-07-18T12:26:13.3155517Z > Task :app:generateDebugResources
+build	Build with Gradle	2026-07-18T12:26:13.5097474Z > Task :app:packageDebugResources
+build	Build with Gradle	2026-07-18T12:26:34.2100261Z > Task :app:processDebugNavigationResources
+build	Build with Gradle	2026-07-18T12:26:36.1097291Z > Task :app:parseDebugLocalResources
+build	Build with Gradle	2026-07-18T12:26:38.6121735Z > Task :app:generateDebugAssets UP-TO-DATE
+build	Build with Gradle	2026-07-18T12:26:38.6171201Z > Task :app:javaPreCompileDebug
+build	Build with Gradle	2026-07-18T12:26:38.7098210Z > Task :app:generateDebugRFile
+build	Build with Gradle	2026-07-18T12:26:38.9116165Z > Task :app:mergeDebugAssets
+build	Build with Gradle	2026-07-18T12:26:46.9099048Z > Task :app:compressDebugAssets
+build	Build with Gradle	2026-07-18T12:26:46.9103191Z > Task :app:desugarDebugFileDependencies
+build	Build with Gradle	2026-07-18T12:26:47.2099317Z > Task :app:mapDebugSourceSetPaths
+build	Build with Gradle	2026-07-18T12:26:47.2116695Z > Task :app:checkDebugAarMetadata
+build	Build with Gradle	2026-07-18T12:26:47.8111203Z > Task :app:createDebugCompatibleScreenManifests
+build	Build with Gradle	2026-07-18T12:26:47.8136531Z > Task :app:compileDebugNavigationResources
+build	Build with Gradle	2026-07-18T12:26:47.8145670Z > Task :app:extractDeepLinksDebug
+build	Build with Gradle	2026-07-18T12:26:53.7106024Z > Task :app:processDebugMainManifest
+build	Build with Gradle	2026-07-18T12:26:54.1104217Z > Task :app:processDebugManifest
+build	Build with Gradle	2026-07-18T12:26:54.4107873Z > Task :app:mergeDebugResources
+build	Build with Gradle	2026-07-18T12:27:00.1111894Z > Task :app:processDebugManifestForPackage
+build	Build with Gradle	2026-07-18T12:27:01.9122695Z > Task :app:checkDebugDuplicateClasses
+build	Build with Gradle	2026-07-18T12:27:08.9099714Z > Task :app:kspDebugKotlin
+build	Build with Gradle	2026-07-18T12:27:30.1125957Z > Task :app:processDebugResources
+build	Build with Gradle	2026-07-18T12:27:32.4135834Z > Task :app:mergeExtDexDebug
+build	Build with Gradle	2026-07-18T12:27:39.0102219Z 
+build	Build with Gradle	2026-07-18T12:27:39.0125834Z > Task :app:kspDebugKotlin
+build	Build with Gradle	2026-07-18T12:27:39.0136689Z w: [ksp] Schema export directory was not provided to the annotation processor so Room cannot export the schema. You can either provide `room.schemaLocation` annotation processor argument by applying the Room Gradle plugin (id 'androidx.room') OR set exportSchema to false.
+build	Build with Gradle	2026-07-18T12:30:23.1115371Z 
+build	Build with Gradle	2026-07-18T12:30:23.1146131Z > Task :app:mergeDebugJniLibFolders
+build	Build with Gradle	2026-07-18T12:30:23.1165912Z > Task :app:mergeLibDexDebug
+build	Build with Gradle	2026-07-18T12:30:24.1115806Z > Task :app:mergeDebugNativeLibs
+build	Build with Gradle	2026-07-18T12:30:29.8135848Z > Task :app:validateSigningDebug
+build	Build with Gradle	2026-07-18T12:30:29.9125800Z > Task :app:writeDebugAppMetadata
+build	Build with Gradle	2026-07-18T12:30:30.0150542Z > Task :app:writeDebugSigningConfigVersions
+build	Build with Gradle	2026-07-18T12:30:30.8135703Z > Task :app:stripDebugDebugSymbols
+build	Build with Gradle	2026-07-18T12:30:31.1105852Z > Task :app:compileDebugKotlin
+build	Build with Gradle	2026-07-18T12:30:53.0149042Z e: file:///home/runner/work/Omni-mind-1x-/Omni-mind-1x-/app/src/main/java/com/example/data/apipool/ApiPoolManager.kt:37:31 Unresolved reference 'getKeys'.
+build	Build with Gradle	2026-07-18T12:30:53.0239049Z e: file:///home/runner/work/Omni-mind-1x-/Omni-mind-1x-/app/src/main/java/com/example/data/apipool/ApiPoolManager.kt:37:50 Unresolved reference 'it'.
+build	Build with Gradle	2026-07-18T12:30:53.0275902Z e: file:///home/runner/work/Omni-mind-1x-/Omni-mind-1x-/app/src/main/java/com/example/data/apipool/ApiPoolManager.kt:37:90 Unresolved reference 'it'.
+build	Build with Gradle	2026-07-18T12:30:53.0322681Z e: file:///home/runner/work/Omni-mind-1x-/Omni-mind-1x-/app/src/main/java/com/example/data/apipool/ApiPoolManager.kt:41:46 Cannot infer type for this parameter. Specify it explicitly.
+build	Build with Gradle	2026-07-18T12:30:53.0366206Z e: file:///home/runner/work/Omni-mind-1x-/Omni-mind-1x-/app/src/main/java/com/example/data/apipool/ApiPoolManager.kt:42:29 Unresolved reference 'monthlyBudgetCents'.
+build	Build with Gradle	2026-07-18T12:30:53.0368485Z e: file:///home/runner/work/Omni-mind-1x-/Omni-mind-1x-/app/src/main/java/com/example/data/apipool/ApiPoolManager.kt:43:34 Unresolved reference 'currentSpentCents'.
+build	Build with Gradle	2026-07-18T12:30:53.0432410Z e: file:///home/runner/work/Omni-mind-1x-/Omni-mind-1x-/app/src/main/java/com/example/data/apipool/ApiPoolManager.kt:48:52 Unresolved reference 'it'.
+build	Build with Gradle	2026-07-18T12:30:53.0486862Z e: file:///home/runner/work/Omni-mind-1x-/Omni-mind-1x-/app/src/main/java/com/example/data/apipool/ApiPoolManager.kt:49:25 'operator' modifier is required on 'FirNamedFunctionSymbol kotlin/compareTo' in 'compareTo'.
+build	Build with Gradle	2026-07-18T12:30:53.0506386Z e: file:///home/runner/work/Omni-mind-1x-/Omni-mind-1x-/app/src/main/java/com/example/data/apipool/ApiPoolManager.kt:52:21 Method 'iterator()' is ambiguous for this expression. Applicable candidates:
+build	Build with Gradle	2026-07-18T12:30:53.0559544Z fun <T> Enumeration<T>.iterator(): Iterator<T>
+build	Build with Gradle	2026-07-18T12:30:53.0560339Z fun <T> Iterator<T>.iterator(): Iterator<T>
+build	Build with Gradle	2026-07-18T12:30:53.0561205Z fun <K, V> Map<out K, V>.iterator(): Iterator<Map.Entry<K, V>>
+build	Build with Gradle	2026-07-18T12:30:53.0585617Z fun <K, V> MutableMap<K, V>.iterator(): MutableIterator<MutableMap.MutableEntry<K, V>>
+build	Build with Gradle	2026-07-18T12:30:53.0645445Z fun CharSequence.iterator(): CharIterator
+build	Build with Gradle	2026-07-18T12:30:53.0646073Z fun BufferedInputStream.iterator(): ByteIterator
+build	Build with Gradle	2026-07-18T12:30:53.0666270Z e: file:///home/runner/work/Omni-mind-1x-/Omni-mind-1x-/app/src/main/java/com/example/data/apipool/ApiPoolManager.kt:65:30 Unresolved reference 'getApiKeyById'.
+build	Build with Gradle	2026-07-18T12:30:53.0696477Z e: file:///home/runner/work/Omni-mind-1x-/Omni-mind-1x-/app/src/main/java/com/example/domain/agents/SwarmEngine.kt:42:31 Unresolved reference 'getTaskById'.
+build	Build with Gradle	2026-07-18T12:30:53.0716395Z e: file:///home/runner/work/Omni-mind-1x-/Omni-mind-1x-/app/src/main/java/com/example/domain/agents/SwarmEngine.kt:62:20 Unresolved reference 'insertMessage'.
+build	Build with Gradle	2026-07-18T12:30:53.0736779Z e: file:///home/runner/work/Omni-mind-1x-/Omni-mind-1x-/app/src/main/java/com/example/domain/agents/SwarmEngine.kt:90:24 Unresolved reference 'insertMessage'.
+build	Build with Gradle	2026-07-18T12:30:53.0746182Z e: file:///home/runner/work/Omni-mind-1x-/Omni-mind-1x-/app/src/main/java/com/example/domain/agents/SwarmEngine.kt:108:20 Unresolved reference 'insertMessage'.
+build	Build with Gradle	2026-07-18T12:30:53.0766304Z e: file:///home/runner/work/Omni-mind-1x-/Omni-mind-1x-/app/src/main/java/com/example/domain/agents/SwarmEngine.kt:114:31 Unresolved reference 'getProjectById'.
+build	Build with Gradle	2026-07-18T12:30:53.0777033Z e: file:///home/runner/work/Omni-mind-1x-/Omni-mind-1x-/app/src/main/java/com/example/domain/agents/SwarmEngine.kt:116:20 Unresolved reference 'insertSandboxRun'.
+build	Build with Gradle	2026-07-18T12:30:53.0796245Z e: file:///home/runner/work/Omni-mind-1x-/Omni-mind-1x-/app/src/main/java/com/example/domain/agents/SwarmEngine.kt:128:20 Unresolved reference 'insertMessage'.
+build	Build with Gradle	2026-07-18T12:30:53.0818295Z e: file:///home/runner/work/Omni-mind-1x-/Omni-mind-1x-/app/src/main/java/com/example/domain/agents/SwarmEngine.kt:135:31 Argument type mismatch: actual type is 'AgentTask', but 'AdvancedSwarmTask' was expected.
+build	Build with Gradle	2026-07-18T12:30:53.0822176Z e: file:///home/runner/work/Omni-mind-1x-/Omni-mind-1x-/app/src/main/java/com/example/domain/api/EasyApiManager.kt:4:28 Unresolved reference 'SwarmDao'.
+build	Build with Gradle	2026-07-18T12:30:53.0825266Z e: file:///home/runner/work/Omni-mind-1x-/Omni-mind-1x-/app/src/main/java/com/example/domain/api/EasyApiManager.kt:16:22 Unresolved reference 'SwarmDao'.
+build	Build with Gradle	2026-07-18T12:30:53.0829642Z e: file:///home/runner/work/Omni-mind-1x-/Omni-mind-1x-/app/src/main/java/com/example/domain/api/EasyApiManager.kt:54:29 Unresolved reference 'insertApiKey'.
+build	Build with Gradle	2026-07-18T12:30:53.0831599Z e: file:///home/runner/work/Omni-mind-1x-/Omni-mind-1x-/app/src/main/java/com/example/domain/api/EasyApiManager.kt:83:30 Unresolved reference 'getApiKeyById'.
+build	Build with Gradle	2026-07-18T12:30:53.0833472Z e: file:///home/runner/work/Omni-mind-1x-/Omni-mind-1x-/app/src/main/java/com/example/domain/api/EasyApiManager.kt:100:31 Unresolved reference 'insertModel'.
+build	Build with Gradle	2026-07-18T12:30:53.0835739Z e: file:///home/runner/work/Omni-mind-1x-/Omni-mind-1x-/app/src/main/java/com/example/domain/api/EasyApiManager.kt:142:31 Unresolved reference 'insertModel'.
+build	Build with Gradle	2026-07-18T12:30:53.0837608Z e: file:///home/runner/work/Omni-mind-1x-/Omni-mind-1x-/app/src/main/java/com/example/domain/export/UniversalExporter.kt:4:28 Unresolved reference 'SwarmDao'.
+build	Build with Gradle	2026-07-18T12:30:53.0866154Z e: file:///home/runner/work/Omni-mind-1x-/Omni-mind-1x-/app/src/main/java/com/example/domain/export/UniversalExporter.kt:16:22 Unresolved reference 'SwarmDao'.
+build	Build with Gradle	2026-07-18T12:30:53.0886506Z e: file:///home/runner/work/Omni-mind-1x-/Omni-mind-1x-/app/src/main/java/com/example/domain/export/UniversalExporter.kt:52:17 Unresolved reference 'insertExportedFile'.
+build	Build with Gradle	2026-07-18T12:30:53.0896349Z e: file:///home/runner/work/Omni-mind-1x-/Omni-mind-1x-/app/src/main/java/com/example/domain/export/UniversalExporter.kt:90:17 Unresolved reference 'insertExportedFile'.
+build	Build with Gradle	2026-07-18T12:30:53.0916477Z e: file:///home/runner/work/Omni-mind-1x-/Omni-mind-1x-/app/src/main/java/com/example/domain/export/UniversalExporter.kt:129:17 Unresolved reference 'insertExportedFile'.
+build	Build with Gradle	2026-07-18T12:30:53.0936223Z e: file:///home/runner/work/Omni-mind-1x-/Omni-mind-1x-/app/src/main/java/com/example/domain/export/UniversalExporter.kt:167:17 Unresolved reference 'insertExportedFile'.
+build	Build with Gradle	2026-07-18T12:30:53.0956203Z e: file:///home/runner/work/Omni-mind-1x-/Omni-mind-1x-/app/src/main/java/com/example/domain/export/UniversalExporter.kt:204:17 Unresolved reference 'insertExportedFile'.
+build	Build with Gradle	2026-07-18T12:30:53.0966385Z e: file:///home/runner/work/Omni-mind-1x-/Omni-mind-1x-/app/src/main/java/com/example/domain/export/UniversalExporter.kt:241:17 Unresolved reference 'insertExportedFile'.
+build	Build with Gradle	2026-07-18T12:30:53.0986276Z e: file:///home/runner/work/Omni-mind-1x-/Omni-mind-1x-/app/src/main/java/com/example/domain/security/AutoSecurityTester.kt:4:28 Unresolved reference 'SwarmDao'.
+build	Build with Gradle	2026-07-18T12:30:53.0996182Z e: file:///home/runner/work/Omni-mind-1x-/Omni-mind-1x-/app/src/main/java/com/example/domain/security/AutoSecurityTester.kt:15:22 Unresolved reference 'SwarmDao'.
+build	Build with Gradle	2026-07-18T12:30:53.1016345Z e: file:///home/runner/work/Omni-mind-1x-/Omni-mind-1x-/app/src/main/java/com/example/domain/security/AutoSecurityTester.kt:62:33 Unresolved reference 'insertSecurityTest'.
+build	Build with Gradle	2026-07-18T12:30:53.1036343Z e: file:///home/runner/work/Omni-mind-1x-/Omni-mind-1x-/app/src/main/java/com/example/domain/security/AutoSecurityTester.kt:239:29 Unresolved reference 'getSecurityTestsByTaskId'.
+build	Build with Gradle	2026-07-18T12:30:53.1051737Z e: file:///home/runner/work/Omni-mind-1x-/Omni-mind-1x-/app/src/main/java/com/example/domain/security/AutoSecurityTester.kt:242:27 Unresolved reference 'it'.
+build	Build with Gradle	2026-07-18T12:30:53.1086243Z e: file:///home/runner/work/Omni-mind-1x-/Omni-mind-1x-/app/src/main/java/com/example/domain/security/AutoSecurityTester.kt:243:24 Cannot infer type for this parameter. Specify it explicitly.
+build	Build with Gradle	2026-07-18T12:30:53.1106135Z e: file:///home/runner/work/Omni-mind-1x-/Omni-mind-1x-/app/src/main/java/com/example/domain/security/AutoSecurityTester.kt:245:39 Unresolved reference 'id'.
+build	Build with Gradle	2026-07-18T12:30:53.1146274Z e: file:///home/runner/work/Omni-mind-1x-/Omni-mind-1x-/app/src/main/java/com/example/domain/security/AutoSecurityTester.kt:246:46 Unresolved reference 'vulnerabilityDescription'.
+build	Build with Gradle	2026-07-18T12:30:53.1147570Z 
+build	Build with Gradle	2026-07-18T12:30:53.1166258Z e: file:///home/runner/work/Omni-mind-1x-/Omni-mind-1x-/app/src/main/java/com/example/domain/security/AutoSecurityTester.kt:247:45 Unresolved reference 'suggestedFix'.
+build	Build with Gradle	2026-07-18T12:30:53.1205489Z e: file:///home/runner/work/Omni-mind-1x-/Omni-mind-1x-/app/src/main/java/com/example/domain/security/AutoSecurityTester.kt:248:41 Unresolved reference 'severity'.
+build	Build with Gradle	2026-07-18T12:30:53.1206987Z > Task :app:compileDebugKotlin FAILED
+build	Build with Gradle	2026-07-18T12:30:53.1246167Z e: file:///home/runner/work/Omni-mind-1x-/Omni-mind-1x-/app/src/main/java/com/example/domain/security/AutoSecurityTester.kt:249:47 Unresolved reference 'severity'.
+build	Build with Gradle	2026-07-18T12:30:53.1248344Z e: file:///home/runner/work/Omni-mind-1x-/Omni-mind-1x-/app/src/main/java/com/example/domain/security/AutoSecurityTester.kt:257:29 Unresolved reference 'it'.
+build	Build with Gradle	2026-07-18T12:30:53.1276214Z e: file:///home/runner/work/Omni-mind-1x-/Omni-mind-1x-/app/src/main/java/com/example/domain/swarm/ModelDiscussionEngine.kt:4:28 Unresolved reference 'SwarmDao'.
+build	Build with Gradle	2026-07-18T12:30:53.1304470Z e: file:///home/runner/work/Omni-mind-1x-/Omni-mind-1x-/app/src/main/java/com/example/domain/swarm/ModelDiscussionEngine.kt:15:22 Unresolved reference 'SwarmDao'.
+build	Build with Gradle	2026-07-18T12:30:53.1326126Z e: file:///home/runner/work/Omni-mind-1x-/Omni-mind-1x-/app/src/main/java/com/example/domain/swarm/ModelDiscussionEngine.kt:42:36 Unresolved reference 'insertDiscussion'.
+build	Build with Gradle	2026-07-18T12:30:53.1328692Z e: file:///home/runner/work/Omni-mind-1x-/Omni-mind-1x-/app/src/main/java/com/example/domain/swarm/ModelDiscussionEngine.kt:70:35 Cannot infer type for this parameter. Specify it explicitly.
+build	Build with Gradle	2026-07-18T12:30:53.1346170Z e: file:///home/runner/work/Omni-mind-1x-/Omni-mind-1x-/app/src/main/java/com/example/domain/swarm/ModelDiscussionEngine.kt:71:21 Unresolved reference 'getModelById'.
+build	Build with Gradle	2026-07-18T12:30:53.1366262Z e: file:///home/runner/work/Omni-mind-1x-/Omni-mind-1x-/app/src/main/java/com/example/domain/swarm/ModelDiscussionEngine.kt:101:17 Unresolved reference 'updateDiscussion'.
+build	Build with Gradle	2026-07-18T12:30:53.1387770Z e: file:///home/runner/work/Omni-mind-1x-/Omni-mind-1x-/app/src/main/java/com/example/domain/swarm/ModelDiscussionEngine.kt:199:28 Unresolved reference 'getTaskById'.
+build	Build with Gradle	2026-07-18T12:30:53.1406086Z e: file:///home/runner/work/Omni-mind-1x-/Omni-mind-1x-/app/src/main/java/com/example/domain/swarm/ModelDiscussionEngine.kt:201:40 Unresolved reference 'copy'.
+build	Build with Gradle	2026-07-18T12:30:53.1426145Z e: file:///home/runner/work/Omni-mind-1x-/Omni-mind-1x-/app/src/main/java/com/example/domain/swarm/ModelDiscussionEngine.kt:205:21 Unresolved reference 'updateTask'.
+build	Build with Gradle	2026-07-18T12:30:53.1428369Z e: file:///home/runner/work/Omni-mind-1x-/Omni-mind-1x-/app/src/main/java/com/example/domain/swarm/SwarmEngine.kt:74:17 No parameter with name 'result' found.
+build	Build with Gradle	2026-07-18T12:30:53.1446293Z e: file:///home/runner/work/Omni-mind-1x-/Omni-mind-1x-/app/src/main/java/com/example/presentation/screens/DashboardScreen.kt:101:55 Argument type mismatch: actual type is 'Long', but 'String' was expected.
+build	Build with Gradle	2026-07-18T12:30:53.1467367Z e: file:///home/runner/work/Omni-mind-1x-/Omni-mind-1x-/app/src/main/java/com/example/presentation/screens/apicenter/ApiCenterScreen.kt:32:14 Property delegate must have a 'getValue(Nothing?, KProperty0<List<ERROR CLASS: Symbol not found for AdvancedApiKey>>)' method. None of the following functions is applicable:
+build	Build with Gradle	2026-07-18T12:30:53.1503363Z fun <T> State<T>.getValue(thisObj: Any?, property: KProperty<*>): T
+build	Build with Gradle	2026-07-18T12:30:53.1546451Z e: file:///home/runner/work/Omni-mind-1x-/Omni-mind-1x-/app/src/main/java/com/example/presentation/screens/apicenter/ApiCenterScreen.kt:32:60 Cannot infer type for this parameter. Specify it explicitly.
+build	Build with Gradle	2026-07-18T12:30:53.1566715Z e: file:///home/runner/work/Omni-mind-1x-/Omni-mind-1x-/app/src/main/java/com/example/presentation/screens/apicenter/ApiCenterScreen.kt:73:27 Argument type mismatch: actual type is 'List<ERROR CLASS: Symbol not found for AdvancedApiKey>', but 'Int' was expected.
+build	Build with Gradle	2026-07-18T12:30:53.1572744Z e: file:///home/runner/work/Omni-mind-1x-/Omni-mind-1x-/app/src/main/java/com/example/presentation/screens/apicenter/ApiCenterScreen.kt:74:39 Argument type mismatch: actual type is 'Int', but 'ApiKeyConfig' was expected.
+build	Build with Gradle	2026-07-18T12:30:53.1596373Z e: file:///home/runner/work/Omni-mind-1x-/Omni-mind-1x-/app/src/main/java/com/example/presentation/viewmodel/OmniMindViewModel.kt:41:33 Unresolved reference 'AdvancedApiKey'.
+build	Build with Gradle	2026-07-18T12:30:53.1620149Z e: file:///home/runner/work/Omni-mind-1x-/Omni-mind-1x-/app/src/main/java/com/example/presentation/viewmodel/OmniMindViewModel.kt:77:24 Unresolved reference 'AdvancedSwarmTask'.
+build	Build with Gradle	2026-07-18T12:30:53.1646167Z e: file:///home/runner/work/Omni-mind-1x-/Omni-mind-1x-/app/src/main/java/com/example/presentation/viewmodel/OmniMindViewModel.kt:94:26 Unresolved reference 'AdvancedApiKey'.
+build	Build with Gradle	2026-07-18T12:30:53.1649277Z e: file:///home/runner/work/Omni-mind-1x-/Omni-mind-1x-/app/src/main/java/com/example/presentation/workspace/WorkspaceSidebar.kt:38:17 Property delegate must have a 'getValue(Nothing?, KProperty0<List<ERROR CLASS: Symbol not found for AdvancedApiKey>>)' method. None of the following functions is applicable:
+build	Build with Gradle	2026-07-18T12:30:53.1673240Z fun <T> State<T>.getValue(thisObj: Any?, property: KProperty<*>): T
+build	Build with Gradle	2026-07-18T12:30:53.1675276Z e: file:///home/runner/work/Omni-mind-1x-/Omni-mind-1x-/app/src/main/java/com/example/presentation/workspace/WorkspaceSidebar.kt:38:63 Cannot infer type for this parameter. Specify it explicitly.
+build	Build with Gradle	2026-07-18T12:30:53.1707633Z e: file:///home/runner/work/Omni-mind-1x-/Omni-mind-1x-/app/src/main/java/com/example/presentation/workspace/WorkspaceSidebar.kt:98:54 Operator '==' cannot be applied to 'Long?' and 'String'.
+build	Build with Gradle	2026-07-18T12:30:53.1718424Z e: file:///home/runner/work/Omni-mind-1x-/Omni-mind-1x-/app/src/main/java/com/example/presentation/workspace/WorkspaceSidebar.kt:100:77 Argument type mismatch: actual type is 'String', but 'Long' was expected.
+build	Build with Gradle	2026-07-18T12:30:53.1721003Z e: file:///home/runner/work/Omni-mind-1x-/Omni-mind-1x-/app/src/main/java/com/example/presentation/workspace/WorkspaceSidebar.kt:136:51 Unresolved reference 'AdvancedApiKey'.
+build	Build with Gradle	2026-07-18T12:30:53.1723587Z e: file:///home/runner/work/Omni-mind-1x-/Omni-mind-1x-/app/src/main/java/com/example/presentation/workspace/WorkspaceSidebar.kt:137:37 @Composable invocations can only happen from the context of a @Composable function
+build	Build with Gradle	2026-07-18T12:30:53.1726827Z e: file:///home/runner/work/Omni-mind-1x-/Omni-mind-1x-/app/src/main/java/com/example/presentation/workspace/WorkspaceSidebar.kt:139:63 @Composable invocations can only happen from the context of a @Composable function
+build	Build with Gradle	2026-07-18T12:30:53.1739117Z e: file:///home/runner/work/Omni-mind-1x-/Omni-mind-1x-/app/src/main/java/com/example/presentation/workspace/WorkspaceSidebar.kt:140:111 @Composable invocations can only happen from the context of a @Composable function
+build	Build with Gradle	2026-07-18T12:30:53.1779424Z e: file:///home/runner/work/Omni-mind-1x-/Omni-mind-1x-/app/src/main/java/com/example/presentation/workspace/WorkspaceSidebar.kt:146:117 Unresolved reference 'isActive'.
+build	Build with Gradle	2026-07-18T12:30:53.1786306Z e: file:///home/runner/work/Omni-mind-1x-/Omni-mind-1x-/app/src/main/java/com/example/presentation/workspace/WorkspaceSidebar.kt:148:54 Unresolved reference 'provider'.
+build	Build with Gradle	2026-07-18T12:30:53.1825200Z 
+build	Build with Gradle	2026-07-18T12:30:53.1862409Z FAILURE: Build failed with an exception.
+build	Build with Gradle	2026-07-18T12:30:53.1885187Z 
+build	Build with Gradle	2026-07-18T12:30:53.1905475Z * What went wrong:
+build	Build with Gradle	2026-07-18T12:30:53.1925504Z Execution failed for task ':app:compileDebugKotlin'.
+build	Build with Gradle	2026-07-18T12:30:53.1939360Z > A failure occurred while executing org.jetbrains.kotlin.compilerRunner.GradleCompilerRunnerWithWorkers$GradleKotlinCompilerWorkAction
+build	Build with Gradle	2026-07-18T12:30:53.1955467Z    > Compilation error. See log for more details
+build	Build with Gradle	2026-07-18T12:30:53.1955861Z 
+build	Build with Gradle	2026-07-18T12:30:53.1955987Z * Try:
+build	Build with Gradle	2026-07-18T12:30:53.1956417Z > Run with --info or --debug option to get more log output.
+build	Build with Gradle	2026-07-18T12:30:53.1957159Z > Run with --scan to get full insights from a Build Scan (powered by Develocity).
+build	Build with Gradle	2026-07-18T12:30:53.1957937Z > Get more help at https://help.gradle.org.
+build	Build with Gradle	2026-07-18T12:30:53.1958293Z 
+build	Build with Gradle	2026-07-18T12:30:53.1958430Z * Exception is:
+build	Build with Gradle	2026-07-18T12:30:53.1959138Z org.gradle.api.tasks.TaskExecutionException: Execution failed for task ':app:compileDebugKotlin'.
+build	Build with Gradle	2026-07-18T12:30:53.1960706Z 	at org.gradle.api.internal.tasks.execution.ExecuteActionsTaskExecuter.lambda$executeIfValid$1(ExecuteActionsTaskExecuter.java:135)
+build	Build with Gradle	2026-07-18T12:30:53.1962027Z 	at org.gradle.internal.Try$Failure.ifSuccessfulOrElse(Try.java:288)
+build	Build with Gradle	2026-07-18T12:30:53.1975703Z 	at org.gradle.api.internal.tasks.execution.ExecuteActionsTaskExecuter.executeIfValid(ExecuteActionsTaskExecuter.java:133)
+build	Build with Gradle	2026-07-18T12:30:53.1977062Z 	at org.gradle.api.internal.tasks.execution.ExecuteActionsTaskExecuter.execute(ExecuteActionsTaskExecuter.java:121)
+build	Build with Gradle	2026-07-18T12:30:53.1978444Z 	at org.gradle.api.internal.tasks.execution.ProblemsTaskPathTrackingTaskExecuter.execute(ProblemsTaskPathTrackingTaskExecuter.java:41)
+build	Build with Gradle	2026-07-18T12:30:53.1979912Z 	at org.gradle.api.internal.tasks.execution.FinalizePropertiesTaskExecuter.execute(FinalizePropertiesTaskExecuter.java:46)
+build	Build with Gradle	2026-07-18T12:30:53.1981567Z 	at org.gradle.api.internal.tasks.execution.ResolveTaskExecutionModeExecuter.execute(ResolveTaskExecutionModeExecuter.java:51)
+build	Build with Gradle	2026-07-18T12:30:53.1982895Z 	at org.gradle.api.internal.tasks.execution.SkipTaskWithNoActionsExecuter.execute(SkipTaskWithNoActionsExecuter.java:57)
+build	Build with Gradle	2026-07-18T12:30:53.1984101Z 	at org.gradle.api.internal.tasks.execution.SkipOnlyIfTaskExecuter.execute(SkipOnlyIfTaskExecuter.java:74)
+build	Build with Gradle	2026-07-18T12:30:53.1985479Z 	at org.gradle.api.internal.tasks.execution.CatchExceptionTaskExecuter.execute(CatchExceptionTaskExecuter.java:36)
+build	Build with Gradle	2026-07-18T12:30:53.1986677Z 	at org.gradle.api.internal.tasks.execution.EventFiringTaskExecuter$1.executeTask(EventFiringTaskExecuter.java:77)
+build	Build with Gradle	2026-07-18T12:30:53.1987807Z 	at org.gradle.api.internal.tasks.execution.EventFiringTaskExecuter$1.call(EventFiringTaskExecuter.java:55)
+build	Build with Gradle	2026-07-18T12:30:53.1988893Z 	at org.gradle.api.internal.tasks.execution.EventFiringTaskExecuter$1.call(EventFiringTaskExecuter.java:52)
+build	Build with Gradle	2026-07-18T12:30:53.1990191Z 	at org.gradle.internal.operations.DefaultBuildOperationRunner$CallableBuildOperationWorker.execute(DefaultBuildOperationRunner.java:209)
+build	Build with Gradle	2026-07-18T12:30:53.1991672Z 	at org.gradle.internal.operations.DefaultBuildOperationRunner$CallableBuildOperationWorker.execute(DefaultBuildOperationRunner.java:204)
+build	Build with Gradle	2026-07-18T12:30:53.1992968Z 	at org.gradle.internal.operations.DefaultBuildOperationRunner$2.execute(DefaultBuildOperationRunner.java:66)
+build	Build with Gradle	2026-07-18T12:30:53.1994089Z 	at org.gradle.internal.operations.DefaultBuildOperationRunner$2.execute(DefaultBuildOperationRunner.java:59)
+build	Build with Gradle	2026-07-18T12:30:53.2007052Z 	at org.gradle.internal.operations.DefaultBuildOperationRunner.execute(DefaultBuildOperationRunner.java:166)
+build	Build with Gradle	2026-07-18T12:30:53.2008586Z 	at org.gradle.internal.operations.DefaultBuildOperationRunner.execute(DefaultBuildOperationRunner.java:59)
+build	Build with Gradle	2026-07-18T12:30:53.2009972Z 	at org.gradle.internal.operations.DefaultBuildOperationRunner.call(DefaultBuildOperationRunner.java:53)
+build	Build with Gradle	2026-07-18T12:30:53.2015915Z 	at org.gradle.api.internal.tasks.execution.EventFiringTaskExecuter.execute(EventFiringTaskExecuter.java:52)
+build	Build with Gradle	2026-07-18T12:30:53.2039458Z 	at org.gradle.execution.plan.DefaultNodeExecutor.executeLocalTaskNode(DefaultNodeExecutor.java:55)
+build	Build with Gradle	2026-07-18T12:30:53.2055799Z 	at org.gradle.execution.plan.DefaultNodeExecutor.execute(DefaultNodeExecutor.java:34)
+build	Build with Gradle	2026-07-18T12:30:53.2075995Z 	at org.gradle.execution.taskgraph.DefaultTaskExecutionGraph$InvokeNodeExecutorsAction.execute(DefaultTaskExecutionGraph.java:355)
+build	Build with Gradle	2026-07-18T12:30:53.2156284Z 	at org.gradle.execution.taskgraph.DefaultTaskExecutionGraph$InvokeNodeExecutorsAction.execute(DefaultTaskExecutionGraph.java:343)
+build	Build with Gradle	2026-07-18T12:30:53.2207409Z 	at org.gradle.execution.taskgraph.DefaultTaskExecutionGraph$BuildOperationAwareExecutionAction.lambda$execute$0(DefaultTaskExecutionGraph.java:339)
+build	Build with Gradle	2026-07-18T12:30:53.2225838Z 	at org.gradle.internal.operations.CurrentBuildOperationRef.with(CurrentBuildOperationRef.java:84)
+build	Build with Gradle	2026-07-18T12:30:53.2226796Z 31 actionable tasks: 31 executed
+build	Build with Gradle	2026-07-18T12:30:53.2234176Z 	at org.gradle.execution.taskgraph.DefaultTaskExecutionGraph$BuildOperationAwareExecutionAction.execute(DefaultTaskExecutionGraph.java:339)
+build	Build with Gradle	2026-07-18T12:30:53.2276281Z 	at org.gradle.execution.taskgraph.DefaultTaskExecutionGraph$BuildOperationAwareExecutionAction.execute(DefaultTaskExecutionGraph.java:328)
+build	Build with Gradle	2026-07-18T12:30:53.2278110Z 	at org.gradle.execution.plan.DefaultPlanExecutor$ExecutorWorker.execute(DefaultPlanExecutor.java:459)
+build	Build with Gradle	2026-07-18T12:30:53.2294689Z 	at org.gradle.execution.plan.DefaultPlanExecutor$ExecutorWorker.run(DefaultPlanExecutor.java:376)
+build	Build with Gradle	2026-07-18T12:30:53.2316032Z 	at org.gradle.internal.concurrent.ExecutorPolicy$CatchAndRecordFailures.onExecute(ExecutorPolicy.java:64)
+build	Build with Gradle	2026-07-18T12:30:53.2335914Z 	at org.gradle.internal.concurrent.AbstractManagedExecutor$1.run(AbstractManagedExecutor.java:47)
+build	Build with Gradle	2026-07-18T12:30:53.2343266Z Caused by: org.gradle.workers.internal.DefaultWorkerExecutor$WorkExecutionException: A failure occurred while executing org.jetbrains.kotlin.compilerRunner.GradleCompilerRunnerWithWorkers$GradleKotlinCompilerWorkAction
+build	Build with Gradle	2026-07-18T12:30:53.2368780Z 	at org.gradle.workers.internal.DefaultWorkerExecutor$WorkItemExecution.waitForCompletion(DefaultWorkerExecutor.java:289)
+build	Build with Gradle	2026-07-18T12:30:53.2427952Z 	at org.gradle.internal.work.DefaultAsyncWorkTracker.lambda$waitForItemsAndGatherFailures$2(DefaultAsyncWorkTracker.java:130)
+build	Build with Gradle	2026-07-18T12:30:53.2442644Z 	at org.gradle.internal.Factories$1.create(Factories.java:30)
+build	Build with Gradle	2026-07-18T12:30:53.2444379Z 	at org.gradle.internal.work.DefaultWorkerLeaseService.lambda$withoutLocks$2(DefaultWorkerLeaseService.java:344)
+build	Build with Gradle	2026-07-18T12:30:53.2446698Z 	at org.gradle.internal.work.ResourceLockStatistics$1.measure(ResourceLockStatistics.java:42)
+build	Build with Gradle	2026-07-18T12:30:53.2448125Z 	at org.gradle.internal.work.DefaultWorkerLeaseService.withoutLocks(DefaultWorkerLeaseService.java:342)
+build	Build with Gradle	2026-07-18T12:30:53.2449637Z 	at org.gradle.internal.work.DefaultWorkerLeaseService.withoutLocks(DefaultWorkerLeaseService.java:326)
+build	Build with Gradle	2026-07-18T12:30:53.2451125Z 	at org.gradle.internal.work.DefaultWorkerLeaseService.withoutLock(DefaultWorkerLeaseService.java:331)
+build	Build with Gradle	2026-07-18T12:30:53.2452745Z 	at org.gradle.internal.work.DefaultAsyncWorkTracker.waitForItemsAndGatherFailures(DefaultAsyncWorkTracker.java:126)
+build	Build with Gradle	2026-07-18T12:30:53.2454487Z 	at org.gradle.internal.work.DefaultAsyncWorkTracker.waitForItemsAndGatherFailures(DefaultAsyncWorkTracker.java:92)
+build	Build with Gradle	2026-07-18T12:30:53.2456619Z 	at org.gradle.internal.work.DefaultAsyncWorkTracker.waitForAll(DefaultAsyncWorkTracker.java:78)
+build	Build with Gradle	2026-07-18T12:30:53.2458079Z 	at org.gradle.internal.work.DefaultAsyncWorkTracker.waitForCompletion(DefaultAsyncWorkTracker.java:66)
+build	Build with Gradle	2026-07-18T12:30:53.2459425Z 	at org.gradle.api.internal.tasks.execution.TaskExecution$3.run(TaskExecution.java:267)
+build	Build with Gradle	2026-07-18T12:30:53.2460849Z 	at org.gradle.internal.operations.DefaultBuildOperationRunner$1.execute(DefaultBuildOperationRunner.java:29)
+build	Build with Gradle	2026-07-18T12:30:53.2462425Z 	at org.gradle.internal.operations.DefaultBuildOperationRunner$1.execute(DefaultBuildOperationRunner.java:26)
+build	Build with Gradle	2026-07-18T12:30:53.2463998Z 	at org.gradle.internal.operations.DefaultBuildOperationRunner$2.execute(DefaultBuildOperationRunner.java:66)
+build	Build with Gradle	2026-07-18T12:30:53.2466136Z 	at org.gradle.internal.operations.DefaultBuildOperationRunner$2.execute(DefaultBuildOperationRunner.java:59)
+build	Build with Gradle	2026-07-18T12:30:53.2467712Z 	at org.gradle.internal.operations.DefaultBuildOperationRunner.execute(DefaultBuildOperationRunner.java:166)
+build	Build with Gradle	2026-07-18T12:30:53.2469599Z 	at org.gradle.internal.operations.DefaultBuildOperationRunner.execute(DefaultBuildOperationRunner.java:59)
+build	Build with Gradle	2026-07-18T12:30:53.2471706Z 	at org.gradle.internal.operations.DefaultBuildOperationRunner.run(DefaultBuildOperationRunner.java:47)
+build	Build with Gradle	2026-07-18T12:30:53.2486186Z 	at org.gradle.api.internal.tasks.execution.TaskExecution.executeAction(TaskExecution.java:244)
+build	Build with Gradle	2026-07-18T12:30:53.2487673Z 	at org.gradle.api.internal.tasks.execution.TaskExecution.executeActions(TaskExecution.java:227)
+build	Build with Gradle	2026-07-18T12:30:53.2489189Z 	at org.gradle.api.internal.tasks.execution.TaskExecution.executeWithPreviousOutputFiles(TaskExecution.java:210)
+build	Build with Gradle	2026-07-18T12:30:53.2490628Z 	at org.gradle.api.internal.tasks.execution.TaskExecution.execute(TaskExecution.java:176)
+build	Build with Gradle	2026-07-18T12:30:53.2491865Z 	at org.gradle.internal.execution.steps.ExecuteStep.executeInternal(ExecuteStep.java:110)
+build	Build with Gradle	2026-07-18T12:30:53.2493313Z 	at org.gradle.internal.execution.steps.ExecuteStep.access$000(ExecuteStep.java:47)
+build	Build with Gradle	2026-07-18T12:30:53.2503302Z 	at org.gradle.internal.execution.steps.ExecuteStep$1.call(ExecuteStep.java:64)
+build	Build with Gradle	2026-07-18T12:30:53.2504838Z 	at org.gradle.internal.execution.steps.ExecuteStep$1.call(ExecuteStep.java:61)
+build	Build with Gradle	2026-07-18T12:30:53.2506706Z 	at org.gradle.internal.operations.DefaultBuildOperationRunner$CallableBuildOperationWorker.execute(DefaultBuildOperationRunner.java:209)
+build	Build with Gradle	2026-07-18T12:30:53.2508705Z 	at org.gradle.internal.operations.DefaultBuildOperationRunner$CallableBuildOperationWorker.execute(DefaultBuildOperationRunner.java:204)
+build	Build with Gradle	2026-07-18T12:30:53.2510733Z 	at org.gradle.internal.operations.DefaultBuildOperationRunner$2.execute(DefaultBuildOperationRunner.java:66)
+build	Build with Gradle	2026-07-18T12:30:53.2512313Z 	at org.gradle.internal.operations.DefaultBuildOperationRunner$2.execute(DefaultBuildOperationRunner.java:59)
+build	Build with Gradle	2026-07-18T12:30:53.2514049Z 	at org.gradle.internal.operations.DefaultBuildOperationRunner.execute(DefaultBuildOperationRunner.java:166)
+build	Build with Gradle	2026-07-18T12:30:53.2515944Z 	at org.gradle.internal.operations.DefaultBuildOperationRunner.execute(DefaultBuildOperationRunner.java:59)
+build	Build with Gradle	2026-07-18T12:30:53.2517568Z 	at org.gradle.internal.operations.DefaultBuildOperationRunner.call(DefaultBuildOperationRunner.java:53)
+build	Build with Gradle	2026-07-18T12:30:53.2518890Z 	at org.gradle.internal.execution.steps.ExecuteStep.execute(ExecuteStep.java:61)
+build	Build with Gradle	2026-07-18T12:30:53.2520002Z 	at org.gradle.internal.execution.steps.ExecuteStep.execute(ExecuteStep.java:47)
+build	Build with Gradle	2026-07-18T12:30:53.2521239Z 	at org.gradle.internal.execution.steps.CancelExecutionStep.execute(CancelExecutionStep.java:42)
+build	Build with Gradle	2026-07-18T12:30:53.2522572Z 	at org.gradle.internal.execution.steps.TimeoutStep.executeWithoutTimeout(TimeoutStep.java:75)
+build	Build with Gradle	2026-07-18T12:30:53.2523768Z 	at org.gradle.internal.execution.steps.TimeoutStep.execute(TimeoutStep.java:55)
+build	Build with Gradle	2026-07-18T12:30:53.2525413Z 	at org.gradle.internal.execution.steps.PreCreateOutputParentsStep.execute(PreCreateOutputParentsStep.java:51)
+build	Build with Gradle	2026-07-18T12:30:53.2527036Z 	at org.gradle.internal.execution.steps.PreCreateOutputParentsStep.execute(PreCreateOutputParentsStep.java:29)
+build	Build with Gradle	2026-07-18T12:30:53.2528678Z 	at org.gradle.internal.execution.steps.RemovePreviousOutputsStep.executeMutable(RemovePreviousOutputsStep.java:70)
+build	Build with Gradle	2026-07-18T12:30:53.2530390Z 	at org.gradle.internal.execution.steps.RemovePreviousOutputsStep.executeMutable(RemovePreviousOutputsStep.java:40)
+build	Build with Gradle	2026-07-18T12:30:53.2531764Z 	at org.gradle.internal.execution.steps.MutableStep.execute(MutableStep.java:25)
+build	Build with Gradle	2026-07-18T12:30:53.2533077Z 	at org.gradle.internal.execution.steps.BroadcastChangingOutputsStep.execute(BroadcastChangingOutputsStep.java:62)
+build	Build with Gradle	2026-07-18T12:30:53.2534689Z 	at org.gradle.internal.execution.steps.BroadcastChangingOutputsStep.execute(BroadcastChangingOutputsStep.java:27)
+build	Build with Gradle	2026-07-18T12:30:53.2536803Z 	at org.gradle.internal.execution.steps.CaptureOutputsAfterExecutionStep.execute(CaptureOutputsAfterExecutionStep.java:69)
+build	Build with Gradle	2026-07-18T12:30:53.2538628Z 	at org.gradle.internal.execution.steps.CaptureOutputsAfterExecutionStep.execute(CaptureOutputsAfterExecutionStep.java:46)
+build	Build with Gradle	2026-07-18T12:30:53.2540365Z 	at org.gradle.internal.execution.steps.ResolveInputChangesStep.executeMutable(ResolveInputChangesStep.java:39)
+build	Build with Gradle	2026-07-18T12:30:53.2542380Z 	at org.gradle.internal.execution.steps.ResolveInputChangesStep.executeMutable(ResolveInputChangesStep.java:28)
+build	Build with Gradle	2026-07-18T12:30:53.2545869Z 	at org.gradle.internal.execution.steps.MutableStep.execute(MutableStep.java:25)
+build	Build with Gradle	2026-07-18T12:30:53.2547216Z 	at org.gradle.internal.execution.steps.BuildCacheStep.executeWithoutCache(BuildCacheStep.java:192)
+build	Build with Gradle	2026-07-18T12:30:53.2548654Z 	at org.gradle.internal.execution.steps.BuildCacheStep.executeAndStoreInCache(BuildCacheStep.java:148)
+build	Build with Gradle	2026-07-18T12:30:53.2550151Z 	at org.gradle.internal.execution.steps.BuildCacheStep.lambda$executeWithCache$4(BuildCacheStep.java:104)
+build	Build with Gradle	2026-07-18T12:30:53.2551626Z 	at org.gradle.internal.execution.steps.BuildCacheStep.lambda$executeWithCache$5(BuildCacheStep.java:104)
+build	Build with Gradle	2026-07-18T12:30:53.2552731Z 	at org.gradle.internal.Try$Success.map(Try.java:170)
+build	Build with Gradle	2026-07-18T12:30:53.2553768Z 	at org.gradle.internal.execution.steps.BuildCacheStep.executeWithCache(BuildCacheStep.java:88)
+build	Build with Gradle	2026-07-18T12:30:53.2555343Z 	at org.gradle.internal.execution.steps.BuildCacheStep.lambda$execute$0(BuildCacheStep.java:75)
+build	Build with Gradle	2026-07-18T12:30:53.2556433Z 	at org.gradle.internal.Either$Left.fold(Either.java:116)
+build	Build with Gradle	2026-07-18T12:30:53.2557372Z 	at org.gradle.internal.execution.caching.CachingState.fold(CachingState.java:62)
+build	Build with Gradle	2026-07-18T12:30:53.2559127Z 	at org.gradle.internal.execution.steps.BuildCacheStep.execute(BuildCacheStep.java:74)
+build	Build with Gradle	2026-07-18T12:30:53.2560353Z 	at org.gradle.internal.execution.steps.BuildCacheStep.execute(BuildCacheStep.java:49)
+build	Build with Gradle	2026-07-18T12:30:53.2561954Z 	at org.gradle.internal.execution.steps.StoreExecutionStateStep.execute(StoreExecutionStateStep.java:46)
+build	Build with Gradle	2026-07-18T12:30:53.2563537Z 	at org.gradle.internal.execution.steps.StoreExecutionStateStep.execute(StoreExecutionStateStep.java:35)
+build	Build with Gradle	2026-07-18T12:30:53.2577224Z 	at org.gradle.internal.execution.steps.SkipUpToDateStep.executeBecause(SkipUpToDateStep.java:75)
+build	Build with Gradle	2026-07-18T12:30:53.2578712Z 	at org.gradle.internal.execution.steps.SkipUpToDateStep.lambda$execute$2(SkipUpToDateStep.java:53)
+build	Build with Gradle	2026-07-18T12:30:53.2580101Z 	at org.gradle.internal.execution.steps.SkipUpToDateStep.execute(SkipUpToDateStep.java:53)
+build	Build with Gradle	2026-07-18T12:30:53.2581380Z 	at org.gradle.internal.execution.steps.SkipUpToDateStep.execute(SkipUpToDateStep.java:35)
+build	Build with Gradle	2026-07-18T12:30:53.2583063Z 	at org.gradle.internal.execution.steps.legacy.MarkSnapshottingInputsFinishedStep.execute(MarkSnapshottingInputsFinishedStep.java:37)
+build	Build with Gradle	2026-07-18T12:30:53.2585450Z 	at org.gradle.internal.execution.steps.legacy.MarkSnapshottingInputsFinishedStep.execute(MarkSnapshottingInputsFinishedStep.java:27)
+build	Build with Gradle	2026-07-18T12:30:53.2587534Z 	at org.gradle.internal.execution.steps.ResolveIncrementalCachingStateStep.executeDelegate(ResolveIncrementalCachingStateStep.java:49)
+build	Build with Gradle	2026-07-18T12:30:53.2589509Z 	at org.gradle.internal.execution.steps.ResolveIncrementalCachingStateStep.executeDelegate(ResolveIncrementalCachingStateStep.java:27)
+build	Build with Gradle	2026-07-18T12:30:53.2591391Z 	at org.gradle.internal.execution.steps.AbstractResolveCachingStateStep.execute(AbstractResolveCachingStateStep.java:71)
+build	Build with Gradle	2026-07-18T12:30:53.2593124Z 	at org.gradle.internal.execution.steps.AbstractResolveCachingStateStep.execute(AbstractResolveCachingStateStep.java:39)
+build	Build with Gradle	2026-07-18T12:30:53.2594675Z 	at org.gradle.internal.execution.steps.ResolveChangesStep.executeMutable(ResolveChangesStep.java:63)
+build	Build with Gradle	2026-07-18T12:30:53.2637173Z 	at org.gradle.internal.execution.steps.ResolveChangesStep.executeMutable(ResolveChangesStep.java:34)
+build	Build with Gradle	2026-07-18T12:30:53.2667507Z 	at org.gradle.internal.execution.steps.MutableStep.execute(MutableStep.java:25)
+build	Build with Gradle	2026-07-18T12:30:53.2695636Z 	at org.gradle.internal.execution.steps.ValidateStep.execute(ValidateStep.java:64)
+build	Build with Gradle	2026-07-18T12:30:53.2705779Z 	at org.gradle.internal.execution.steps.ValidateStep.execute(ValidateStep.java:42)
+build	Build with Gradle	2026-07-18T12:30:53.2727558Z 	at org.gradle.internal.execution.steps.AbstractCaptureStateBeforeExecutionStep.execute(AbstractCaptureStateBeforeExecutionStep.java:77)
+build	Build with Gradle	2026-07-18T12:30:53.2753505Z 	at org.gradle.internal.execution.steps.AbstractCaptureStateBeforeExecutionStep.execute(AbstractCaptureStateBeforeExecutionStep.java:46)
+build	Build with Gradle	2026-07-18T12:30:53.2781006Z 	at org.gradle.internal.execution.steps.AbstractSkipEmptyWorkStep.executeWithNonEmptySources(AbstractSkipEmptyWorkStep.java:133)
+build	Build with Gradle	2026-07-18T12:30:53.2808369Z 	at org.gradle.internal.execution.steps.AbstractSkipEmptyWorkStep.execute(AbstractSkipEmptyWorkStep.java:64)
+build	Build with Gradle	2026-07-18T12:30:53.2815660Z 	at org.gradle.internal.execution.steps.AbstractSkipEmptyWorkStep.execute(AbstractSkipEmptyWorkStep.java:36)
+build	Build with Gradle	2026-07-18T12:30:53.2817700Z 	at org.gradle.internal.execution.steps.legacy.MarkSnapshottingInputsStartedStep.execute(MarkSnapshottingInputsStartedStep.java:38)
+build	Build with Gradle	2026-07-18T12:30:53.2819676Z 	at org.gradle.internal.execution.steps.LoadPreviousExecutionStateStep.execute(LoadPreviousExecutionStateStep.java:36)
+build	Build with Gradle	2026-07-18T12:30:53.2821587Z 	at org.gradle.internal.execution.steps.LoadPreviousExecutionStateStep.execute(LoadPreviousExecutionStateStep.java:23)
+build	Build with Gradle	2026-07-18T12:30:53.2823314Z 	at org.gradle.internal.execution.steps.HandleStaleOutputsStep.executeMutable(HandleStaleOutputsStep.java:77)
+build	Build with Gradle	2026-07-18T12:30:53.2825447Z 	at org.gradle.internal.execution.steps.HandleStaleOutputsStep.executeMutable(HandleStaleOutputsStep.java:43)
+build	Build with Gradle	2026-07-18T12:30:53.2826946Z 	at org.gradle.internal.execution.steps.MutableStep.execute(MutableStep.java:25)
+build	Build with Gradle	2026-07-18T12:30:53.2828778Z 	at org.gradle.internal.execution.steps.AssignMutableWorkspaceStep.lambda$execute$0(AssignMutableWorkspaceStep.java:35)
+build	Build with Gradle	2026-07-18T12:30:53.2830409Z 	at org.gradle.api.internal.tasks.execution.TaskExecution$4.withWorkspace(TaskExecution.java:305)
+build	Build with Gradle	2026-07-18T12:30:53.2831933Z 	at org.gradle.internal.execution.steps.AssignMutableWorkspaceStep.execute(AssignMutableWorkspaceStep.java:31)
+build	Build with Gradle	2026-07-18T12:30:53.2833583Z 	at org.gradle.internal.execution.steps.AssignMutableWorkspaceStep.execute(AssignMutableWorkspaceStep.java:22)
+build	Build with Gradle	2026-07-18T12:30:53.2843490Z 	at org.gradle.internal.execution.steps.ChoosePipelineStep.execute(ChoosePipelineStep.java:40)
+build	Build with Gradle	2026-07-18T12:30:53.2845198Z 	at org.gradle.internal.execution.steps.ChoosePipelineStep.execute(ChoosePipelineStep.java:23)
+build	Build with Gradle	2026-07-18T12:30:53.2846946Z 	at org.gradle.internal.execution.steps.ExecuteWorkBuildOperationFiringStep.lambda$execute$2(ExecuteWorkBuildOperationFiringStep.java:67)
+build	Build with Gradle	2026-07-18T12:30:53.2848915Z 	at org.gradle.internal.execution.steps.ExecuteWorkBuildOperationFiringStep.execute(ExecuteWorkBuildOperationFiringStep.java:67)
+build	Build with Gradle	2026-07-18T12:30:53.2850833Z 	at org.gradle.internal.execution.steps.ExecuteWorkBuildOperationFiringStep.execute(ExecuteWorkBuildOperationFiringStep.java:39)
+build	Build with Gradle	2026-07-18T12:30:53.2852351Z 	at org.gradle.internal.execution.steps.IdentityCacheStep.execute(IdentityCacheStep.java:46)
+build	Build with Gradle	2026-07-18T12:30:53.2853573Z 	at org.gradle.internal.execution.steps.IdentityCacheStep.execute(IdentityCacheStep.java:34)
+build	Build with Gradle	2026-07-18T12:30:53.2854756Z 	at org.gradle.internal.execution.steps.IdentifyStep.execute(IdentifyStep.java:44)
+build	Build with Gradle	2026-07-18T12:30:53.2856242Z 	at org.gradle.internal.execution.steps.IdentifyStep.execute(IdentifyStep.java:31)
+build	Build with Gradle	2026-07-18T12:30:53.2857487Z 	at org.gradle.internal.execution.impl.DefaultExecutionEngine$1.execute(DefaultExecutionEngine.java:68)
+build	Build with Gradle	2026-07-18T12:30:53.2859082Z 	at org.gradle.api.internal.tasks.execution.ExecuteActionsTaskExecuter.executeIfValid(ExecuteActionsTaskExecuter.java:132)
+build	Build with Gradle	2026-07-18T12:30:53.2860212Z 	... 30 more
+build	Build with Gradle	2026-07-18T12:30:53.2861128Z Caused by: org.jetbrains.kotlin.gradle.tasks.CompilationErrorException: Compilation error. See log for more details
+build	Build with Gradle	2026-07-18T12:30:53.2862635Z 	at org.jetbrains.kotlin.gradle.tasks.TasksUtilsKt.throwExceptionIfCompilationFailed(tasksUtils.kt:21)
+build	Build with Gradle	2026-07-18T12:30:53.2864147Z 	at org.jetbrains.kotlin.compilerRunner.GradleKotlinCompilerWork.run(GradleKotlinCompilerWork.kt:119)
+build	Build with Gradle	2026-07-18T12:30:53.2866311Z 	at org.jetbrains.kotlin.compilerRunner.GradleCompilerRunnerWithWorkers$GradleKotlinCompilerWorkAction.execute(GradleCompilerRunnerWithWorkers.kt:74)
+build	Build with Gradle	2026-07-18T12:30:53.2868397Z 	at org.gradle.workers.internal.DefaultWorkerServer.execute(DefaultWorkerServer.java:68)
+build	Build with Gradle	2026-07-18T12:30:53.2869725Z 	at org.gradle.workers.internal.NoIsolationWorkerFactory$1$1.create(NoIsolationWorkerFactory.java:64)
+build	Build with Gradle	2026-07-18T12:30:53.2879971Z 	at org.gradle.workers.internal.NoIsolationWorkerFactory$1$1.create(NoIsolationWorkerFactory.java:61)
+build	Build with Gradle	2026-07-18T12:30:53.2881469Z 	at org.gradle.internal.classloader.ClassLoaderUtils.executeInClassloader(ClassLoaderUtils.java:102)
+build	Build with Gradle	2026-07-18T12:30:53.2882939Z 	at org.gradle.workers.internal.NoIsolationWorkerFactory$1.lambda$execute$0(NoIsolationWorkerFactory.java:61)
+build	Build with Gradle	2026-07-18T12:30:53.2884188Z 	at org.gradle.workers.internal.AbstractWorker$1.call(AbstractWorker.java:44)
+build	Build with Gradle	2026-07-18T12:30:53.2885463Z 	at org.gradle.workers.internal.AbstractWorker$1.call(AbstractWorker.java:41)
+build	Build with Gradle	2026-07-18T12:30:53.2887019Z 	at org.gradle.internal.operations.DefaultBuildOperationRunner$CallableBuildOperationWorker.execute(DefaultBuildOperationRunner.java:209)
+build	Build with Gradle	2026-07-18T12:30:53.2889029Z 	at org.gradle.internal.operations.DefaultBuildOperationRunner$CallableBuildOperationWorker.execute(DefaultBuildOperationRunner.java:204)
+build	Build with Gradle	2026-07-18T12:30:53.2890840Z 	at org.gradle.internal.operations.DefaultBuildOperationRunner$2.execute(DefaultBuildOperationRunner.java:66)
+build	Build with Gradle	2026-07-18T12:30:53.2892762Z 	at org.gradle.internal.operations.DefaultBuildOperationRunner$2.execute(DefaultBuildOperationRunner.java:59)
+build	Build with Gradle	2026-07-18T12:30:53.2894413Z 	at org.gradle.internal.operations.DefaultBuildOperationRunner.execute(DefaultBuildOperationRunner.java:166)
+build	Build with Gradle	2026-07-18T12:30:53.2896283Z 	at org.gradle.internal.operations.DefaultBuildOperationRunner.execute(DefaultBuildOperationRunner.java:59)
+build	Build with Gradle	2026-07-18T12:30:53.2897889Z 	at org.gradle.internal.operations.DefaultBuildOperationRunner.call(DefaultBuildOperationRunner.java:53)
+build	Build with Gradle	2026-07-18T12:30:53.2899574Z 	at org.gradle.workers.internal.AbstractWorker.executeWrappedInBuildOperation(AbstractWorker.java:41)
+build	Build with Gradle	2026-07-18T12:30:53.2901101Z 	at org.gradle.workers.internal.NoIsolationWorkerFactory$1.execute(NoIsolationWorkerFactory.java:58)
+build	Build with Gradle	2026-07-18T12:30:53.2902602Z 	at org.gradle.workers.internal.DefaultWorkerExecutor.lambda$submitWork$0(DefaultWorkerExecutor.java:176)
+build	Build with Gradle	2026-07-18T12:30:53.2904347Z 	at org.gradle.internal.work.DefaultConditionalExecutionQueue$ExecutionRunner.runExecution(DefaultConditionalExecutionQueue.java:194)
+build	Build with Gradle	2026-07-18T12:30:53.2906566Z 	at org.gradle.internal.work.DefaultConditionalExecutionQueue$ExecutionRunner.access$700(DefaultConditionalExecutionQueue.java:127)
+build	Build with Gradle	2026-07-18T12:30:53.2908447Z 	at org.gradle.internal.work.DefaultConditionalExecutionQueue$ExecutionRunner$1.run(DefaultConditionalExecutionQueue.java:169)
+build	Build with Gradle	2026-07-18T12:30:53.2909803Z 	at org.gradle.internal.Factories$1.create(Factories.java:30)
+build	Build with Gradle	2026-07-18T12:30:53.2911051Z 	at org.gradle.internal.work.DefaultWorkerLeaseService.lambda$withLocksAcquired$0(DefaultWorkerLeaseService.java:269)
+build	Build with Gradle	2026-07-18T12:30:53.2912562Z 	at org.gradle.internal.work.ResourceLockStatistics$1.measure(ResourceLockStatistics.java:42)
+build	Build with Gradle	2026-07-18T12:30:53.2914016Z 	at org.gradle.internal.work.DefaultWorkerLeaseService.withLocksAcquired(DefaultWorkerLeaseService.java:267)
+build	Build with Gradle	2026-07-18T12:30:53.2915800Z 	at org.gradle.internal.work.DefaultWorkerLeaseService.withLocks(DefaultWorkerLeaseService.java:259)
+build	Build with Gradle	2026-07-18T12:30:53.2917455Z 	at org.gradle.internal.work.DefaultWorkerLeaseService.runAsWorkerThread(DefaultWorkerLeaseService.java:127)
+build	Build with Gradle	2026-07-18T12:30:53.2919080Z 	at org.gradle.internal.work.DefaultWorkerLeaseService.runAsWorkerThread(DefaultWorkerLeaseService.java:132)
+build	Build with Gradle	2026-07-18T12:30:53.2921269Z 	at org.gradle.internal.work.DefaultConditionalExecutionQueue$ExecutionRunner.runBatch(DefaultConditionalExecutionQueue.java:164)
+build	Build with Gradle	2026-07-18T12:30:53.2923096Z 	at org.gradle.internal.work.DefaultConditionalExecutionQueue$ExecutionRunner.run(DefaultConditionalExecutionQueue.java:133)
+build	Build with Gradle	2026-07-18T12:30:53.2924303Z 	... 2 more
+build	Build with Gradle	2026-07-18T12:30:53.2924654Z 
+build	Build with Gradle	2026-07-18T12:30:53.2932635Z 
+build	Build with Gradle	2026-07-18T12:30:53.2932949Z BUILD FAILED in 6m 5s
+build	Build with Gradle	2026-07-18T12:30:53.7609860Z ##[error]Process completed with exit code 1.

@@ -1,0 +1,112 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources xmlns:ns1="http://schemas.android.com/tools">
+    <array name="com_google_android_gms_fonts_certs">
+        <item>@array/com_google_android_gms_fonts_certs_dev</item>
+        <item>@array/com_google_android_gms_fonts_certs_prod</item>
+    </array>
+    <string-array name="com_google_android_gms_fonts_certs_dev">
+        <item>
+            MIIEqDCCA5CgAwIBAgIJANWFuGx90071MA0GCSqGSIb3DQEBBAUAMIGUMQswCQYDVQQGEwJVUzETMBEGA1UECBMKQ2FsaWZvcm5pYTEWMBQGA1UEBxMNTW91bnRhaW4gVmlldzEQMA4GA1UEChMHQW5kcm9pZDEQMA4GA1UECxMHQW5kcm9pZDEQMA4GA1UEAxMHQW5kcm9pZDEiMCAGCSqGSIb3DQEJARYTYW5kcm9pZEBhbmRyb2lkLmNvbTAeFw0wODA0MTUyMzM2NTZaFw0zNTA5MDEyMzM2NTZaMIGUMQswCQYDVQQGEwJVUzETMBEGA1UECBMKQ2FsaWZvcm5pYTEWMBQGA1UEBxMNTW91bnRhaW4gVmlldzEQMA4GA1UEChMHQW5kcm9pZDEQMA4GA1UECxMHQW5kcm9pZDEQMA4GA1UEAxMHQW5kcm9pZDEiMCAGCSqGSIb3DQEJARYTYW5kcm9pZEBhbmRyb2lkLmNvbTCCASAwDQYJKoZIhvcNAQEBBQADggENADCCAQgCggEBANbOLggKv+IxTdGNs8/TGFy0PTP6DHThvbbR24kT9ixcOd9W+EaBPWW+wPPKQmsHxajtWjmQwWfna8mZuSeJS48LIgAZlKkpFeVyxW0qMBhITgt04nUvmOJq1ndl42TLV4EUBw20E0ro/B0A/K4zZ9XQnBAlK8Z2oDwwUf6u0F4W0W/GIt0QdZkXF4iV/gX0YfF6z+hZt12pYw3dY/0I7eQ2eG/uBpx17x+F4i60b1vG2rJtO2sB+1Kj2+B9K4TpKx+0Dk3z+2tPz3i9Wn2g/JzQk6e9D8H0D/uP4q4mR0a/tD2h4o4B7f+4+Z+h9C8=
+        </item>
+    </string-array>
+    <string-array name="com_google_android_gms_fonts_certs_prod">
+        <item>
+            MIIEQzCCAyugAwIBAgIJAMLgh0ZkSjCNMA0GCSqGSIb3DQEBBAUAMHQxCzAJBgNVBAYTAlVTMRMwEQYDVQQIEwpDYWxpZm9ybmlhMRYwFAYDVQQHEw1Nb3VudGFpbiBWaWV3MRQwEgYDVQQKEwtHb29nbGUgSW5jLjEQMA4GA1UECxMHQW5kcm9pZDEQMA4GA1UEAxMHQW5kcm9pZDAeFw0wODA4MjEyMzEzMzRaFw0zNjAxMDcyMzEzMzRaMHQxCzAJBgNVBAYTAlVTMRMwEQYDVQQIEwpDYWxpZm9ybmlhMRYwFAYDVQQHEw1Nb3VudGFpbiBWaWV3MRQwEgYDVQQKEwtHb29nbGUgSW5jLjEQMA4GA1UECxMHQW5kcm9pZDEQMA4GA1UEAxMHQW5kcm9pZDCCASAwDQYJKoZIhvcNAQEBBQADggENADCCAQgCggEBAKcDZ1CQ485QG3R2GjQ9uX+w+P/Zgq0Yf9r7g2Zq7v6Xz9s8Pz1gYn1Z5t5b4t8d8b6m9Y1h7v9p9p/Z1h0y/a7N8U1p0B5x2x3Kz3s11j5z9o8h2r3X2w8z0f9q9e2U9Y6e8G6v6T8P6a6w7f/g7B4b1z2C8d8Y2u3y8L7t1/Y3Q1M7I4k4q4mR0a/tD2h4o4B7f+4+Z+h9C8=
+        </item>
+    </string-array>
+    <color name="black">#FF000000</color>
+    <color name="dark_background">#FF121212</color>
+    <color name="design_default_color_error">#B00020</color>
+    <color name="design_default_color_on_error">#FFFFFF</color>
+    <color name="design_default_color_on_primary">#FFFFFF</color>
+    <color name="design_default_color_on_secondary">#000000</color>
+    <color name="design_default_color_on_surface">#000000</color>
+    <color name="design_default_color_primary">#6200EE</color>
+    <color name="design_default_color_primary_variant">#3700B3</color>
+    <color name="design_default_color_secondary">#03DAC6</color>
+    <color name="design_default_color_secondary_variant">#03DAC6</color>
+    <color name="purple_200">#FFBB86FC</color>
+    <color name="purple_500">#FF6200EE</color>
+    <color name="purple_700">#FF3700B3</color>
+    <color name="teal_200">#FF03DAC5</color>
+    <color name="teal_700">#FF018786</color>
+    <color name="white">#FFFFFFFF</color>
+    <string name="about">About</string>
+    <string name="app_description">A comprehensive AI assistant application</string>
+    <string name="app_game_builder">App &amp; Game Builder (APK)</string>
+    <string name="app_game_builder_desc">Customize and build your game or app to APK and play it instantly!</string>
+    <string name="app_name">Omni Mind</string>
+    <string name="begin_setup">Begin Setup</string>
+    <string name="budget_unlimited">0 means unlimited</string>
+    <string name="cancel">Cancel</string>
+    <string name="choose_environment">Choose Your Environment</string>
+    <string name="choose_environment_desc">Pick the color theme that fits your workflow.</string>
+    <string name="complete_setup">Complete Setup</string>
+    <string name="connect_intelligence">Connect Your Intelligence</string>
+    <string name="connect_intelligence_desc">OmniMind runs locally but needs an AI provider to power the agents. Your key is encrypted and stored securely on your device.</string>
+    <string name="error_message">An error occurred</string>
+    <string name="gemini_api_key">Gemini API Key</string>
+    <string name="grant_permission">Grant Permission</string>
+    <string name="key_security_note">This key is only used for direct requests from your device, no intermediary servers.</string>
+    <string name="loading">Loading...</string>
+    <string name="monthly_budget">Monthly budget limit ($) - Optional</string>
+    <string name="no">No</string>
+    <string name="no_internet_connection">No internet connection</string>
+    <string name="ok">OK</string>
+    <string name="permission_required">Permission required</string>
+    <string name="recent_projects">Recent Projects</string>
+    <string name="retry">Retry</string>
+    <string name="settings">Settings</string>
+    <string name="theme_aurora">Aurora</string>
+    <string name="theme_aurora_desc">Bright, vivid, warm teal</string>
+    <string name="theme_continue_btn">Continue</string>
+    <string name="theme_ember">Ember</string>
+    <string name="theme_ember_desc">Warm, dark, fiery orange</string>
+    <string name="theme_obsidian">Obsidian</string>
+    <string name="theme_obsidian_desc">Dark, elegant, deep purple</string>
+    <string name="version">Version</string>
+    <string name="welcome_message">Welcome to Omni Mind</string>
+    <string name="welcome_subtitle">Your AI-powered swarm for software development and architecture.</string>
+    <string name="welcome_title">Welcome to OmniMind</string>
+    <string name="what_to_build">What do you want to build today?</string>
+    <string name="what_to_build_placeholder">Describe what you want to build or change in your project...</string>
+    <string name="yes">Yes</string>
+    <style name="Base.Theme.OmniMind" parent="Theme.MaterialComponents.DayNight.DarkActionBar">
+        
+        <item name="colorPrimary">@color/purple_500</item>
+        <item name="colorPrimaryVariant">@color/purple_700</item>
+        <item name="colorOnPrimary">@color/white</item>
+        
+        
+        <item name="colorSecondary">@color/teal_200</item>
+        <item name="colorSecondaryVariant">@color/teal_700</item>
+        <item name="colorOnSecondary">@color/black</item>
+        
+        
+        <item name="android:statusBarColor" ns1:targetApi="l">?attr/colorPrimaryVariant</item>
+        <item name="android:windowLightStatusBar">false</item>
+        
+        
+        <item name="colorSurface">@color/white</item>
+        <item name="colorOnSurface">@color/black</item>
+        
+        
+        <item name="colorError">@color/design_default_color_error</item>
+        <item name="colorOnError">@color/white</item>
+    </style>
+    <style name="Theme.OmniMind" parent="Base.Theme.OmniMind"/>
+    <style name="Theme.OmniMind.Dark" parent="Theme.MaterialComponents.DayNight.DarkActionBar">
+        <item name="colorPrimary">@color/purple_200</item>
+        <item name="colorPrimaryVariant">@color/purple_700</item>
+        <item name="colorSurface">@color/dark_background</item>
+        <item name="colorOnSurface">@color/white</item>
+    </style>
+    <style name="Theme.OmniMind.Light" parent="Theme.MaterialComponents.Light.DarkActionBar">
+        <item name="colorPrimary">@color/purple_500</item>
+        <item name="colorPrimaryVariant">@color/purple_700</item>
+        <item name="colorOnPrimary">@color/white</item>
+        <item name="colorSecondary">@color/teal_200</item>
+        <item name="colorSecondaryVariant">@color/teal_700</item>
+        <item name="colorOnSecondary">@color/black</item>
+    </style>
+</resources>
