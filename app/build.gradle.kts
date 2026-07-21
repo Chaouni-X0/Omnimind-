@@ -4,6 +4,17 @@ plugins {
     id("com.google.devtools.ksp")
 }
 
+val releaseStoreFile = System.getenv("OMNIMIND_KEYSTORE_PATH")
+val releaseStorePassword = System.getenv("OMNIMIND_KEYSTORE_PASSWORD")
+val releaseKeyAlias = System.getenv("OMNIMIND_KEY_ALIAS")
+val releaseKeyPassword = System.getenv("OMNIMIND_KEY_PASSWORD")
+val hasReleaseSigning = listOf(
+    releaseStoreFile,
+    releaseStorePassword,
+    releaseKeyAlias,
+    releaseKeyPassword
+).all { !it.isNullOrBlank() } && releaseStoreFile?.let { file(it).isFile } == true
+
 android {
     namespace = "com.example.omnimind"
     compileSdk = 34
@@ -16,20 +27,25 @@ android {
         versionName = "1.0.0"
 
         testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
-
-        // دعم معماريات ARM (64-bit و 32-bit) بالإضافة إلى x86 للمحاكيات
-        ndk {
-            abiFilters += listOf("arm64-v8a", "armeabi-v7a", "x86", "x86_64")
-        }
     }
 
-    // توليد APK منفصل لكل معمارية ARM لتقليل الحجم مع دعم أجهزة ARM64
     splits {
         abi {
             isEnable = true
             reset()
-            include("arm64-v8a", "armeabi-v7a", "x86", "x86_64")
+            include("arm64-v8a", "armeabi-v7a")
             isUniversalApk = true
+        }
+    }
+
+    signingConfigs {
+        if (hasReleaseSigning) {
+            create("release") {
+                storeFile = file(requireNotNull(releaseStoreFile))
+                storePassword = releaseStorePassword
+                keyAlias = releaseKeyAlias
+                keyPassword = releaseKeyPassword
+            }
         }
     }
 
@@ -37,6 +53,7 @@ android {
         release {
             isMinifyEnabled = false
             isShrinkResources = false
+            if (hasReleaseSigning) signingConfig = signingConfigs.getByName("release")
             proguardFiles(getDefaultProguardFile("proguard-android-optimize.txt"), "proguard-rules.pro")
         }
         debug {
@@ -86,8 +103,7 @@ dependencies {
     implementation("androidx.compose.material3:material3")
     implementation("androidx.compose.material:material-icons-extended")
     implementation("androidx.navigation:navigation-compose:2.7.7")
-    
-    // Test dependencies
+
     testImplementation("junit:junit:4.13.2")
     testImplementation("org.robolectric:robolectric:4.11.1")
     testImplementation("androidx.test:core:1.5.0")

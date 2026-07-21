@@ -2,6 +2,11 @@
 
 All notable changes to this project will be documented in this file.
 
+## [Unreleased]
+
+### Added
+- (future changes)
+
 ## [1.1.0] - 2026-07-17
 
 ### Added
@@ -14,7 +19,7 @@ All notable changes to this project will be documented in this file.
 
 ### Fixed
 - Fixed budget handling to properly support null values for unlimited usage
-- Corrected Gemini model version from non-existent gemini-2.5-flash to stable gemini-1.5-flash
+- Corrected Gemini model version to gemini-2.0-flash
 - Unified verdict field handling in agent response parsing (verdictType consistency)
 - Fixed RTL text rendering issues in multiple screens
 - Improved error handling in API key validation
@@ -27,13 +32,6 @@ All notable changes to this project will be documented in this file.
 - Enhanced Translations system for comprehensive language support
 - Updated all screens to follow Material Design 3 guidelines
 - Improved API response parsing with better error recovery
-
-### Improved
-- Professional UI refinements across Dashboard, Settings, Profile, and AppBuilder screens
-- Better visual hierarchy with improved spacing and typography
-- Enhanced accessibility with proper contrast ratios (WCAG AA compliant)
-- Optimized performance with efficient state management
-- Better error messages and user feedback
 
 ## [1.0.0] - 2026-07-10
 

@@ -8,7 +8,7 @@
 # Retrofit
 -keep class retrofit2.** { *; }
 -keep class okhttp3.** { *; }
--keep interface com.example.omnimind.** { *; }
+-keep interface com.chaouni.omnimind.** { *; }
 
 # Room Database
 -keep class androidx.room.** { *; }

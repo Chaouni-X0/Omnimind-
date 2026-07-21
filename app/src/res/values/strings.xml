@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">OmniMind</string>
+    <string name="welcome_title">Welcome to OmniMind</string>
+    <string name="welcome_subtitle">Your autonomous AI development swarm.</string>
+    <string name="begin_setup">Begin Configuration</string>
+    <string name="choose_environment">Select Environment</string>
+    <string name="choose_environment_desc">Choose the visual theme for your workspace.</string>
+    <string name="theme_obsidian">Obsidian</string>
+    <string name="theme_obsidian_desc">Dark, elegant, deep violet</string>
+    <string name="theme_aurora">Aurora</string>
+    <string name="theme_aurora_desc">Light, fresh, vibrant teal</string>
+    <string name="theme_ember">Ember</string>
+    <string name="theme_ember_desc">Warm, dark, fiery orange</string>
+    <string name="theme_continue_btn">Continue</string>
+    <string name="connect_intelligence">Connect Intelligence</string>
+    <string name="connect_intelligence_desc">Connect to an LLM provider to activate the swarm. Keys are encrypted locally.</string>
+    <string name="gemini_api_key">Gemini API Key</string>
+    <string name="monthly_budget">Monthly Budget ($)</string>
+    <string name="budget_unlimited">Leave empty for unlimited</string>
+    <string name="key_security_note">Your keys are stored securely in an encrypted vault.</string>
+    <string name="complete_setup">Complete Setup</string>
+    <string name="what_to_build">What do you want to build?</string>
+    <string name="what_to_build_placeholder">Describe your project or ask anything...</string>
+    <string name="recent_projects">Recent Projects</string>
+</resources>

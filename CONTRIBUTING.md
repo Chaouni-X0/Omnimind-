@@ -1,145 +1,51 @@
 # دليل المساهمة في OmniMind 1x
 
-شكراً لاهتمامك بالمساهمة في OmniMind 1x! هذا الدليل يساعدك على فهم عملية المساهمة.
+شكراً لاهتمامك بالمساهمة!
 
 ## قواعد السلوك
-
-نحن ملتزمون بتوفير بيئة ترحيبية وشاملة للجميع. يرجى:
-
 - احترام جميع المساهمين
 - تقديم ملاحظات بناءة
-- التركيز على ما هو أفضل للمجتمع
 
-## كيفية المساهمة
+## الإبلاغ عن الأخطاء
+1. تحقق من عدم وجود issue مشابه
+2. افتح Issue بعنوان واضح وخطوات إعادة الإنتاج
 
-### 1. الإبلاغ عن الأخطاء
-
-إذا وجدت خطأ، يرجى:
-
-1. التحقق من أنه لم يتم الإبلاغ عنه بالفعل
-2. فتح Issue جديد مع:
-   - عنوان واضح
-   - وصف تفصيلي
-   - خطوات إعادة الإنتاج
-   - السلوك المتوقع والفعلي
-
-### 2. اقتراح ميزات جديدة
-
-للاقتراح بميزة جديدة:
-
-1. فتح Issue مع العنوان `[Feature Request]`
-2. وصف الميزة بالتفصيل
-3. شرح الفائدة المتوقعة
-4. أمثلة على الاستخدام
-
-### 3. تقديم Pull Request
-
-#### الخطوة 1: Fork المستودع
+## تقديم Pull Request
 
 ```bash
-git clone https://github.com/Chaouni-X0/Omni-mind-1x-.git
-cd Omni-mind-1x-
+# Fork → Clone → Branch
+git checkout -b feature/your-feature
+
+# تأكد من الاختبارات
+./gradlew testDebugUnitTest
+./gradlew lintDebug
+
+# Commit و Push
+git push origin feature/your-feature
+# ثم افتح PR
 ```
-
-#### الخطوة 2: إنشاء فرع
-
-```bash
-git checkout -b feature/your-feature-name
-# أو
-git checkout -b fix/your-bug-fix
-```
-
-#### الخطوة 3: إجراء التغييرات
-
-- اتبع معايير الكود الموجودة
-- أضف تعليقات واضحة
-- اختبر التغييرات جيداً
-
-#### الخطوة 4: Commit التغييرات
-
-```bash
-git add .
-git commit -m "Add your meaningful commit message"
-```
-
-#### الخطوة 5: Push والفتح PR
-
-```bash
-git push origin feature/your-feature-name
-```
-
-ثم افتح Pull Request على GitHub مع:
-- وصف واضح للتغييرات
-- مرجع إلى أي Issue ذات صلة
-- لقطات شاشة إن أمكن
 
 ## معايير الكود
 
-### Kotlin/Java
-
-```kotlin
-// استخدم camelCase للمتغيرات والدوال
-val userName: String = "Ahmed"
-
-// استخدم PascalCase للفئات والواجهات
-class UserManager
-
-// أضف تعليقات للدوال المعقدة
-/**
- * وصف الدالة
- * @param param1 وصف المعامل
- * @return وصف القيمة المرجعة
- */
-fun complexFunction(param1: String): String {
-    // التنفيذ
-}
-
-// استخدم const للثوابت
-companion object {
-    const val DEFAULT_TIMEOUT = 30000L
-}
-```
-
-### التنسيق
-
+### Android (Kotlin)
+- camelCase للمتغيرات والدوال
+- PascalCase للفئات
 - استخدم 4 مسافات للمحاذاة
-- حد أقصى 120 حرف لكل سطر
-- اترك سطر فارغ بين الدوال
 
-### الاختبارات
+### Hybrid (TypeScript - إن وجد)
+- اتبع معايير TypeScript/React Native
+- ESLint و Prettier
 
-- أضف اختبارات للميزات الجديدة
-- تأكد من أن جميع الاختبارات تمر
-
+## الاختبارات
 ```bash
-./gradlew test
+./gradlew testDebugUnitTest   # Android unit tests
+./gradlew connectedAndroidTest # Android instrumented tests
 ```
 
-## عملية المراجعة
-
-عند فتح PR:
-
-1. سيتم مراجعة الكود من قبل المشرفين
-2. قد يُطلب عليك إجراء تغييرات
-3. بعد الموافقة، سيتم دمج PR
-
-## الأسئلة الشائعة
-
-**س: كم من الوقت يستغرق مراجعة PR؟**
-ج: عادة 1-3 أيام عمل
-
-**س: هل يمكن المساهمة بالترجمة؟**
-ج: نعم! يرجى فتح Issue أولاً
-
-**س: كيف يمكنني الإبلاغ عن مشكلة أمان؟**
-ج: يرجى عدم فتح Issue عام. أرسل بريد إلى security@omnimind.app
-
-## الموارد المفيدة
-
-- [دليل التطوير](./README_DEVELOPMENT.md)
-- [معايير الكود](./docs/CODE_STANDARDS.md)
-- [الخارطة الزمنية](./docs/ROADMAP.md)
+## الإبلاغ عن مشكلة أمان
+- لا تفتح Issue عام
+- أرسل بريداً إلى mohamedchaouni0098@gmail.com
 
 ---
 
-شكراً على مساهمتك! 🎉
+شكراً على مساهمتك!

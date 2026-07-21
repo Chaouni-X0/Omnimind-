@@ -1,1 +1,52 @@
-# OmniMind 2.0 - الهجين متعدد الوكلاء\n\nمنصة تطوير هجينة متقدمة تجمع بين **تطبيق جوال عصري** و**خادم Node.js قوي** لتوفير بيئة تطوير شاملة مع دعم الترمنال ومحرر النصوص والدردشة وتكامل GitHub الكامل.\n\n## 🚀 الميزات الرئيسية\n\n### 📱 الواجهة الأمامية (Frontend)\n- **تطبيق Expo/React Native** متعدد المنصات (iOS, Android, Web)\n- **تصميم عصري** مستوحى من Manus و Skywork و MiniMax\n- **دعم RTL كامل** للغة العربية\n- **نظام ثيمات متقدم** مع دعم الوضع الفاتح والداكن\n- **واجهات مستجيبة** تعمل على جميع الأجهزة\n\n### 💻 الخادم الخلفي (Backend)\n- **خادم Node.js/Express** عالي الأداء\n- **Socket.IO** للتواصل الفوري والدردشة الحية\n- **إدارة الجلسات** مع تنظيف تلقائي\n- **معالجة الملفات** الآمنة مع منع تجاوز المسارات\n- **تنفيذ الأوامر** عبر الترمنال مع دعم متعدد المنصات\n\n### 🎯 الشاشات الرئيسية\n\n| الشاشة | الوصف | الميزات |\n|--------|-------|----------|\n| **لوحة التحكم** | عرض وإدارة المشاريع | بطاقات المشاريع، الإحصائيات، البحث |\n| **الترمنال** | تنفيذ الأوامر | تنفيذ فوري، سجل الأوامر، تنظيف المخرجات |\n| **محرر النصوص** | تحرير الملفات | استكشاف الملفات، تمييز بناء الجملة، الحفظ التلقائي |\n| **الدردشة** | التواصل الفوري | غرف متعددة، رسائل غنية، مؤشرات الكتابة |\n| **GitHub** | إدارة المستودعات | عرض المستودعات، الـ PRs، الـ Issues، الـ Branches |\n\n## 📋 البنية الهندسية\n\n```\nOmniMind/\n├── frontend/                 # تطبيق React Native/Expo\n│   ├── app/                 # شاشات التطبيق\n│   │   ├── (tabs)/         # التبويبات الرئيسية\n│   │   ├── terminal/       # شاشة الترمنال\n│   │   ├── editor/         # شاشة المحرر\n│   │   ├── chat/           # شاشة الدردشة\n│   │   └── github/         # شاشة GitHub\n│   ├── components/         # مكونات UI\n│   ├── hooks/              # React Hooks مخصصة\n│   ├── lib/                # مكتبات مساعدة\n│   └── constants/          # الثوابت والإعدادات\n│\n├── backend/                  # خادم Node.js/Express\n│   ├── src/\n│   │   ├── services/       # خدمات الأعمال\n│   │   │   ├── terminalService.ts\n│   │   │   ├── editorService.ts\n│   │   │   ├── chatService.ts\n│   │   │   └── githubService.ts\n│   │   ├── routes/         # مسارات API\n│   │   ├── middleware/     # وسيط معالجة الطلبات\n│   │   └── index.ts        # نقطة الدخول\n│   └── package.json\n│\n└── README.md               # هذا الملف\n```\n\n## 🛠️ التقنيات المستخدمة\n\n### الواجهة الأمامية\n- **React Native 0.81** - بناء تطبيقات جوال\n- **Expo SDK 54** - إدارة التطبيق\n- **Tailwind CSS / NativeWind** - التصميم والأنماط\n- **TypeScript** - لغة البرمجة\n- **Socket.IO Client** - التواصل الفوري\n\n### الخادم الخلفي\n- **Node.js** - بيئة التشغيل\n- **Express.js** - إطار العمل\n- **Socket.IO** - الاتصالات الفورية\n- **TypeScript** - لغة البرمجة\n- **Child Process** - تنفيذ الأوامر\n\n## 🚀 البدء السريع\n\n### المتطلبات\n- Node.js 18+\n- npm أو yarn أو pnpm\n- Git\n\n### التثبيت\n\n```bash\n# استنساخ المستودع\ngit clone https://github.com/Chaouni-X0/Omni-mind-1x-.git\ncd OmniMind\n\n# تثبيت المكتبات\ncd frontend && npm install\ncd ../backend && npm install\n```\n\n### التشغيل\n\n```bash\n# تشغيل الخادم (من مجلد backend)\ncd backend\nnpm run dev\n\n# تشغيل التطبيق (من مجلد frontend في نافذة أخرى)\ncd frontend\nnpm run dev\n```\n\n## 📚 الخدمات والـ API\n\n### خدمة الترمنال\n```typescript\n// إنشاء جلسة ترمنال\nPOST /api/terminal/sessions\n\n// تنفيذ أمر\nPOST /api/terminal/execute\n{ sessionId, command }\n\n// الحصول على المخرجات\nGET /api/terminal/output/:sessionId\n\n// إغلاق الجلسة\nDELETE /api/terminal/sessions/:sessionId\n```\n\n### خدمة المحرر\n```typescript\n// عرض الملفات\nGET /api/editor/files?path=/\n\n// قراءة ملف\nGET /api/editor/read?path=file.txt\n\n// كتابة ملف\nPOST /api/editor/write\n{ path, content }\n\n// حذف ملف\nDELETE /api/editor/delete?path=file.txt\n```\n\n### خدمة الدردشة\n```typescript\n// إنشاء غرفة\nPOST /api/chat/rooms\n{ name, description }\n\n// إرسال رسالة\nPOST /api/chat/messages\n{ roomId, userId, userName, content }\n\n// الحصول على الرسائل\nGET /api/chat/rooms/:roomId/messages\n\n// البحث في الرسائل\nGET /api/chat/rooms/:roomId/search?q=query\n```\n\n### خدمة GitHub\n```typescript\n// المصادقة\nPOST /api/github/auth\n{ accessToken }\n\n// عرض المستودعات\nGET /api/github/repos\n\n// عرض الـ PRs\nGET /api/github/repos/:owner/:repo/pulls\n\n// عرض الـ Issues\nGET /api/github/repos/:owner/:repo/issues\n```\n\n## 🎨 نظام الألوان\n\n### الوضع الفاتح\n- **الخلفية:** `#FFFFFF`\n- **السطح:** `#F5F5F5`\n- **النص الأساسي:** `#11181C`\n- **النص الثانوي:** `#687076`\n- **الحد:** `#E5E7EB`\n\n### الوضع الداكن\n- **الخلفية:** `#151718`\n- **السطح:** `#1E2022`\n- **النص الأساسي:** `#ECEDEE`\n- **النص الثانوي:** `#9BA1A6`\n- **الحد:** `#334155`\n\n### الألوان الأساسية\n- **الأساسي:** `#7B61FF` (أزرق بنفسجي)\n- **النجاح:** `#22C55E` (أخضر)\n- **التحذير:** `#F59E0B` (برتقالي)\n- **الخطأ:** `#EF4444` (أحمر)\n\n## 📝 ملفات التكوين\n\n### `.env` - متغيرات البيئة\n```env\n# الخادم\nPORT=3000\nNODE_ENV=development\nSHELL_TIMEOUT=30000\n\n# GitHub\nGITHUB_CLIENT_ID=your_client_id\nGITHUB_CLIENT_SECRET=your_client_secret\n\n# التخزين\nSTORAGE_PATH=./storage\n```\n\n## 🔐 الأمان\n\n- ✅ منع تجاوز المسارات في عمليات الملفات\n- ✅ التحقق من الصلاحيات للعمليات الحساسة\n- ✅ تنظيف الجلسات المنتهية\n- ✅ معالجة الأخطاء الآمنة\n- ✅ تشفير البيانات الحساسة\n\n## 📊 الإحصائيات\n\n- **الملفات:** 50+ ملف\n- **الأسطر البرمجية:** 5000+ سطر\n- **المكونات:** 15+ مكون UI\n- **الخدمات:** 4 خدمات رئيسية\n- **نقاط النهاية (Endpoints):** 30+ endpoint\n\n## 🤝 المساهمة\n\nنرحب بمساهماتك! يرجى:\n\n1. Fork المستودع\n2. إنشاء فرع للميزة الجديدة (`git checkout -b feature/AmazingFeature`)\n3. Commit التغييرات (`git commit -m 'Add some AmazingFeature'`)\n4. Push إلى الفرع (`git push origin feature/AmazingFeature`)\n5. فتح Pull Request\n\n## 📄 الترخيص\n\nهذا المشروع مرخص تحت MIT License - انظر ملف `LICENSE` للتفاصيل.\n\n## 📞 التواصل\n\n- **GitHub:** [@Chaouni-X0](https://github.com/Chaouni-X0)\n- **البريد الإلكتروني:** [contact@omnimind.dev](mailto:contact@omnimind.dev)\n\n## 🙏 شكر وتقدير\n\nشكر خاص لـ:\n- فريق Expo للعمل الرائع\n- مجتمع React Native\n- جميع المساهمين والداعمين\n\n---\n\n**آخر تحديث:** يوليو 2026\n**الإصدار:** 2.0.0\n**الحالة:** 🟢 قيد التطوير النشط\n
+# OmniMind 2.0 - النموذج الهجين
+
+## ⚠️ حالة المشروع
+
+**هذا النموذج الأولي غير قابل للبناء حالياً.** الملف مخزن كسطر واحد بمحارف `\n` حرفية مما يمنع عرض Markdown بشكل صحيح. ينصح بدمج هذا المحتوى مع `README_HYBRID.md`.
+
+## مشكلات معروفة
+
+- ملفات TypeScript/TSX تحتوي `\n` حرفية
+- أصول مفقودة
+- إضافات Expo غير معلنة
+- مكانس EAS مفقود
+- لا توجد اختبارات أو lockfile
+- لا يوجد OAuth (يستخدم PAT)
+- بيانات الدردشة في الذاكرة (لا persistence)
+
+## البنية
+
+```text
+frontend/          # Expo/React Native prototype
+  app/             # (tabs), terminal, editor, chat, github
+  components/      # Button, Input, Card, Badge, ChatMessage
+  hooks/           # useTheme
+  lib/             # api.ts, utils.ts
+  constants/       # theme.ts
+backend/           # Express/Socket.IO prototype
+  src/
+    index.ts
+    routes/        # terminal, editor, github, chat
+    services/      # terminal, editor, github, chat
+```
+
+## الميزات التصميمية
+
+| الشاشة | الوصف |
+|--------|-------|
+| Dashboard | عرض المشاريع |
+| Terminal | تنفيذ الأوامر |
+| Editor | تحرير الملفات |
+| Chat | دردشة فورية (في الذاكرة) |
+| GitHub | إدارة المستودعات (PAT) |
+
+## للتشغيل (بعد إصلاح الملفات)
+
+```bash
+npm install
+npm run dev  # backend + frontend معاً
+```
+
+---
+
+**حالة المشروع**: نموذج أولي غير قابل للبناء. يحتاج إصلاح الملفات التالفة.

@@ -1,269 +1,97 @@
-# OmniMind 1x - دليل التطوير الشامل
+# OmniMind 1x - دليل التطوير
 
 ## نظرة عامة
 
-**OmniMind 1x** هو تطبيق أندرويد متقدم يوفر بيئة تطوير متعددة الوكلاء (Swarm) مع واجهة مستخدم احترافية بأسلوب Manus Glassmorphic.
+تطبيق Android متعدد الوكلاء (Swarm) مع واجهة Glassmorphic بلغة Kotlin/Jetpack Compose.
 
 ### الميزات الرئيسية
-
-- **نظام Swarm المتقدم**: تنسيق متعدد الوكلاء للعمل على مهام معقدة
-- **إدارة API Keys المرنة**: دعم عدد غير محدود من مفاتيح API من موفرين مختلفين
-- **قواعد بيانات مخصصة**: تخصيص كامل لقواعد البيانات
-- **Terminal متقدم**: تنفيذ أوامر Shell مباشرة
-- **محرر نصوص ذكي**: تحرير الملفات مع دعم لغات برمجة متعددة
-- **تكامل GitHub الكامل**: Commit, Push, Pull, Branching
-- **واجهة Glassmorphic**: ثلاث ألوان (Obsidian, Aurora, Ember)
-- **دعم RTL كامل**: دعم اللغة العربية
+- **نظام Swarm المتسلسل**: 5 أدوار (Architect, Analyst, Coder, Tester, Guardian)
+- **إدارة API Keys**: تشفير عبر Android Keystore، دعم 6 مزودين
+- **محرر نصوص**: استعراض، تعديل، حفظ، إنشاء، نقل/حذف ملفات
+- **Terminal**: أوامر مدمجة (cd, ls, cat, mkdir, etc.) + Git للقراءة
+- **تكامل GitHub**: عرض مستودعات، ملفات، استيراد (لا يدعم commit/push)
+- **ثلاث سمات**: Obsidian, Aurora, Ember
+- **دعم RTL**: عربي، إنجليزي، إسباني، فرنسي
 
 ## البنية المعمارية
 
 ```
-app/
-├── src/main/java/com/example/
-│   ├── presentation/          # طبقة العرض (UI)
-│   │   ├── screens/           # الشاشات الرئيسية
-│   │   ├── workspace/         # مساحة العمل
-│   │   ├── components/        # مكونات قابلة لإعادة الاستخدام
-│   │   └── viewmodel/         # إدارة الحالة
-│   ├── domain/                # طبقة المنطق (Business Logic)
-│   │   ├── models/            # نماذج البيانات
-│   │   ├── swarm/             # محرك Swarm
-│   │   ├── terminal/          # خدمة Terminal
-│   │   ├── editor/            # خدمة محرر النصوص
-│   │   └── github/            # خدمة GitHub
-│   ├── data/                  # طبقة البيانات
-│   │   ├── db/                # قاعدة البيانات (Room)
-│   │   ├── network/           # الاتصالات (API)
-│   │   ├── repository/        # مستودع البيانات
-│   │   ├── apipool/           # إدارة مفاتيح API
-│   │   └── security/          # التشفير والأمان
-│   └── ui/theme/              # نظام الألوان والنصوص
-└── build.gradle.kts           # إعدادات البناء
+app/src/main/java/com/example/
+├── presentation/          # UI (screens, navigation, ViewModel)
+│   ├── screens/           # Onboarding, Dashboard, Workspace, Chat, Editor, Terminal, GitHub, ApiCenter
+│   ├── workspace/         # مساحة العمل (مكونات تجريبية)
+│   ├── components/        # مكونات قابلة لإعادة الاستخدام
+│   └── viewmodel/         # OmniMindViewModel
+├── domain/                # منطق الأعمال
+│   ├── models/            # SwarmModel, AdvancedSwarmModel
+│   ├── swarm/             # SwarmEngine (متسلسل), ModelDiscussionEngine (نصوص ثابتة)
+│   ├── terminal/          # TerminalService (أوامر مدمجة + Git read-only)
+│   ├── editor/            # CodeEditorService
+│   ├── github/            # GitHubService (read + import)
+│   ├── sandbox/           # SandboxManager (stub)
+│   ├── security/          # AutoSecurityTester (فحص 3 أنماط)
+│   ├── export/            # UniversalExporter (نص + CSV)
+│   └── api/               # EasyApiManager, ApiPoolManager
+├── data/                  # طبقة البيانات
+│   ├── db/                # Room (OmniMindDatabase, OmniMindDao)
+│   ├── network/           # Retrofit (Gemini, OpenAI, Generic, GitHub)
+│   ├── repository/        # OmniMindRepository
+│   ├── apipool/           # إدارة مفاتيح API
+│   └── security/          # SecurityManager (AES-GCM + Keystore)
+└── ui/theme/              # Theme, Color, Type, Shape, Motion, Translations
 ```
 
 ## المتطلبات
 
-- **Android Studio**: Ladybug أو أحدث
-- **Java**: 17 أو أحدث
-- **Gradle**: 8.0 أو أحدث
-- **Android SDK**: API 26 أو أحدث
+- Android Studio
+- JDK 17
+- Android SDK 34
+- Gradle wrapper 8.5
 
-## الإعداد والتثبيت
-
-### 1. استنساخ المستودع
-
-```bash
-git clone https://github.com/Chaouni-X0/Omni-mind-1x-.git
-cd Omni-mind-1x-
-```
-
-### 2. فتح المشروع في Android Studio
-
-```bash
-# أو يمكنك فتح المشروع مباشرة من Android Studio
-```
-
-### 3. مزامنة التبعيات
-
-```bash
-./gradlew build
-```
-
-### 4. تشغيل التطبيق
-
-```bash
-# على محاكي أو جهاز فعلي
-./gradlew installDebug
-```
-
-## البناء والنشر
-
-### بناء APK للاختبار
+## البناء
 
 ```bash
 ./gradlew assembleDebug
+./gradlew testDebugUnitTest
+./gradlew lintDebug
 ```
 
-### بناء APK للإصدار
+## المزودون المدعومون
+
+- Google Gemini (gemini-2.0-flash)
+- OpenAI
+- Anthropic
+- OpenRouter
+- Groq
+- Custom (OpenAI-compatible via HTTPS)
+
+## الميزات والحدود
+
+| الميزة | الحالة |
+|--------|--------|
+| Swarm متسلسل (5 أدوار) | ✅ يعمل |
+| تشفير API Keys (Keystore) | ✅ يعمل |
+| محرر النصوص (CRUD ملفات) | ✅ يعمل |
+| Terminal (أوامر مدمجة) | ✅ يعمل |
+| GitHub (قراءة + استيراد) | ✅ يعمل |
+| ModelDiscussion | ⚠️ نصوص ثابتة |
+| AutoSecurityTester | ⚠️ 3 أنماط فقط |
+| UniversalExporter | ⚠️ نص + CSV فقط |
+| واجهات Settings/Profile/AppBuilder | ❌ غير موصولة |
+| Hybrid frontend/backend | ❌ نماذج أولية معطلة |
+
+## الاختبارات
 
 ```bash
-./gradlew assembleRelease
-```
-
-### استخدام GitHub Actions للبناء التلقائي
-
-يتم البناء تلقائياً عند كل push إلى `main` أو `develop`:
-
-```yaml
-# .github/workflows/build-apk.yml
-# يتم تشغيل البناء تلقائياً
-```
-
-## المتغيرات البيئية
-
-أنشئ ملف `.env` في جذر المشروع:
-
-```env
-# API Keys
-GEMINI_API_KEY=your_gemini_key
-OPENAI_API_KEY=your_openai_key
-
-# GitHub
-GITHUB_TOKEN=your_github_token
-
-# Database
-DATABASE_URL=your_database_url
-```
-
-## الميزات الرئيسية وكيفية الاستخدام
-
-### 1. نظام Swarm
-
-```kotlin
-// تشغيل مهمة Swarm
-val result = swarmEngine.runSwarmTask(
-    projectId = 1,
-    title = "تطوير ميزة جديدة",
-    description = "قم بتطوير نظام الدفع",
-    modelIds = listOf(1, 2, 3)
-)
-```
-
-### 2. إدارة API Keys
-
-```kotlin
-// إضافة مفتاح API جديد
-val apiKey = ApiKey(
-    name = "Gemini API",
-    provider = "gemini",
-    apiKey = "your_api_key",
-    monthlyBudget = 10000 // 100 دولار
-)
-dao.insertApiKey(apiKey)
-```
-
-### 3. Terminal
-
-```kotlin
-// تنفيذ أمر
-val result = terminalService.executeCommand("ls -la")
-
-// تنفيذ سكريبت
-val scriptResult = terminalService.executeScript("""
-    #!/bin/bash
-    echo "Hello World"
-    pwd
-""")
-```
-
-### 4. محرر النصوص
-
-```kotlin
-// فتح ملف
-codeEditorService.openFile("/path/to/file.kt")
-
-// حفظ الملف
-codeEditorService.saveFile()
-
-// البحث والاستبدال
-codeEditorService.findAndReplace("old", "new", replaceAll = true)
-```
-
-### 5. GitHub Integration
-
-```kotlin
-// تهيئة المستودع
-githubService.initRepository("/project/path")
-
-// Commit التغييرات
-githubService.commit("/project/path", "Initial commit")
-
-// Push
-githubService.push("/project/path", "main")
-
-// الحصول على سجل الـ Commits
-val commits = githubService.getCommitHistory("/project/path")
-```
-
-## الاختبار
-
-### تشغيل الاختبارات
-
-```bash
-./gradlew test
-```
-
-### الاختبارات على الجهاز
-
-```bash
+./gradlew testDebugUnitTest
 ./gradlew connectedAndroidTest
 ```
 
-## التوثيق الإضافية
-
-- [نموذج البيانات](./docs/DATA_MODEL.md)
-- [API Reference](./docs/API_REFERENCE.md)
-- [دليل المساهمة](./CONTRIBUTING.md)
-
-## استكشاف الأخطاء
-
-### المشكلة: فشل البناء
-
-```bash
-# تنظيف والبناء من جديد
-./gradlew clean build
-```
-
-### المشكلة: خطأ في الاتصال بـ API
-
-تحقق من:
-1. مفتاح API صحيح في `.env`
-2. الاتصال بالإنترنت
-3. حدود الـ API لم تتجاوز
-
-### المشكلة: مشاكل في قاعدة البيانات
-
-```bash
-# حذف قاعدة البيانات وإعادة إنشاؤها
-./gradlew cleanBuildCache
-```
-
-## المساهمة
-
-نرحب بالمساهمات! يرجى:
-
-1. Fork المستودع
-2. إنشاء فرع للميزة الجديدة (`git checkout -b feature/amazing-feature`)
-3. Commit التغييرات (`git commit -m 'Add amazing feature'`)
-4. Push إلى الفرع (`git push origin feature/amazing-feature`)
-5. فتح Pull Request
+الاختبارات الحالية: اختبار وحدة واحد (SecurityTest) واختبار جهاز واحد (ExampleInstrumentedTest).
 
 ## الترخيص
 
-هذا المشروع خاص وسري. تم تطويره بواسطة Mohamed Chaouni.
-
-## الدعم
-
-للمشاكل والاستفسارات، يرجى فتح Issue على GitHub.
-
-## الخارطة الزمنية
-
-### v2.0.0 (الحالي)
-- ✅ نظام Swarm متقدم
-- ✅ إدارة API Keys المرنة
-- ✅ Terminal وmحرر النصوص
-- ✅ تكامل GitHub الكامل
-- ✅ واجهة Glassmorphic
-
-### v2.1.0 (قادم)
-- 🔄 دعم قواعد بيانات متعددة
-- 🔄 نظام الإضافات (Plugins)
-- 🔄 التعاون في الوقت الفعلي
-
-### v3.0.0 (المستقبل)
-- 🔄 دعم الويب
-- 🔄 تطبيق سطح المكتب
-- 🔄 API عام
+هذا المشروع خاص وسري.
 
 ---
 

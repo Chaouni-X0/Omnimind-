@@ -1,124 +1,118 @@
 # Omni Mind 1x
 
-## 📱 Android Application
+## Android Application
 
-A comprehensive AI assistant application built with Kotlin and Android Jetpack components.
+A monorepo containing an Android AI assistant app (Kotlin/Jetpack Compose) plus experimental Expo/Node.js prototypes.
 
----
-
-## ✅ Prerequisites
-
-- Android Studio (latest version)
-- Java JDK 21
-- Android SDK 36
-- Gradle 8.5+
+**Current status:** Android app in active development (v1.0.0). Hybrid prototypes exist under `frontend/` and `backend/` but are not yet buildable.
 
 ---
 
-## 🚀 Quick Start
+## Prerequisites
 
-### 1. Clone the repository
+- Android Studio (latest)
+- JDK 17
+- Android SDK 34
+- Gradle wrapper 8.5 (included)
+
+---
+
+## Quick Start
+
+### 1. Clone
 ```bash
-git clone https://github.com/Chaouni-X0/Omni-mind-1x-.git
+git clone <repo-url>
 cd Omni-mind-1x-
 ```
 
 ### 2. Open in Android Studio
-- Open Android Studio
-- Select "Open an Existing Project"
-- Navigate to the cloned repository
+- "Open an Existing Project" → select cloned repo
 
-### 3. Sync Gradle
-- Click "Sync Now" in Android Studio
-- Or run: `./gradlew build --refresh-dependencies`
-
----
-
-## 📦 Building the APK
-
-### Debug APK (for testing)
+### 3. Sync & Build
 ```bash
 ./gradlew assembleDebug
 ```
-**Output:** `app/build/outputs/apk/debug/app-debug.apk`
 
-### Release APK (for production)
+**Output:** `app/build/outputs/apk/debug/` (multiple APKs per ABI: arm64-v8a, armeabi-v7a, universal)
+
+---
+
+## Building the APK
+
+### Debug (testing)
 ```bash
+./gradlew assembleDebug
+```
+Output APKs under `app/build/outputs/apk/debug/` (ABI-split + universal).
+
+### Release (production)
+```bash
+export OMNIMIND_KEYSTORE_PATH=/path/to/keystore.jks
+export OMNIMIND_KEYSTORE_PASSWORD=...
+export OMNIMIND_KEY_ALIAS=...
+export OMNIMIND_KEY_PASSWORD=...
 ./gradlew assembleRelease
 ```
-**Output:** `app/build/outputs/apk/release/app-release.apk`
+Output APKs under `app/build/outputs/apk/release/`.
+
+> Without signing env vars, release build produces an unsigned APK.
 
 ---
 
-## 📱 Installing on Device
-
-### Using ADB
-```bash
-adb install app/build/outputs/apk/debug/app-debug.apk
-```
-
-### Manual Installation
-1. Transfer the APK to your device
-2. Enable "Unknown Sources" in Settings
-3. Open the APK file and install
-
----
-
-## 🔧 Troubleshooting
-
-### Common Issues
-
-1. **Gradle sync failed**
-   - Run: `./gradlew clean` then `./gradlew build --refresh-dependencies`
-   - Check internet connection
-
-2. **AAPT errors**
-   - Make sure all resource files exist
-   - Check for typos in XML files
-
-3. **Kotlin compilation errors**
-   - Ensure all imports are correct
-   - Check Kotlin version in build.gradle.kts
-
-4. **Missing dependencies**
-   - Run: `./gradlew build --refresh-dependencies`
-   - Check repository URLs in settings.gradle.kts
-
----
-
-## 📂 Project Structure
+## Project Structure
 
 ```
 Omni-mind-1x-
-├── app/                    # Main application module
-│   ├── src/main/
-│   │   ├── java/com/example/omnimind/  # Kotlin source files
-│   │   ├── res/            # Resources (layouts, drawables, etc.)
-│   │   └── AndroidManifest.xml
-│   └── build.gradle.kts    # App module configuration
-├── build.gradle.kts        # Project-level configuration
-├── settings.gradle.kts    # Repository configuration
-├── proguard-rules.pro     # ProGuard rules
-└── build.sh               # Build script
+├── app/                          # Android app module
+│   ├── build.gradle.kts
+│   └── src/main/
+│       ├── java/com/example/     # Kotlin sources (package com.example.omnimind.*)
+│       │   ├── presentation/     # UI layer (screens, navigation, ViewModel)
+│       │   ├── domain/           # Business logic (swarm, terminal, editor, github)
+│       │   └── data/             # Data layer (Room, network, security)
+│       ├── res/                  # Resources (strings, themes, drawables)
+│       └── AndroidManifest.xml
+├── frontend/                     # Expo/React Native prototype (WIP, not buildable)
+├── backend/                      # Express/Socket.IO prototype (WIP, not buildable)
+├── gradle/                       # Gradle wrapper & version catalog
+├── build.gradle.kts
+├── settings.gradle.kts
+├── gradle.properties
+└── build.sh
 ```
 
----
+### Key Android packages
 
-## 🤝 Contributing
-
-1. Fork the repository
-2. Create a feature branch
-3. Make your changes
-4. Submit a pull request
+| Area | Package |
+|------|---------|
+| Application | `com.example.omnimind` |
+| MainActivity | `com.example.omnimind.MainActivity` |
 
 ---
 
-## 📄 License
+## Hybrid prototypes (experimental)
 
-MIT License
+- **`frontend/`**: Expo/React Native project — currently has structural issues preventing a build.
+- **`backend/`**: Node.js/Express/Socket.IO server — TypeScript files are malformed; not runnable as-is.
+
+See `README_HYBRID.md` for details.
 
 ---
 
-## 📞 Contact
+## Troubleshooting
 
-For questions or support, please contact: mohamedchaouni0098@gmail.com
+1. **Gradle sync fails**: `./gradlew clean && ./gradlew build --refresh-dependencies`
+2. **AAPT errors**: Check resource files in `res/`
+3. **Kotlin errors**: Verify `build.gradle.kts` Kotlin version (1.9.22)
+
+---
+
+## License
+
+This project is proprietary. Developed by Mohamed Chaouni.
+
+---
+
+## Contact
+
+mohamedchaouni0098@gmail.com
