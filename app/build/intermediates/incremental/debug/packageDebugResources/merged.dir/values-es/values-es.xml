@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_game_builder">Constructor de juegos y aplicaciones 2D</string>
+    <string name="app_game_builder_desc">¡Compila tu código en APK y juega juegos retro!</string>
+    <string name="app_name">OmniMind</string>
+    <string name="begin_setup">Comenzar Configuración</string>
+    <string name="budget_unlimited">0 para ilimitado</string>
+    <string name="choose_environment">Elige tu Entorno</string>
+    <string name="choose_environment_desc">Selecciona un tema de color que se adapte a tu flujo de trabajo.</string>
+    <string name="complete_setup">Completar Configuración</string>
+    <string name="connect_intelligence">Conecta tu Inteligencia</string>
+    <string name="connect_intelligence_desc">OmniMind se ejecuta localmente pero requiere un proveedor de LLM para potenciar el enjambre. Tu clave se almacena de forma segura.</string>
+    <string name="gemini_api_key">Clave API Gemini</string>
+    <string name="key_security_note">Esta clave solo se utilizará para solicitudes directas desde tu dispositivo. Sin servidores intermediarios.</string>
+    <string name="monthly_budget">Límite de presupuesto mensual ($) - Opcional</string>
+    <string name="recent_projects">Proyectos recientes</string>
+    <string name="theme_aurora">Aurora</string>
+    <string name="theme_aurora_desc">Claro, fresco, verde azulado vibrante</string>
+    <string name="theme_continue_btn">Continuar</string>
+    <string name="theme_ember">Brasa</string>
+    <string name="theme_ember_desc">Cálido, oscuro, naranja ardiente</string>
+    <string name="theme_obsidian">Obsidiana</string>
+    <string name="theme_obsidian_desc">Oscuro, elegante, violeta profundo</string>
+    <string name="welcome_subtitle">Tu enjambre de desarrollo y arquitectura de software impulsado por IA.</string>
+    <string name="welcome_title">Bienvenido a OmniMind</string>
+    <string name="what_to_build">¿Qué quieres construir hoy?</string>
+    <string name="what_to_build_placeholder">Escribe lo que quieres construir o modificar...</string>
+</resources>

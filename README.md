@@ -4,7 +4,7 @@
 
 A monorepo containing an Android AI assistant app (Kotlin/Jetpack Compose) plus experimental Expo/Node.js prototypes.
 
-**Current status:** Android app in active development (v1.0.0). Hybrid prototypes exist under `frontend/` and `backend/` but are not yet buildable.
+**Current status:** Android app in active development (v1.0.1). Hybrid prototypes exist under `frontend/` and `backend/` but are not yet buildable.
 
 ---
 

@@ -1,5 +1,6 @@
 package com.example.omnimind.data.model
 
+import androidx.room.ColumnInfo
 import androidx.room.Entity
 import androidx.room.PrimaryKey
 
@@ -9,8 +10,8 @@ data class ApiKeyConfig(
     val providerName: String,       // "OpenAI", "Anthropic", "Gemini", "Custom"
     val encryptedKey: String,
     val baseUrl: String?,           // Empty = default provider URL
-    val modelId: String = "",
-    val modelTier: Int = 1,
+    @ColumnInfo(defaultValue = "''") val modelId: String = "",
+    @ColumnInfo(defaultValue = "1") val modelTier: Int = 1,
     val priorityWeight: Int = 5,    // 1-10 for weighted selection
     val monthlyBudgetCents: Long? = null,
     val currentSpentCents: Long = 0,

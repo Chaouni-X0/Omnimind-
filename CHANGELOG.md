@@ -33,7 +33,7 @@ All notable changes to this project will be documented in this file.
 - Updated all screens to follow Material Design 3 guidelines
 - Improved API response parsing with better error recovery
 
-## [1.0.0] - 2026-07-10
+## [1.0.1] - 2026-07-10
 
 ### Initial Release
 - Multi-agent swarm intelligence system

@@ -16,7 +16,7 @@
 
 | الخاصية | القيمة |
 |---------|--------|
-| الإصدار | 1.0.0 |
+| الإصدار | 1.0.1 |
 | applicationId | com.example.omnimind |
 | compileSdk | 34 |
 | minSdk | 24 (Android 7.0) |
@@ -75,4 +75,4 @@ OMNIMIND_KEY_PASSWORD
 ---
 
 **آخر تحديث**: يوليو 2026
-**الإصدار**: 1.0.0 (Android)
+**الإصدار**: 1.0.1 (Android)
