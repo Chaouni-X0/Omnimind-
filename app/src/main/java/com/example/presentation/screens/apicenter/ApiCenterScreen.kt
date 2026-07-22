@@ -6,20 +6,19 @@ import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.lazy.items
 import androidx.compose.foundation.rememberScrollState
-import androidx.compose.foundation.shape.CircleShape
-import androidx.compose.foundation.shape.RoundedCornerShape
+import androidx.compose.foundation.shape.RectangleShape
 import androidx.compose.foundation.verticalScroll
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.Add
-import androidx.compose.material.icons.filled.Dns
 import androidx.compose.material3.*
 import androidx.compose.runtime.*
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
-import androidx.compose.ui.draw.clip
 import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.text.font.FontFamily
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.input.PasswordVisualTransformation
+import androidx.compose.ui.text.input.VisualTransformation
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import com.example.omnimind.data.model.ApiKeyConfig
@@ -36,67 +35,74 @@ fun ApiCenterScreen(viewModel: OmniMindViewModel) {
     Box(
         modifier = Modifier
             .fillMaxSize()
-            .background(ManusBlack)
+            .background(VoidBlack)
     ) {
         Scaffold(
             containerColor = Color.Transparent,
             floatingActionButton = {
                 FloatingActionButton(
                     onClick = { showDialog = true },
-                    containerColor = ManusElectricBlue,
-                    shape = CircleShape
+                    containerColor = SignalGreen,
+                    shape = RectangleShape
                 ) {
-                    Icon(Icons.Filled.Add, contentDescription = "Add Provider", tint = Color.White)
+                    Icon(Icons.Filled.Add, contentDescription = null, tint = VoidBlack)
                 }
             }
         ) { padding ->
-            LazyColumn(
+            Column(
                 modifier = Modifier
                     .fillMaxSize()
                     .padding(padding)
-                    .padding(horizontal = 24.dp),
-                verticalArrangement = Arrangement.spacedBy(16.dp),
-                contentPadding = PaddingValues(top = 24.dp, bottom = 100.dp)
+                    .padding(horizontal = 24.dp)
             ) {
-                item {
-                    Text(
-                        text = "API ENGINE CENTER",
-                        style = MaterialTheme.typography.labelSmall,
-                        fontWeight = FontWeight.Bold,
-                        color = ManusElectricBlue,
-                        letterSpacing = 2.sp
-                    )
-                }
+                Spacer(modifier = Modifier.height(32.dp))
+                Text(
+                    text = "API_ENGINE_CENTER",
+                    fontFamily = FontFamily.Monospace,
+                    fontWeight = FontWeight.Bold,
+                    color = SignalGreen,
+                    fontSize = 12.sp
+                )
+                Text(
+                    text = "CONFIG",
+                    fontSize = 54.sp,
+                    fontWeight = FontWeight.Black,
+                    color = RawWhite,
+                    fontFamily = FontFamily.Monospace
+                )
                 
-                if (apiKeys.isEmpty()) {
-                    item {
-                        Box(
-                            modifier = Modifier
-                                .fillMaxWidth()
-                                .height(150.dp)
-                                .clip(RoundedCornerShape(20.dp))
-                                .background(ManusSurface)
-                                .border(1.dp, ManusBorder, RoundedCornerShape(20.dp)),
-                            contentAlignment = Alignment.Center
-                        ) {
-                            Text("No providers configured.", color = ManusTextSecondary)
+                Spacer(modifier = Modifier.height(24.dp))
+                
+                LazyColumn(
+                    modifier = Modifier.weight(1f),
+                    verticalArrangement = Arrangement.spacedBy(1.dp),
+                    contentPadding = PaddingValues(bottom = 100.dp)
+                ) {
+                    if (apiKeys.isEmpty()) {
+                        item {
+                            Text(
+                                "NULL_PROVIDERS_ACTIVE",
+                                color = GhostGrey,
+                                fontFamily = FontFamily.Monospace,
+                                modifier = Modifier.padding(top = 24.dp)
+                            )
                         }
                     }
-                }
-                
-                items(apiKeys, key = { it.id }) { config ->
-                    ProviderCard(
-                        config = config,
-                        onToggle = { viewModel.toggleApiKey(config.id, it) },
-                        onEdit = { editing = config; showDialog = true },
-                        onDelete = { viewModel.deleteApiKey(config.id) }
-                    )
+                    
+                    items(apiKeys, key = { it.id }) { config ->
+                        IndustrialProviderCard(
+                            config = config,
+                            onToggle = { viewModel.toggleApiKey(config.id, it) },
+                            onEdit = { editing = config; showDialog = true },
+                            onDelete = { viewModel.deleteApiKey(config.id) }
+                        )
+                    }
                 }
             }
         }
 
         if (showDialog) {
-            ProviderDialog(
+            IndustrialProviderDialog(
                 existing = editing,
                 onDismiss = { showDialog = false; editing = null },
                 onConfirm = { provider, key, baseUrl, modelId, tier, priority ->
@@ -121,7 +127,7 @@ fun ApiCenterScreen(viewModel: OmniMindViewModel) {
 }
 
 @Composable
-private fun ProviderCard(
+private fun IndustrialProviderCard(
     config: ApiKeyConfig,
     onToggle: (Boolean) -> Unit,
     onEdit: () -> Unit,
@@ -130,9 +136,8 @@ private fun ProviderCard(
     Box(
         modifier = Modifier
             .fillMaxWidth()
-            .clip(RoundedCornerShape(20.dp))
-            .background(ManusSurface)
-            .border(1.dp, ManusBorder, RoundedCornerShape(20.dp))
+            .border(1.dp, SteelBorder)
+            .background(IndustrialGrey)
             .padding(16.dp)
     ) {
         Column(verticalArrangement = Arrangement.spacedBy(12.dp)) {
@@ -141,60 +146,50 @@ private fun ProviderCard(
                 horizontalArrangement = Arrangement.SpaceBetween,
                 verticalAlignment = Alignment.CenterVertically
             ) {
-                Row(verticalAlignment = Alignment.CenterVertically) {
-                    Box(
-                        modifier = Modifier
-                            .size(32.dp)
-                            .clip(RoundedCornerShape(8.dp))
-                            .background(GlassWhite),
-                        contentAlignment = Alignment.Center
-                    ) {
-                        Icon(Icons.Default.Dns, null, tint = ManusElectricBlue, modifier = Modifier.size(16.dp))
-                    }
-                    Spacer(modifier = Modifier.width(12.dp))
-                    Column {
-                        Text(config.providerName, fontWeight = FontWeight.Bold, color = Color.White)
-                        Text(
-                            "${config.modelId.ifBlank { "Default" }} · Tier ${config.modelTier}",
-                            fontSize = 12.sp,
-                            color = ManusTextSecondary
-                        )
-                    }
+                Column {
+                    Text(
+                        config.providerName.uppercase(), 
+                        fontWeight = FontWeight.Bold, 
+                        color = RawWhite,
+                        fontFamily = FontFamily.Monospace
+                    )
+                    Text(
+                        "ID: ${config.modelId.ifBlank { "DEFAULT" }}",
+                        fontSize = 10.sp,
+                        color = GhostGrey,
+                        fontFamily = FontFamily.Monospace
+                    )
                 }
                 Switch(
                     checked = config.isEnabled,
                     onCheckedChange = onToggle,
                     colors = SwitchDefaults.colors(
-                        checkedThumbColor = Color.White,
-                        checkedTrackColor = ManusElectricBlue,
-                        uncheckedThumbColor = ManusTextSecondary,
-                        uncheckedTrackColor = ManusBorder
+                        checkedThumbColor = VoidBlack,
+                        checkedTrackColor = SignalGreen,
+                        uncheckedThumbColor = GhostGrey,
+                        uncheckedTrackColor = SteelBorder
                     )
                 )
             }
             
-            config.lastError?.let { 
-                Text(
-                    text = it, 
-                    color = Color.Red, 
-                    fontSize = 11.sp,
-                    modifier = Modifier
-                        .fillMaxWidth()
-                        .clip(RoundedCornerShape(8.dp))
-                        .background(Color(0x1AFF0000))
-                        .padding(8.dp)
-                ) 
-            }
-            
             Row(
                 modifier = Modifier.fillMaxWidth(),
-                horizontalArrangement = Arrangement.End
+                horizontalArrangement = Arrangement.SpaceBetween,
+                verticalAlignment = Alignment.CenterVertically
             ) {
-                TextButton(onClick = onEdit) {
-                    Text("Edit", color = ManusElectricBlue, fontSize = 13.sp)
-                }
-                TextButton(onClick = onDelete) {
-                    Text("Delete", color = Color.Red.copy(alpha = 0.7f), fontSize = 13.sp)
+                Text(
+                    "TIER: ${config.modelTier}",
+                    color = SignalGreen,
+                    fontSize = 10.sp,
+                    fontFamily = FontFamily.Monospace
+                )
+                Row {
+                    TextButton(onClick = onEdit) {
+                        Text("[EDIT]", color = SignalGreen, fontSize = 11.sp, fontFamily = FontFamily.Monospace)
+                    }
+                    TextButton(onClick = onDelete) {
+                        Text("[PURGE]", color = SignalRed, fontSize = 11.sp, fontFamily = FontFamily.Monospace)
+                    }
                 }
             }
         }
@@ -203,7 +198,7 @@ private fun ProviderCard(
 
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
-private fun ProviderDialog(
+private fun IndustrialProviderDialog(
     existing: ApiKeyConfig?,
     onDismiss: () -> Unit,
     onConfirm: (String, String, String?, String, Int, Int) -> Unit
@@ -217,52 +212,62 @@ private fun ProviderDialog(
     
     AlertDialog(
         onDismissRequest = onDismiss,
-        containerColor = ManusSurface,
-        titleContentColor = Color.White,
-        textContentColor = ManusTextSecondary,
-        title = { Text(if (existing == null) "ADD PROVIDER" else "EDIT PROVIDER", fontSize = 16.sp, fontWeight = FontWeight.Black) },
+        containerColor = IndustrialGrey,
+        shape = RectangleShape,
+        title = { 
+            Text(
+                if (existing == null) "INIT_NEW_PROVIDER" else "MOD_PROVIDER", 
+                fontSize = 16.sp, 
+                fontWeight = FontWeight.Black,
+                color = SignalGreen,
+                fontFamily = FontFamily.Monospace
+            ) 
+        },
         text = {
             Column(
                 modifier = Modifier.verticalScroll(rememberScrollState()),
-                verticalArrangement = Arrangement.spacedBy(12.dp)
+                verticalArrangement = Arrangement.spacedBy(16.dp)
             ) {
-                ManusTextField(value = provider, onValueChange = { provider = it }, label = "Provider Name")
-                ManusTextField(
+                IndustrialTextField(value = provider, onValueChange = { provider = it }, label = "PROVIDER_ID")
+                IndustrialTextField(
                     value = key, 
                     onValueChange = { key = it }, 
-                    label = if (existing == null) "API Key" else "New API Key (Optional)",
+                    label = if (existing == null) "API_KEY" else "NEW_KEY_OPT",
                     isPassword = true
                 )
-                ManusTextField(value = baseUrl, onValueChange = { baseUrl = it }, label = "Custom Endpoint (Optional)")
-                ManusTextField(value = modelId, onValueChange = { modelId = it }, label = "Model Identifier")
+                IndustrialTextField(value = baseUrl, onValueChange = { baseUrl = it }, label = "ENDPOINT_URL")
+                IndustrialTextField(value = modelId, onValueChange = { modelId = it }, label = "MODEL_REF")
                 
-                Spacer(modifier = Modifier.height(8.dp))
-                Text("Model Tier: $tier", color = Color.White, fontSize = 12.sp)
-                Slider(
-                    value = tier.toFloat(), 
-                    onValueChange = { tier = it.toInt() }, 
-                    valueRange = 1f..3f, 
-                    steps = 1,
-                    colors = SliderDefaults.colors(thumbColor = ManusElectricBlue, activeTrackColor = ManusElectricBlue)
-                )
+                Column {
+                    Text("TIER_LEVEL: $tier", color = RawWhite, fontSize = 10.sp, fontFamily = FontFamily.Monospace)
+                    Slider(
+                        value = tier.toFloat(), 
+                        onValueChange = { tier = it.toInt() }, 
+                        valueRange = 1f..3f, 
+                        steps = 1,
+                        colors = SliderDefaults.colors(thumbColor = SignalGreen, activeTrackColor = SignalGreen)
+                    )
+                }
             }
         },
         confirmButton = {
             Button(
                 onClick = { onConfirm(provider.trim(), key, baseUrl.trim().ifBlank { null }, modelId.trim(), tier, priority) },
-                colors = ButtonDefaults.buttonColors(containerColor = ManusElectricBlue),
-                shape = RoundedCornerShape(8.dp)
-            ) { Text("Save Engine") }
+                colors = ButtonDefaults.buttonColors(containerColor = SignalGreen),
+                shape = RectangleShape
+            ) { Text("SAVE_CONFIG", color = VoidBlack, fontWeight = FontWeight.Black, fontFamily = FontFamily.Monospace) }
         },
         dismissButton = {
-            TextButton(onClick = onDismiss) { Text("Cancel", color = ManusTextSecondary) }
+            TextButton(onClick = onDismiss) { 
+                Text("ABORT", color = GhostGrey, fontFamily = FontFamily.Monospace) 
+            }
         }
     )
 }
 
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
-private fun ManusTextField(
+private fun IndustrialTextField(
     value: String,
     onValueChange: (String) -> Unit,
     label: String,
@@ -271,17 +276,17 @@ private fun ManusTextField(
     TextField(
         value = value,
         onValueChange = onValueChange,
-        label = { Text(label, fontSize = 12.sp) },
+        label = { Text(label, fontSize = 10.sp, fontFamily = FontFamily.Monospace) },
         modifier = Modifier.fillMaxWidth(),
-        visualTransformation = if (isPassword) PasswordVisualTransformation() else androidx.compose.ui.text.input.VisualTransformation.None,
+        visualTransformation = if (isPassword) PasswordVisualTransformation() else VisualTransformation.None,
         colors = TextFieldDefaults.textFieldColors(
-            containerColor = ManusBlack,
-            focusedIndicatorColor = ManusElectricBlue,
-            unfocusedIndicatorColor = ManusBorder,
-            color = Color.White,
-            focusedLabelColor = ManusElectricBlue,
-            unfocusedLabelColor = ManusTextSecondary
+            containerColor = VoidBlack,
+            focusedIndicatorColor = SignalGreen,
+            unfocusedIndicatorColor = SteelBorder,
+            textColor = RawWhite,
+            focusedLabelColor = SignalGreen,
+            unfocusedLabelColor = GhostGrey
         ),
-        shape = RoundedCornerShape(8.dp)
+        shape = RectangleShape
     )
 }

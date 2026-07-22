@@ -6,24 +6,20 @@ import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.lazy.items
-import androidx.compose.foundation.shape.CircleShape
-import androidx.compose.foundation.shape.RoundedCornerShape
+import androidx.compose.foundation.shape.RectangleShape
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.Add
 import androidx.compose.material.icons.filled.Settings
-import androidx.compose.material.icons.filled.Hub
+import androidx.compose.material.icons.filled.Terminal
 import androidx.compose.material3.*
 import androidx.compose.runtime.*
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
-import androidx.compose.ui.draw.clip
-import androidx.compose.ui.graphics.Brush
 import androidx.compose.ui.graphics.Color
-import androidx.compose.ui.res.stringResource
+import androidx.compose.ui.text.font.FontFamily
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
-import com.example.omnimind.R
 import com.example.omnimind.data.model.Project
 import com.example.omnimind.presentation.components.AgentStatusBadge
 import com.example.omnimind.ui.theme.*
@@ -40,85 +36,78 @@ fun DashboardScreen(
     var newProjectName by remember { mutableStateOf("") }
 
     Scaffold(
-        containerColor = ManusBlack,
-        topBar = {
-            CenterAlignedTopAppBar(
-                title = { 
-                    Text(
-                        "OMNIMIND", 
-                        style = MaterialTheme.typography.titleMedium,
-                        fontWeight = FontWeight.Black,
-                        letterSpacing = 2.sp,
-                        color = Color.White
-                    ) 
-                },
-                actions = {
-                    IconButton(onClick = onOpenApiCenter) {
-                        Icon(Icons.Filled.Hub, contentDescription = "API Center", tint = Color.White)
-                    }
-                    IconButton(onClick = onOpenGitHub) {
-                        Icon(Icons.Filled.Settings, contentDescription = "GitHub", tint = Color.White)
-                    }
-                },
-                colors = TopAppBarDefaults.centerAlignedTopAppBarColors(
-                    containerColor = Color.Transparent
-                )
-            )
-        }
+        containerColor = VoidBlack,
     ) { padding ->
-        Box(modifier = Modifier.fillMaxSize()) {
-            // Gradient Glow
-            Box(
-                modifier = Modifier
-                    .size(500.dp)
-                    .align(Alignment.BottomStart)
-                    .offset(x = (-150).dp, y = 150.dp)
-                    .background(
-                        Brush.radialGradient(
-                            colors = listOf(ManusElectricBlueGlow, Color.Transparent)
-                        )
-                    )
-            )
-
+        Box(modifier = Modifier.fillMaxSize().padding(padding)) {
             Column(
                 modifier = Modifier
                     .fillMaxSize()
-                    .padding(padding)
-                    .padding(horizontal = 20.dp)
+                    .padding(horizontal = 24.dp)
             ) {
-                Spacer(modifier = Modifier.height(16.dp))
-                
-                // Create Project Card (Manus Style)
+                // Top Nav - Minimalist
+                Row(
+                    modifier = Modifier.fillMaxWidth().padding(vertical = 24.dp),
+                    horizontalArrangement = Arrangement.SpaceBetween,
+                    verticalAlignment = Alignment.CenterVertically
+                ) {
+                    Text(
+                        "OMNIMIND_v1.0", 
+                        fontFamily = FontFamily.Monospace,
+                        color = SignalGreen,
+                        fontWeight = FontWeight.Bold,
+                        fontSize = 12.sp
+                    )
+                    Row {
+                        IconButton(onClick = onOpenApiCenter) {
+                            Icon(Icons.Filled.Terminal, contentDescription = null, tint = RawWhite)
+                        }
+                        IconButton(onClick = onOpenGitHub) {
+                            Icon(Icons.Filled.Settings, contentDescription = null, tint = RawWhite)
+                        }
+                    }
+                }
+
+                // Huge Bold Typography
+                Text(
+                    text = "SYSTEM\nOPERATIONS",
+                    fontSize = 54.sp,
+                    fontWeight = FontWeight.Black,
+                    color = RawWhite,
+                    lineHeight = 48.sp,
+                    fontFamily = FontFamily.Monospace,
+                    modifier = Modifier.padding(bottom = 32.dp)
+                )
+
+                // Asymmetric Input Area
                 Box(
                     modifier = Modifier
                         .fillMaxWidth()
-                        .clip(RoundedCornerShape(24.dp))
-                        .background(ManusSurface)
-                        .border(1.dp, ManusBorder, RoundedCornerShape(24.dp))
-                        .padding(20.dp)
+                        .border(1.dp, SteelBorder)
+                        .background(IndustrialGrey)
+                        .padding(24.dp)
                 ) {
                     Column {
                         Text(
-                            text = "START NEW PROJECT",
-                            style = MaterialTheme.typography.labelSmall,
-                            fontWeight = FontWeight.Bold,
-                            color = ManusElectricBlue,
-                            letterSpacing = 1.sp
+                            "NEW_DEPLOYMENT",
+                            fontFamily = FontFamily.Monospace,
+                            color = SignalGreen,
+                            fontSize = 10.sp,
+                            fontWeight = FontWeight.Bold
                         )
-                        Spacer(modifier = Modifier.height(12.dp))
+                        Spacer(modifier = Modifier.height(16.dp))
                         TextField(
                             value = newProjectName,
                             onValueChange = { newProjectName = it },
-                            placeholder = { Text("What are we building today?", color = ManusTextSecondary) },
+                            placeholder = { Text("ID: PROJECT_NAME", color = GhostGrey, fontFamily = FontFamily.Monospace) },
                             modifier = Modifier.fillMaxWidth(),
                             colors = TextFieldDefaults.textFieldColors(
                                 containerColor = Color.Transparent,
-                                focusedIndicatorColor = ManusElectricBlue,
-                                unfocusedIndicatorColor = ManusBorder,
-                                color = Color.White
+                                focusedIndicatorColor = SignalGreen,
+                                unfocusedIndicatorColor = SteelBorder,
+                                textColor = RawWhite
                             )
                         )
-                        Spacer(modifier = Modifier.height(16.dp))
+                        Spacer(modifier = Modifier.height(24.dp))
                         Button(
                             onClick = {
                                 if (newProjectName.isNotBlank()) {
@@ -126,51 +115,41 @@ fun DashboardScreen(
                                     newProjectName = ""
                                 }
                             },
-                            modifier = Modifier.fillMaxWidth(),
-                            shape = RoundedCornerShape(12.dp),
-                            colors = ButtonDefaults.buttonColors(containerColor = ManusElectricBlue)
+                            modifier = Modifier.align(Alignment.End),
+                            shape = RectangleShape,
+                            colors = ButtonDefaults.buttonColors(containerColor = SignalGreen)
                         ) {
-                            Icon(Icons.Default.Add, contentDescription = null, modifier = Modifier.size(18.dp))
-                            Spacer(modifier = Modifier.width(8.dp))
-                            Text("Initialize Engine", fontWeight = FontWeight.Bold)
+                            Text("INITIALIZE", color = VoidBlack, fontWeight = FontWeight.Black, fontFamily = FontFamily.Monospace)
                         }
                     }
                 }
 
-                Spacer(modifier = Modifier.height(32.dp))
+                Spacer(modifier = Modifier.height(48.dp))
                 
                 Text(
-                    text = "ACTIVE WORKSPACES",
-                    style = MaterialTheme.typography.labelSmall,
-                    fontWeight = FontWeight.Bold,
-                    color = ManusTextSecondary,
-                    letterSpacing = 1.sp
+                    text = "// ACTIVE_INSTANCES",
+                    fontFamily = FontFamily.Monospace,
+                    color = GhostGrey,
+                    fontSize = 12.sp,
+                    fontWeight = FontWeight.Bold
                 )
                 Spacer(modifier = Modifier.height(16.dp))
 
                 if (projects.isEmpty()) {
-                    Box(
-                        modifier = Modifier
-                            .fillMaxWidth()
-                            .height(200.dp)
-                            .clip(RoundedCornerShape(24.dp))
-                            .background(ManusSurface)
-                            .border(1.dp, ManusBorder, RoundedCornerShape(24.dp)),
-                        contentAlignment = Alignment.Center
-                    ) {
-                        Text(
-                            text = "No active projects found.",
-                            color = ManusTextSecondary,
-                            style = MaterialTheme.typography.bodyMedium
-                        )
-                    }
+                    Text(
+                        "NULL_RECORDS_FOUND",
+                        color = GhostGrey,
+                        fontFamily = FontFamily.Monospace,
+                        fontSize = 14.sp,
+                        modifier = Modifier.padding(top = 24.dp)
+                    )
                 } else {
                     LazyColumn(
-                        verticalArrangement = Arrangement.spacedBy(12.dp),
+                        verticalArrangement = Arrangement.spacedBy(1.dp), // Brutalist gap
                         contentPadding = PaddingValues(bottom = 32.dp)
                     ) {
                         items(projects, key = { it.id }) { project ->
-                            ProjectCard(project, onClick = { onOpenProject(project) })
+                            IndustrialProjectCard(project, onClick = { onOpenProject(project) })
                         }
                     }
                 }
@@ -180,39 +159,52 @@ fun DashboardScreen(
 }
 
 @Composable
-private fun ProjectCard(project: Project, onClick: () -> Unit) {
+private fun IndustrialProjectCard(project: Project, onClick: () -> Unit) {
     Box(
         modifier = Modifier
             .fillMaxWidth()
-            .clip(RoundedCornerShape(20.dp))
-            .background(ManusSurface)
-            .border(1.dp, ManusBorder, RoundedCornerShape(20.dp))
+            .border(1.dp, SteelBorder)
+            .background(IndustrialGrey)
             .clickable(onClick = onClick)
-            .padding(16.dp)
+            .padding(20.dp)
     ) {
         Row(
             modifier = Modifier.fillMaxWidth(),
-            verticalAlignment = Alignment.CenterVertically,
-            horizontalArrangement = Arrangement.SpaceBetween
+            verticalAlignment = Alignment.CenterVertically
         ) {
             Column(modifier = Modifier.weight(1f)) {
                 Text(
-                    text = project.name,
-                    fontWeight = FontWeight.Bold,
-                    color = Color.White,
-                    fontSize = 16.sp
+                    text = project.name.uppercase(),
+                    fontWeight = FontWeight.ExtraBold,
+                    color = RawWhite,
+                    fontFamily = FontFamily.Monospace,
+                    fontSize = 18.sp
                 )
-                Spacer(modifier = Modifier.height(4.dp))
-                LinearProgressIndicator(
-                    progress = project.progress / 100f,
-                    modifier = Modifier
-                        .fillMaxWidth(0.6f)
-                        .height(4.dp)
-                        .clip(CircleShape),
-                    color = ManusElectricBlue,
-                    trackColor = ManusBorder
-                )
+                Spacer(modifier = Modifier.height(8.dp))
+                Row(verticalAlignment = Alignment.CenterVertically) {
+                    Text(
+                        "PROG: ${project.progress}%",
+                        color = SignalGreen,
+                        fontSize = 10.sp,
+                        fontFamily = FontFamily.Monospace
+                    )
+                    Spacer(modifier = Modifier.width(16.dp))
+                    Box(
+                        modifier = Modifier
+                            .height(2.dp)
+                            .weight(1f)
+                            .background(SteelBorder)
+                    ) {
+                        Box(
+                            modifier = Modifier
+                                .fillMaxWidth(project.progress / 100f)
+                                .fillMaxHeight()
+                                .background(SignalGreen)
+                        )
+                    }
+                }
             }
+            Spacer(modifier = Modifier.width(16.dp))
             AgentStatusBadge(status = project.status)
         }
     }

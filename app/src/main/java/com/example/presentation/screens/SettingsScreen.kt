@@ -3,19 +3,19 @@ package com.example.omnimind.presentation.screens
 import androidx.compose.foundation.background
 import androidx.compose.foundation.border
 import androidx.compose.foundation.layout.*
-import androidx.compose.foundation.shape.RoundedCornerShape
+import androidx.compose.foundation.shape.RectangleShape
 import androidx.compose.material.icons.Icons
-import androidx.compose.material.icons.filled.ArrowForwardIos
-import androidx.compose.material.icons.filled.Palette
-import androidx.compose.material.icons.filled.Security
-import androidx.compose.material.icons.filled.Storage
+import androidx.compose.material.icons.filled.ChevronRight
+import androidx.compose.material.icons.filled.Dns
+import androidx.compose.material.icons.filled.Fingerprint
+import androidx.compose.material.icons.filled.Terminal
 import androidx.compose.material3.*
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
-import androidx.compose.ui.draw.clip
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.graphics.vector.ImageVector
+import androidx.compose.ui.text.font.FontFamily
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
@@ -26,112 +26,126 @@ fun SettingsScreen() {
     Box(
         modifier = Modifier
             .fillMaxSize()
-            .background(ManusBlack)
+            .background(VoidBlack)
     ) {
         Column(
             modifier = Modifier
                 .fillMaxSize()
                 .padding(24.dp)
         ) {
+            Spacer(modifier = Modifier.height(32.dp))
+            Text(
+                text = "SYSTEM_PREFERENCES",
+                fontFamily = FontFamily.Monospace,
+                fontWeight = FontWeight.Bold,
+                color = SignalGreen,
+                fontSize = 12.sp
+            )
             Text(
                 text = "SETTINGS",
-                style = MaterialTheme.typography.labelSmall,
-                fontWeight = FontWeight.Bold,
-                color = ManusElectricBlue,
-                letterSpacing = 2.sp
+                fontSize = 54.sp,
+                fontWeight = FontWeight.Black,
+                color = RawWhite,
+                fontFamily = FontFamily.Monospace
             )
             
-            Spacer(modifier = Modifier.height(32.dp))
+            Spacer(modifier = Modifier.height(48.dp))
             
-            SettingsGroup(title = "Appearance") {
-                SettingsItem(
-                    icon = Icons.Default.Palette,
-                    title = "Theme",
-                    subtitle = "Manus Obsidian (Default)"
+            IndustrialSettingsGroup(title = "CORE_INTERFACE") {
+                IndustrialSettingsItem(
+                    icon = Icons.Default.Terminal,
+                    title = "THEME_ENGINE",
+                    subtitle = "Cyber-Industrial v1.0"
                 )
             }
             
             Spacer(modifier = Modifier.height(24.dp))
             
-            SettingsGroup(title = "System") {
-                SettingsItem(
-                    icon = Icons.Default.Storage,
-                    title = "Database",
-                    subtitle = "Local SQLite Sync"
+            IndustrialSettingsGroup(title = "NETWORK_PROTOCOLS") {
+                IndustrialSettingsItem(
+                    icon = Icons.Default.Dns,
+                    title = "DATABASE_SYNC",
+                    subtitle = "SQLITE_REMOTE_ACTIVE"
                 )
-                SettingsItem(
-                    icon = Icons.Default.Security,
-                    title = "Security",
-                    subtitle = "End-to-end Encryption"
+                IndustrialSettingsItem(
+                    icon = Icons.Default.Fingerprint,
+                    title = "ENCRYPTION",
+                    subtitle = "AES_256_GCM"
                 )
             }
             
             Spacer(modifier = Modifier.weight(1f))
             
             Text(
-                text = "OmniMind v1.0.0-Manus",
-                style = MaterialTheme.typography.labelSmall,
-                color = ManusTextSecondary,
-                modifier = Modifier.align(Alignment.CenterHorizontally)
+                text = "// OMNIMIND_SYSTEM_STABLE",
+                fontFamily = FontFamily.Monospace,
+                fontSize = 10.sp,
+                color = GhostGrey,
+                modifier = Modifier.align(Alignment.Start)
             )
+            Spacer(modifier = Modifier.height(8.dp))
         }
     }
 }
 
 @Composable
-fun SettingsGroup(title: String, content: @Composable ColumnScope.() -> Unit) {
+fun IndustrialSettingsGroup(title: String, content: @Composable ColumnScope.() -> Unit) {
     Column {
         Text(
-            text = title,
-            style = MaterialTheme.typography.titleSmall,
+            text = "// $title",
+            fontFamily = FontFamily.Monospace,
+            fontSize = 10.sp,
             fontWeight = FontWeight.Bold,
-            color = Color.White,
-            modifier = Modifier.padding(start = 4.dp, bottom = 12.dp)
+            color = GhostGrey,
+            modifier = Modifier.padding(start = 4.dp, bottom = 8.dp)
         )
         Box(
             modifier = Modifier
                 .fillMaxWidth()
-                .clip(RoundedCornerShape(20.dp))
-                .background(ManusSurface)
-                .border(1.dp, ManusBorder, RoundedCornerShape(20.dp))
+                .border(1.dp, SteelBorder)
+                .background(IndustrialGrey)
         ) {
-            Column { content() } {
-                // Items will be added here
+            Column {
+                content()
             }
         }
     }
 }
 
 @Composable
-fun SettingsItem(icon: ImageVector, title: String, subtitle: String) {
+fun ColumnScope.IndustrialSettingsItem(icon: ImageVector, title: String, subtitle: String) {
     Row(
         modifier = Modifier
             .fillMaxWidth()
+            .border(width = 0.5.dp, color = SteelBorder)
             .padding(16.dp),
         verticalAlignment = Alignment.CenterVertically
     ) {
-        Box(
-            modifier = Modifier
-                .size(40.dp)
-                .clip(RoundedCornerShape(10.dp))
-                .background(GlassWhite),
-            contentAlignment = Alignment.Center
-        ) {
-            Icon(icon, contentDescription = null, tint = ManusElectricBlue, modifier = Modifier.size(20.dp))
-        }
+        Icon(icon, contentDescription = null, tint = SignalGreen, modifier = Modifier.size(18.dp))
         
         Spacer(modifier = Modifier.width(16.dp))
         
         Column(modifier = Modifier.weight(1f)) {
-            Text(text = title, color = Color.White, fontWeight = FontWeight.SemiBold, fontSize = 15.sp)
-            Text(text = subtitle, color = ManusTextSecondary, fontSize = 12.sp)
+            Text(
+                text = title, 
+                color = RawWhite, 
+                fontWeight = FontWeight.Bold, 
+                fontSize = 14.sp,
+                fontFamily = FontFamily.Monospace
+            )
+            Text(
+                text = subtitle, 
+                color = GhostGrey, 
+                fontSize = 10.sp,
+                fontFamily = FontFamily.Monospace
+            )
         }
         
         Icon(
-            Icons.Default.ArrowForwardIos, 
+            Icons.Default.ChevronRight, 
             contentDescription = null, 
-            tint = ManusBorder, 
-            modifier = Modifier.size(12.dp)
+            tint = SteelBorder, 
+            modifier = Modifier.size(14.dp)
         )
     }
 }

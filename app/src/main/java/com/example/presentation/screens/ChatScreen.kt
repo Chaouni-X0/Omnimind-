@@ -6,22 +6,22 @@ import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.lazy.items
 import androidx.compose.foundation.lazy.rememberLazyListState
-import androidx.compose.foundation.shape.CircleShape
-import androidx.compose.foundation.shape.RoundedCornerShape
+import androidx.compose.foundation.shape.RectangleShape
 import androidx.compose.material.icons.Icons
-import androidx.compose.material.icons.filled.Send
+import androidx.compose.material.icons.filled.ArrowForward
 import androidx.compose.material3.*
 import androidx.compose.runtime.*
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
-import androidx.compose.ui.draw.clip
+import androidx.compose.ui.draw.drawWithContent
+import androidx.compose.ui.geometry.Offset
 import androidx.compose.ui.graphics.Brush
 import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.text.font.FontFamily
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import com.example.omnimind.data.model.AgentMessage
-import com.example.omnimind.ui.theme.*
 import com.example.omnimind.ui.theme.*
 
 @OptIn(ExperimentalMaterial3Api::class)
@@ -40,85 +40,91 @@ fun ChatScreen(
     Box(
         modifier = Modifier
             .fillMaxSize()
-            .background(ManusBlack)
-    ) {
-        // Background Glow Effect
-        Box(
-            modifier = Modifier
-                .size(400.dp)
-                .align(Alignment.TopEnd)
-                .offset(x = 100.dp, y = (-100).dp)
-                .background(
-                    Brush.radialGradient(
-                        colors = listOf(ManusElectricBlueGlow, Color.Transparent)
+            .background(VoidBlack)
+            .drawWithContent {
+                drawContent()
+                // Scanline Effect
+                val scanlineSpacing = 8.dp.toPx()
+                for (y in 0..size.height.toInt() step scanlineSpacing.toInt()) {
+                    drawLine(
+                        color = ScanlineColor,
+                        start = Offset(0f, y.toFloat()),
+                        end = Offset(size.width, y.toFloat()),
+                        strokeWidth = 1f
                     )
-                )
-        )
-
+                }
+            }
+    ) {
         Column(
             modifier = Modifier
                 .fillMaxSize()
-                .padding(horizontal = 16.dp)
+                .padding(horizontal = 24.dp)
         ) {
-            // Header
-            Row(
-                modifier = Modifier
-                    .fillMaxWidth()
-                    .padding(vertical = 24.dp),
-                verticalAlignment = Alignment.CenterVertically
-            ) {
-                Text(
-                    text = "OmniMind",
-                    style = MaterialTheme.typography.headlineMedium,
-                    fontWeight = FontWeight.Bold,
-                    color = Color.White,
-                    letterSpacing = 1.sp
-                )
-                Spacer(modifier = Modifier.width(8.dp))
-                Box(
-                    modifier = Modifier
-                        .size(8.dp)
-                        .clip(CircleShape)
-                        .background(ManusElectricBlue)
-                )
-            }
+            // Asymmetric Header
+            Spacer(modifier = Modifier.height(48.dp))
+            Text(
+                text = "TERMINAL_01",
+                style = MaterialTheme.typography.labelSmall,
+                color = SignalGreen,
+                fontWeight = FontWeight.Black,
+                letterSpacing = 4.sp
+            )
+            Divider(
+                modifier = Modifier.padding(vertical = 8.dp).width(40.dp),
+                color = SignalGreen,
+                thickness = 2.dp
+            )
+            Text(
+                text = "OMNIMIND_CORE",
+                fontSize = 42.sp,
+                fontWeight = FontWeight.ExtraBold,
+                color = RawWhite,
+                lineHeight = 40.sp,
+                fontFamily = FontFamily.Monospace
+            )
+            
+            Spacer(modifier = Modifier.height(32.dp))
 
-            // Messages List
+            // Messages List with Raw Industrial Style
             LazyColumn(
                 modifier = Modifier.weight(1f),
                 state = listState,
-                verticalArrangement = Arrangement.spacedBy(16.dp),
-                contentPadding = PaddingValues(bottom = 100.dp)
+                verticalArrangement = Arrangement.spacedBy(24.dp),
+                contentPadding = PaddingValues(bottom = 120.dp)
             ) {
                 items(messages, key = { it.id }) { message ->
-                    AgentMessageBubble(message)
+                    IndustrialMessageBubble(message)
                 }
             }
         }
 
-        // Floating Input Bar (Manus Style)
-        Box(
+        // Brutalist Input Bar
+        Column(
             modifier = Modifier
                 .align(Alignment.BottomCenter)
-                .padding(16.dp)
                 .fillMaxWidth()
-                .clip(RoundedCornerShape(28.dp))
-                .background(GlassWhite)
-                .border(1.dp, GlassBorder, RoundedCornerShape(28.dp))
-                .padding(horizontal = 8.dp, vertical = 4.dp)
+                .background(VoidBlack)
+                .border(width = 1.dp, color = SteelBorder, shape = RectangleShape)
+                .padding(24.dp)
         ) {
             Row(
                 verticalAlignment = Alignment.CenterVertically,
                 modifier = Modifier.fillMaxWidth()
             ) {
+                Text(
+                    text = ">",
+                    color = SignalGreen,
+                    fontWeight = FontWeight.Bold,
+                    modifier = Modifier.padding(end = 12.dp)
+                )
                 TextField(
                     value = taskInput,
                     onValueChange = { taskInput = it },
                     placeholder = { 
                         Text(
-                            "Ask OmniMind anything...", 
-                            color = ManusTextSecondary,
-                            fontSize = 15.sp
+                            "INITIATE_COMMAND...", 
+                            color = GhostGrey,
+                            fontFamily = FontFamily.Monospace
                         ) 
                     },
                     modifier = Modifier.weight(1f),
@@ -126,8 +132,8 @@ fun ChatScreen(
                         containerColor = Color.Transparent,
                         focusedIndicatorColor = Color.Transparent,
                         unfocusedIndicatorColor = Color.Transparent,
-                        cursorColor = ManusElectricBlue,
-                        color = Color.White
+                        cursorColor = SignalGreen,
+                        textColor = RawWhite
                     )
                 )
                 
@@ -139,15 +145,12 @@ fun ChatScreen(
                         }
                     },
                     modifier = Modifier
-                        .size(40.dp)
-                        .clip(CircleShape)
-                        .background(if (taskInput.isNotBlank()) ManusElectricBlue else GlassWhiteHeavy)
+                        .border(1.dp, if (taskInput.isNotBlank()) SignalGreen else SteelBorder)
                 ) {
                     Icon(
-                        imageVector = Icons.Default.Send,
-                        contentDescription = "Send",
-                        tint = Color.White,
-                        modifier = Modifier.size(20.dp)
+                        imageVector = Icons.Default.ArrowForward,
+                        contentDescription = "EXECUTE",
+                        tint = if (taskInput.isNotBlank()) SignalGreen else SteelBorder
                     )
                 }
             }
@@ -156,58 +159,63 @@ fun ChatScreen(
 }
 
 @Composable
-private fun AgentMessageBubble(message: AgentMessage) {
-    val isAgent = message.agentName != "User" // Assuming "User" for user messages
+private fun IndustrialMessageBubble(message: AgentMessage) {
+    val isAgent = message.agentName != "User"
     
     val accentColor = when (message.verdictType) {
-        "APPROVE" -> Color(0xFF4CAF50)
-        "REJECT", "VETO" -> Color(0xFFFF5252)
-        else -> ManusElectricBlue
+        "APPROVE" -> SignalGreen
+        "REJECT", "VETO" -> SignalRed
+        else -> SignalGreen
     }
 
     Column(
         modifier = Modifier.fillMaxWidth(),
         horizontalAlignment = if (isAgent) Alignment.Start else Alignment.End
     ) {
-        if (isAgent) {
+        Row(verticalAlignment = Alignment.CenterVertically) {
+            if (isAgent) {
+                Box(modifier = Modifier.size(6.dp).background(accentColor))
+                Spacer(modifier = Modifier.width(8.dp))
+            }
             Text(
                 text = message.agentName.uppercase(),
                 style = MaterialTheme.typography.labelSmall,
                 fontWeight = FontWeight.Bold,
-                color = accentColor,
-                modifier = Modifier.padding(start = 4.dp, bottom = 4.dp),
-                letterSpacing = 1.sp
+                color = if (isAgent) accentColor else GhostGrey,
+                fontFamily = FontFamily.Monospace,
+                letterSpacing = 2.sp
             )
         }
         
+        Spacer(modifier = Modifier.height(8.dp))
+        
         Box(
             modifier = Modifier
-                .clip(
-                    RoundedCornerShape(
-                        topStart = 20.dp,
-                        topEnd = 20.dp,
-                        bottomStart = if (isAgent) 4.dp else 20.dp,
-                        bottomEnd = if (isAgent) 20.dp else 4.dp
-                    )
-                )
-                .background(if (isAgent) ManusSurface else ManusElectricBlue)
+                .fillMaxWidth(0.9f)
+                .background(if (isAgent) IndustrialGrey else Color.Transparent)
                 .border(
                     width = 1.dp,
-                    color = if (isAgent) ManusBorder else Color.Transparent,
-                    shape = RoundedCornerShape(
-                        topStart = 20.dp,
-                        topEnd = 20.dp,
-                        bottomStart = if (isAgent) 4.dp else 20.dp,
-                        bottomEnd = if (isAgent) 20.dp else 4.dp
-                    )
+                    color = if (isAgent) SteelBorder else SignalGreenDim
                 )
                 .padding(16.dp)
         ) {
             Text(
                 text = message.messageText,
-                color = Color.White,
+                color = if (isAgent) RawWhite else SignalGreen,
                 style = MaterialTheme.typography.bodyMedium,
-                lineHeight = 22.sp
+                fontFamily = FontFamily.Monospace,
+                lineHeight = 20.sp
+            )
+        }
+        
+        if (message.verdictType != "NONE") {
+            Text(
+                text = "[STATUS: ${message.verdictType}]",
+                color = accentColor,
+                fontSize = 10.sp,
+                fontWeight = FontWeight.Bold,
+                modifier = Modifier.padding(top = 4.dp),
+                fontFamily = FontFamily.Monospace
             )
         }
     }

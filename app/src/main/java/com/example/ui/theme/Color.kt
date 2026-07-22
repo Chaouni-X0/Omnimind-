@@ -3,53 +3,40 @@ package com.example.omnimind.ui.theme
 import androidx.compose.ui.graphics.Color
 
 /**
- * Manus Design Language - Color Palette
- * Deep Obsidian, Electric Blue, and Glass Overlays
+ * OmniMind Bold Aesthetic: Cyber-Industrial / Brutal Minimalism
+ * Focus: High contrast, technical precision, grain texture, and asymmetric flow.
  */
 
-// Manus Dark Mode Core
-val ManusBlack = Color(0xFF000000)
-val ManusDeepGrey = Color(0xFF0A0A0A)
-val ManusSurface = Color(0xFF111111)
-val ManusBorder = Color(0xFF222222)
-val ManusTextPrimary = Color(0xFFFFFFFF)
-val ManusTextSecondary = Color(0xFFAAAAAA)
+// The Void - Primary Base
+val VoidBlack = Color(0xFF020202)
+val IndustrialGrey = Color(0xFF0D0D0D)
+val SteelBorder = Color(0xFF1A1A1A)
 
-// Accent Colors
-val ManusElectricBlue = Color(0xFF007AFF) // Electric Blue for interaction
-val ManusElectricBlueGlow = Color(0x33007AFF)
-val ManusPurpleAccent = Color(0xFF9B7BFF)
+// Neon Signal - Accents
+val SignalGreen = Color(0xFF00FF41) // Classic Terminal Green
+val SignalGreenDim = Color(0x3300FF41)
+val SignalRed = Color(0xFFFF0033) // Sharp Warning Red
 
-// Glassmorphism Elements
-val GlassWhite = Color(0x1AFFFFFF)
-val GlassWhiteHeavy = Color(0x33FFFFFF)
-val GlassBorder = Color(0x1AFFFFFF)
+// Typography & Content
+val RawWhite = Color(0xFFF0F0F0)
+val GhostGrey = Color(0xFF444444)
+val DeepMuted = Color(0xFF222222)
 
-// Legacy Obsidian (Mapped to Manus for compatibility)
-val ObsidianPrimary = ManusElectricBlue
-val ObsidianSecondary = ManusPurpleAccent
-val ObsidianBackground = ManusBlack
-val ObsidianSurface = ManusSurface
-val ObsidianOnSurface = ManusTextPrimary
+// Textures & Overlays
+val GrainOverlay = Color(0x0DFFFFFF)
+val ScanlineColor = Color(0x0500FF41)
 
-// Aurora — Keep for variety but modernize
-val AuroraPrimary = Color(0xFF00D1FF)
-val AuroraSecondary = Color(0xFF00897B)
-val AuroraBackground = Color(0xFFF8F9FA)
-val AuroraSurface = Color(0xFFFFFFFF)
-val AuroraOnSurface = Color(0xFF111111)
+// Legacy Mapping (Redefined for the new bold aesthetic)
+val ObsidianPrimary = SignalGreen
+val ObsidianSecondary = RawWhite
+val ObsidianBackground = VoidBlack
+val ObsidianSurface = IndustrialGrey
+val ObsidianOnSurface = RawWhite
 
-// Ember — Modernized
-val EmberPrimary = Color(0xFFFF4500)
-val EmberSecondary = Color(0xFFE85D2F)
-val EmberBackground = Color(0xFF0F0806)
-val EmberSurface = Color(0xFF1A1210)
-val EmberOnSurface = Color(0xFFFCE9E1)
-
-// Material 3 defaults
-val Purple80 = Color(0xFFD0BCFF)
-val PurpleGrey80 = Color(0xFFCCC2DC)
-val Pink80 = Color(0xFFEFB8C8)
-val Purple40 = Color(0xFF6650a4)
-val PurpleGrey40 = Color(0xFF625b71)
-val Pink40 = Color(0xFF7D5260)
+// Theme Overrides for standard Material 3 mapping
+val Purple80 = SignalGreen
+val PurpleGrey80 = GhostGrey
+val Pink80 = SignalRed
+val Purple40 = SignalGreen
+val PurpleGrey40 = DeepMuted
+val Pink40 = SignalRed

@@ -8,50 +8,35 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.graphics.Color
 import com.example.omnimind.data.prefs.AppTheme
 
-private val ManusColorScheme = darkColorScheme(
-    primary = ManusElectricBlue,
-    secondary = ManusPurpleAccent,
-    tertiary = ManusElectricBlue,
-    background = ManusBlack,
-    surface = ManusSurface,
-    onPrimary = Color.White,
-    onSecondary = Color.White,
-    onBackground = ManusTextPrimary,
-    onSurface = ManusTextPrimary,
-    outline = ManusBorder,
-    surfaceVariant = ManusDeepGrey,
-    onSurfaceVariant = ManusTextSecondary
+/**
+ * OmniMind Industrial Theme Engine
+ * Strictly follows the Brutal Minimalism / Cyber-Industrial aesthetic.
+ */
+private val IndustrialColorScheme = darkColorScheme(
+    primary = SignalGreen,
+    secondary = RawWhite,
+    tertiary = SignalGreen,
+    background = VoidBlack,
+    surface = IndustrialGrey,
+    onPrimary = VoidBlack,
+    onSecondary = VoidBlack,
+    onBackground = RawWhite,
+    onSurface = RawWhite,
+    outline = SteelBorder,
+    surfaceVariant = VoidBlack,
+    onSurfaceVariant = GhostGrey,
+    error = SignalRed
 )
 
-private val DarkColorScheme = ManusColorScheme
+private val DarkColorScheme = IndustrialColorScheme
 
 private val LightColorScheme = lightColorScheme(
-    primary = ManusElectricBlue,
-    secondary = ManusPurpleAccent,
-    background = Color.White,
-    surface = Color(0xFFF5F5F5),
-    onBackground = Color.Black,
-    onSurface = Color.Black
-)
-
-private val ObsidianScheme = ManusColorScheme
-
-private val AuroraScheme = lightColorScheme(
-    primary = AuroraPrimary,
-    secondary = AuroraSecondary,
-    background = AuroraBackground,
-    surface = AuroraSurface,
-    onBackground = AuroraOnSurface,
-    onSurface = AuroraOnSurface
-)
-
-private val EmberScheme = darkColorScheme(
-    primary = EmberPrimary,
-    secondary = EmberSecondary,
-    background = EmberBackground,
-    surface = EmberSurface,
-    onBackground = EmberOnSurface,
-    onSurface = EmberOnSurface
+    primary = SignalGreen,
+    secondary = VoidBlack,
+    background = RawWhite,
+    surface = Color(0xFFEEEEEE),
+    onBackground = VoidBlack,
+    onSurface = VoidBlack
 )
 
 @Composable
@@ -60,12 +45,8 @@ fun OmniMindTheme(
     darkTheme: Boolean = isSystemInDarkTheme(),
     content: @Composable () -> Unit
 ) {
-    val colorScheme = when (appTheme) {
-        AppTheme.OBSIDIAN -> ObsidianScheme
-        AppTheme.AURORA -> AuroraScheme
-        AppTheme.EMBER -> EmberScheme
-        null -> if (darkTheme) DarkColorScheme else LightColorScheme
-    }
+    // We commit to the Industrial aesthetic regardless of the selected legacy theme
+    val colorScheme = IndustrialColorScheme
     
     MaterialTheme(
         colorScheme = colorScheme,
