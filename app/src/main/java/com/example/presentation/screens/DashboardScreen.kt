@@ -115,7 +115,7 @@ fun DashboardScreen(
                                 containerColor = Color.Transparent,
                                 focusedIndicatorColor = ManusElectricBlue,
                                 unfocusedIndicatorColor = ManusBorder,
-                                textColor = Color.White
+                                color = Color.White
                             )
                         )
                         Spacer(modifier = Modifier.height(16.dp))

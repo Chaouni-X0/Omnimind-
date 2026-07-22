@@ -22,6 +22,8 @@ import androidx.compose.ui.text.input.PasswordVisualTransformation
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import com.example.omnimind.presentation.viewmodel.OmniMindViewModel
+import com.example.omnimind.data.model.GitHubRepo
+import com.example.omnimind.data.model.GitHubContent
 import com.example.omnimind.ui.theme.*
 
 @OptIn(ExperimentalMaterial3Api::class)
@@ -116,7 +118,7 @@ fun GitHubScreen(viewModel: OmniMindViewModel) {
                             colors = TextFieldDefaults.outlinedTextFieldColors(
                                 focusedBorderColor = ManusElectricBlue,
                                 unfocusedBorderColor = ManusBorder,
-                                textColor = Color.White
+                                color = Color.White
                             ),
                             shape = RoundedCornerShape(12.dp)
                         )
@@ -197,7 +199,7 @@ fun GitHubScreen(viewModel: OmniMindViewModel) {
 }
 
 @Composable
-private fun RepoCard(repo: com.example.omnimind.data.model.GitHubRepo, onClick: () -> Unit) { // Simplified type for brevity
+private fun RepoCard(repo: GitHubRepo, onClick: () -> Unit) { // Simplified type for brevity
     Box(
         modifier = Modifier
             .fillMaxWidth()
@@ -236,7 +238,7 @@ private fun RepoCard(repo: com.example.omnimind.data.model.GitHubRepo, onClick: 
 }
 
 @Composable
-private fun ContentItem(item: com.example.omnimind.data.model.GitHubContent, onClick: () -> Unit, onImport: () -> Unit) {
+private fun ContentItem(item: GitHubContent, onClick: () -> Unit, onImport: () -> Unit) {
     Row(
         modifier = Modifier
             .fillMaxWidth()

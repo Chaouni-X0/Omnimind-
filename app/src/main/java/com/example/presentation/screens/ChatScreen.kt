@@ -127,7 +127,7 @@ fun ChatScreen(
                         focusedIndicatorColor = Color.Transparent,
                         unfocusedIndicatorColor = Color.Transparent,
                         cursorColor = ManusElectricBlue,
-                        textColor = Color.White
+                        color = Color.White
                     )
                 )
                 

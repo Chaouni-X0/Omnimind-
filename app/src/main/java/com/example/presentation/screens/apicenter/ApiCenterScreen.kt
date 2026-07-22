@@ -278,7 +278,7 @@ private fun ManusTextField(
             containerColor = ManusBlack,
             focusedIndicatorColor = ManusElectricBlue,
             unfocusedIndicatorColor = ManusBorder,
-            textColor = Color.White,
+            color = Color.White,
             focusedLabelColor = ManusElectricBlue,
             unfocusedLabelColor = ManusTextSecondary
         ),

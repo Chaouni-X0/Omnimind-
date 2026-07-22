@@ -95,7 +95,7 @@ fun SettingsGroup(title: String, content: @Composable ColumnScope.() -> Unit) {
                 .background(ManusSurface)
                 .border(1.dp, ManusBorder, RoundedCornerShape(20.dp))
         ) {
-            Column(content = content) {
+            Column { content() } {
                 // Items will be added here
             }
         }
