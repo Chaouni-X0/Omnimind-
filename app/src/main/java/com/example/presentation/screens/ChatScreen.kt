@@ -66,20 +66,20 @@ fun ChatScreen(
             Text(
                 text = "TERMINAL_01",
                 style = MaterialTheme.typography.labelSmall,
-                color = SignalGreen,
+                textColor = SignalGreen,
                 fontWeight = FontWeight.Black,
                 letterSpacing = 4.sp
             )
             Divider(
                 modifier = Modifier.padding(vertical = 8.dp).width(40.dp),
-                color = SignalGreen,
+                textColor = SignalGreen,
                 thickness = 2.dp
             )
             Text(
                 text = "OMNIMIND_CORE",
                 fontSize = 42.sp,
                 fontWeight = FontWeight.ExtraBold,
-                color = RawWhite,
+                textColor = RawWhite,
                 lineHeight = 40.sp,
                 fontFamily = FontFamily.Monospace
             )
@@ -114,7 +114,7 @@ fun ChatScreen(
             ) {
                 Text(
                     text = ">",
-                    color = SignalGreen,
+                    textColor = SignalGreen,
                     fontWeight = FontWeight.Bold,
                     modifier = Modifier.padding(end = 12.dp)
                 )
@@ -124,7 +124,7 @@ fun ChatScreen(
                     placeholder = { 
                         Text(
                             "INITIATE_COMMAND...", 
-                            color = GhostGrey,
+                            textColor = GhostGrey,
                             fontFamily = FontFamily.Monospace
                         ) 
                     },
@@ -134,7 +134,7 @@ fun ChatScreen(
                         focusedIndicatorColor = Color.Transparent,
                         unfocusedIndicatorColor = Color.Transparent,
                         cursorColor = SignalGreen,
-                        color = RawWhite
+                        textColor = RawWhite
                     )
                 )
                 

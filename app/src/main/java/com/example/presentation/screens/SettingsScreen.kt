@@ -39,14 +39,14 @@ fun SettingsScreen() {
                 text = "SYSTEM_PREFERENCES",
                 fontFamily = FontFamily.Monospace,
                 fontWeight = FontWeight.Bold,
-                color = SignalGreen,
+                textColor = SignalGreen,
                 fontSize = 12.sp
             )
             Text(
                 text = "SETTINGS",
                 fontSize = 54.sp,
                 fontWeight = FontWeight.Black,
-                color = RawWhite,
+                textColor = RawWhite,
                 fontFamily = FontFamily.Monospace
             )
             
@@ -81,7 +81,7 @@ fun SettingsScreen() {
                 text = "// OMNIMIND_SYSTEM_STABLE",
                 fontFamily = FontFamily.Monospace,
                 fontSize = 10.sp,
-                color = GhostGrey,
+                textColor = GhostGrey,
                 modifier = Modifier.align(Alignment.Start)
             )
             Spacer(modifier = Modifier.height(8.dp))
@@ -97,7 +97,7 @@ fun IndustrialSettingsGroup(title: String, content: @Composable ColumnScope.() -
             fontFamily = FontFamily.Monospace,
             fontSize = 10.sp,
             fontWeight = FontWeight.Bold,
-            color = GhostGrey,
+            textColor = GhostGrey,
             modifier = Modifier.padding(start = 4.dp, bottom = 8.dp)
         )
         Box(
@@ -129,14 +129,14 @@ fun ColumnScope.IndustrialSettingsItem(icon: ImageVector, title: String, subtitl
         Column(modifier = Modifier.weight(1f)) {
             Text(
                 text = title, 
-                color = RawWhite, 
+                textColor = RawWhite, 
                 fontWeight = FontWeight.Bold, 
                 fontSize = 14.sp,
                 fontFamily = FontFamily.Monospace
             )
             Text(
                 text = subtitle, 
-                color = GhostGrey, 
+                textColor = GhostGrey, 
                 fontSize = 10.sp,
                 fontFamily = FontFamily.Monospace
             )

@@ -54,7 +54,7 @@ fun DashboardScreen(
                     Text(
                         "OMNIMIND_v1.0", 
                         fontFamily = FontFamily.Monospace,
-                        color = SignalGreen,
+                        textColor = SignalGreen,
                         fontWeight = FontWeight.Bold,
                         fontSize = 12.sp
                     )
@@ -73,7 +73,7 @@ fun DashboardScreen(
                     text = "SYSTEM\nOPERATIONS",
                     fontSize = 54.sp,
                     fontWeight = FontWeight.Black,
-                    color = RawWhite,
+                    textColor = RawWhite,
                     lineHeight = 48.sp,
                     fontFamily = FontFamily.Monospace,
                     modifier = Modifier.padding(bottom = 32.dp)
@@ -91,7 +91,7 @@ fun DashboardScreen(
                         Text(
                             "NEW_DEPLOYMENT",
                             fontFamily = FontFamily.Monospace,
-                            color = SignalGreen,
+                            textColor = SignalGreen,
                             fontSize = 10.sp,
                             fontWeight = FontWeight.Bold
                         )
@@ -99,13 +99,13 @@ fun DashboardScreen(
                         TextField(
                             value = newProjectName,
                             onValueChange = { newProjectName = it },
-                            placeholder = { Text("ID: PROJECT_NAME", color = GhostGrey, fontFamily = FontFamily.Monospace) },
+                            placeholder = { Text("ID: PROJECT_NAME", textColor = GhostGrey, fontFamily = FontFamily.Monospace) },
                             modifier = Modifier.fillMaxWidth(),
                             colors = TextFieldDefaults.textFieldColors(
                                 containerColor = Color.Transparent,
                                 focusedIndicatorColor = SignalGreen,
                                 unfocusedIndicatorColor = SteelBorder,
-                                color = RawWhite
+                                textColor = RawWhite
                             )
                         )
                         Spacer(modifier = Modifier.height(24.dp))
@@ -120,7 +120,7 @@ fun DashboardScreen(
                             shape = RectangleShape,
                             colors = ButtonDefaults.buttonColors(containerColor = SignalGreen)
                         ) {
-                            Text("INITIALIZE", color = VoidBlack, fontWeight = FontWeight.Black, fontFamily = FontFamily.Monospace)
+                            Text("INITIALIZE", textColor = VoidBlack, fontWeight = FontWeight.Black, fontFamily = FontFamily.Monospace)
                         }
                     }
                 }
@@ -130,7 +130,7 @@ fun DashboardScreen(
                 Text(
                     text = "// ACTIVE_INSTANCES",
                     fontFamily = FontFamily.Monospace,
-                    color = GhostGrey,
+                    textColor = GhostGrey,
                     fontSize = 12.sp,
                     fontWeight = FontWeight.Bold
                 )
@@ -139,7 +139,7 @@ fun DashboardScreen(
                 if (projects.isEmpty()) {
                     Text(
                         "NULL_RECORDS_FOUND",
-                        color = GhostGrey,
+                        textColor = GhostGrey,
                         fontFamily = FontFamily.Monospace,
                         fontSize = 14.sp,
                         modifier = Modifier.padding(top = 24.dp)
@@ -177,7 +177,7 @@ private fun IndustrialProjectCard(project: Project, onClick: () -> Unit) {
                 Text(
                     text = project.name.uppercase(),
                     fontWeight = FontWeight.ExtraBold,
-                    color = RawWhite,
+                    textColor = RawWhite,
                     fontFamily = FontFamily.Monospace,
                     fontSize = 18.sp
                 )
@@ -185,7 +185,7 @@ private fun IndustrialProjectCard(project: Project, onClick: () -> Unit) {
                 Row(verticalAlignment = Alignment.CenterVertically) {
                     Text(
                         "PROG: ${project.progress}%",
-                        color = SignalGreen,
+                        textColor = SignalGreen,
                         fontSize = 10.sp,
                         fontFamily = FontFamily.Monospace
                     )
