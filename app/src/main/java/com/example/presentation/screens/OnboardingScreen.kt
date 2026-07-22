@@ -3,14 +3,22 @@ package com.example.omnimind.presentation.screens
 import androidx.compose.foundation.background
 import androidx.compose.foundation.border
 import androidx.compose.foundation.clickable
-import androidx.compose.foundation.layout.Arrangement
-import androidx.compose.foundation.layout.Box
-import androidx.compose.foundation.layout.Column
-import androidx.compose.foundation.layout.Spacer
-import androidx.compose.foundation.layout.fillMaxSize
-import androidx.compose.foundation.layout.fillMaxWidth
-import androidx.compose.foundation.layout.height
-import androidx.compose.foundation.layout.padding
+import androidx.compose.foundation.layout.*
+import androidx.compose.ui.graphics.RectangleShape
+import androidx.compose.foundation.layout.*
+import androidx.compose.ui.graphics.RectangleShape
+import androidx.compose.foundation.layout.*
+import androidx.compose.ui.graphics.RectangleShape
+import androidx.compose.foundation.layout.*
+import androidx.compose.ui.graphics.RectangleShape
+import androidx.compose.foundation.layout.*
+import androidx.compose.ui.graphics.RectangleShape
+import androidx.compose.foundation.layout.*
+import androidx.compose.ui.graphics.RectangleShape
+import androidx.compose.foundation.layout.*
+import androidx.compose.ui.graphics.RectangleShape
+import androidx.compose.foundation.layout.*
+import androidx.compose.ui.graphics.RectangleShape
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material3.Button
 import androidx.compose.material3.ButtonDefaults
@@ -66,7 +74,7 @@ private fun WelcomeStep(onNext: () -> Unit) {
         text = stringResource(R.string.welcome_title),
         style = MaterialTheme.typography.headlineMedium,
         fontWeight = FontWeight.Bold,
-        textColor = MaterialTheme.colorScheme.onBackground,
+        color = MaterialTheme.colorScheme.onBackground,
         textAlign = TextAlign.Center,
         modifier = Modifier.fillMaxWidth()
     )
@@ -74,7 +82,7 @@ private fun WelcomeStep(onNext: () -> Unit) {
     Text(
         text = stringResource(R.string.welcome_subtitle),
         style = MaterialTheme.typography.bodyLarge,
-        textColor = MaterialTheme.colorScheme.onBackground.copy(alpha = 0.7f),
+        color = MaterialTheme.colorScheme.onBackground.copy(alpha = 0.7f),
         textAlign = TextAlign.Center,
         modifier = Modifier.fillMaxWidth()
     )
@@ -98,13 +106,13 @@ private fun ThemeStep(
         text = stringResource(R.string.choose_environment),
         style = MaterialTheme.typography.headlineSmall,
         fontWeight = FontWeight.Bold,
-        textColor = MaterialTheme.colorScheme.onBackground
+        color = MaterialTheme.colorScheme.onBackground
     )
     Spacer(modifier = Modifier.height(8.dp))
     Text(
         text = stringResource(R.string.choose_environment_desc),
         style = MaterialTheme.typography.bodyMedium,
-        textColor = MaterialTheme.colorScheme.onBackground.copy(alpha = 0.7f)
+        color = MaterialTheme.colorScheme.onBackground.copy(alpha = 0.7f)
     )
     Spacer(modifier = Modifier.height(24.dp))
 
@@ -156,7 +164,7 @@ private fun ThemeOption(
             .clickable(onClick = onClick)
             .border(
                 width = if (selected) 2.dp else 1.dp,
-                textColor = if (selected) MaterialTheme.colorScheme.primary else MaterialTheme.colorScheme.onBackground.copy(alpha = 0.2f),
+                color = if (selected) MaterialTheme.colorScheme.primary else MaterialTheme.colorScheme.onBackground.copy(alpha = 0.2f),
                 shape = RoundedCornerShape(16.dp)
             )
             .background(MaterialTheme.colorScheme.surface, RoundedCornerShape(16.dp))
@@ -170,11 +178,11 @@ private fun ThemeOption(
                     .background(swatch, RoundedCornerShape(3.dp))
             )
             Spacer(modifier = Modifier.height(10.dp))
-            Text(text = name, fontWeight = FontWeight.Bold, textColor = MaterialTheme.colorScheme.onSurface)
+            Text(text = name, fontWeight = FontWeight.Bold, color = MaterialTheme.colorScheme.onSurface)
             Text(
                 text = description,
                 style = MaterialTheme.typography.bodySmall,
-                textColor = MaterialTheme.colorScheme.onSurface.copy(alpha = 0.7f)
+                color = MaterialTheme.colorScheme.onSurface.copy(alpha = 0.7f)
             )
         }
     }
@@ -189,13 +197,13 @@ private fun ApiKeyStep(onComplete: (apiKey: String, monthlyBudget: Long?) -> Uni
         text = stringResource(R.string.connect_intelligence),
         style = MaterialTheme.typography.headlineSmall,
         fontWeight = FontWeight.Bold,
-        textColor = MaterialTheme.colorScheme.onBackground
+        color = MaterialTheme.colorScheme.onBackground
     )
     Spacer(modifier = Modifier.height(8.dp))
     Text(
         text = stringResource(R.string.connect_intelligence_desc),
         style = MaterialTheme.typography.bodyMedium,
-        textColor = MaterialTheme.colorScheme.onBackground.copy(alpha = 0.7f)
+        color = MaterialTheme.colorScheme.onBackground.copy(alpha = 0.7f)
     )
     Spacer(modifier = Modifier.height(24.dp))
 
@@ -217,7 +225,7 @@ private fun ApiKeyStep(onComplete: (apiKey: String, monthlyBudget: Long?) -> Uni
     Text(
         text = stringResource(R.string.key_security_note),
         style = MaterialTheme.typography.bodySmall,
-        textColor = MaterialTheme.colorScheme.onBackground.copy(alpha = 0.6f)
+        color = MaterialTheme.colorScheme.onBackground.copy(alpha = 0.6f)
     )
     Spacer(modifier = Modifier.height(24.dp))
     Button(

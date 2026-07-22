@@ -5,6 +5,7 @@ import androidx.compose.foundation.border
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.*
 import androidx.compose.ui.graphics.RectangleShape
+import androidx.compose.ui.graphics.RectangleShape
 import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.lazy.items
 import androidx.compose.foundation.shape.RectangleShape
@@ -54,7 +55,7 @@ fun DashboardScreen(
                     Text(
                         "OMNIMIND_v1.0", 
                         fontFamily = FontFamily.Monospace,
-                        textColor = SignalGreen,
+                        color = SignalGreen,
                         fontWeight = FontWeight.Bold,
                         fontSize = 12.sp
                     )
@@ -73,7 +74,7 @@ fun DashboardScreen(
                     text = "SYSTEM\nOPERATIONS",
                     fontSize = 54.sp,
                     fontWeight = FontWeight.Black,
-                    textColor = RawWhite,
+                    color = RawWhite,
                     lineHeight = 48.sp,
                     fontFamily = FontFamily.Monospace,
                     modifier = Modifier.padding(bottom = 32.dp)
@@ -91,7 +92,7 @@ fun DashboardScreen(
                         Text(
                             "NEW_DEPLOYMENT",
                             fontFamily = FontFamily.Monospace,
-                            textColor = SignalGreen,
+                            color = SignalGreen,
                             fontSize = 10.sp,
                             fontWeight = FontWeight.Bold
                         )
@@ -99,13 +100,13 @@ fun DashboardScreen(
                         TextField(
                             value = newProjectName,
                             onValueChange = { newProjectName = it },
-                            placeholder = { Text("ID: PROJECT_NAME", textColor = GhostGrey, fontFamily = FontFamily.Monospace) },
+                            placeholder = { Text("ID: PROJECT_NAME", color = GhostGrey, fontFamily = FontFamily.Monospace) },
                             modifier = Modifier.fillMaxWidth(),
                             colors = TextFieldDefaults.textFieldColors(
                                 containerColor = Color.Transparent,
                                 focusedIndicatorColor = SignalGreen,
                                 unfocusedIndicatorColor = SteelBorder,
-                                textColor = RawWhite
+                                color = RawWhite
                             )
                         )
                         Spacer(modifier = Modifier.height(24.dp))
@@ -120,7 +121,7 @@ fun DashboardScreen(
                             shape = RectangleShape,
                             colors = ButtonDefaults.buttonColors(containerColor = SignalGreen)
                         ) {
-                            Text("INITIALIZE", textColor = VoidBlack, fontWeight = FontWeight.Black, fontFamily = FontFamily.Monospace)
+                            Text("INITIALIZE", color = VoidBlack, fontWeight = FontWeight.Black, fontFamily = FontFamily.Monospace)
                         }
                     }
                 }
@@ -130,7 +131,7 @@ fun DashboardScreen(
                 Text(
                     text = "// ACTIVE_INSTANCES",
                     fontFamily = FontFamily.Monospace,
-                    textColor = GhostGrey,
+                    color = GhostGrey,
                     fontSize = 12.sp,
                     fontWeight = FontWeight.Bold
                 )
@@ -139,7 +140,7 @@ fun DashboardScreen(
                 if (projects.isEmpty()) {
                     Text(
                         "NULL_RECORDS_FOUND",
-                        textColor = GhostGrey,
+                        color = GhostGrey,
                         fontFamily = FontFamily.Monospace,
                         fontSize = 14.sp,
                         modifier = Modifier.padding(top = 24.dp)
@@ -177,7 +178,7 @@ private fun IndustrialProjectCard(project: Project, onClick: () -> Unit) {
                 Text(
                     text = project.name.uppercase(),
                     fontWeight = FontWeight.ExtraBold,
-                    textColor = RawWhite,
+                    color = RawWhite,
                     fontFamily = FontFamily.Monospace,
                     fontSize = 18.sp
                 )
@@ -185,7 +186,7 @@ private fun IndustrialProjectCard(project: Project, onClick: () -> Unit) {
                 Row(verticalAlignment = Alignment.CenterVertically) {
                     Text(
                         "PROG: ${project.progress}%",
-                        textColor = SignalGreen,
+                        color = SignalGreen,
                         fontSize = 10.sp,
                         fontFamily = FontFamily.Monospace
                     )

@@ -4,6 +4,7 @@ import androidx.compose.foundation.background
 import androidx.compose.foundation.border
 import androidx.compose.foundation.layout.*
 import androidx.compose.ui.graphics.RectangleShape
+import androidx.compose.ui.graphics.RectangleShape
 import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.lazy.items
 import androidx.compose.foundation.rememberScrollState
@@ -61,14 +62,14 @@ fun ApiCenterScreen(viewModel: OmniMindViewModel) {
                     text = "API_ENGINE_CENTER",
                     fontFamily = FontFamily.Monospace,
                     fontWeight = FontWeight.Bold,
-                    textColor = SignalGreen,
+                    color = SignalGreen,
                     fontSize = 12.sp
                 )
                 Text(
                     text = "CONFIG",
                     fontSize = 54.sp,
                     fontWeight = FontWeight.Black,
-                    textColor = RawWhite,
+                    color = RawWhite,
                     fontFamily = FontFamily.Monospace
                 )
                 
@@ -83,7 +84,7 @@ fun ApiCenterScreen(viewModel: OmniMindViewModel) {
                         item {
                             Text(
                                 "NULL_PROVIDERS_ACTIVE",
-                                textColor = GhostGrey,
+                                color = GhostGrey,
                                 fontFamily = FontFamily.Monospace,
                                 modifier = Modifier.padding(top = 24.dp)
                             )
@@ -151,13 +152,13 @@ private fun IndustrialProviderCard(
                     Text(
                         config.providerName.uppercase(), 
                         fontWeight = FontWeight.Bold, 
-                        textColor = RawWhite,
+                        color = RawWhite,
                         fontFamily = FontFamily.Monospace
                     )
                     Text(
                         "ID: ${config.modelId.ifBlank { "DEFAULT" }}",
                         fontSize = 10.sp,
-                        textColor = GhostGrey,
+                        color = GhostGrey,
                         fontFamily = FontFamily.Monospace
                     )
                 }
@@ -180,16 +181,16 @@ private fun IndustrialProviderCard(
             ) {
                 Text(
                     "TIER: ${config.modelTier}",
-                    textColor = SignalGreen,
+                    color = SignalGreen,
                     fontSize = 10.sp,
                     fontFamily = FontFamily.Monospace
                 )
                 Row {
                     TextButton(onClick = onEdit) {
-                        Text("[EDIT]", textColor = SignalGreen, fontSize = 11.sp, fontFamily = FontFamily.Monospace)
+                        Text("[EDIT]", color = SignalGreen, fontSize = 11.sp, fontFamily = FontFamily.Monospace)
                     }
                     TextButton(onClick = onDelete) {
-                        Text("[PURGE]", textColor = SignalRed, fontSize = 11.sp, fontFamily = FontFamily.Monospace)
+                        Text("[PURGE]", color = SignalRed, fontSize = 11.sp, fontFamily = FontFamily.Monospace)
                     }
                 }
             }
@@ -220,7 +221,7 @@ private fun IndustrialProviderDialog(
                 if (existing == null) "INIT_NEW_PROVIDER" else "MOD_PROVIDER", 
                 fontSize = 16.sp, 
                 fontWeight = FontWeight.Black,
-                textColor = SignalGreen,
+                color = SignalGreen,
                 fontFamily = FontFamily.Monospace
             ) 
         },
@@ -240,7 +241,7 @@ private fun IndustrialProviderDialog(
                 IndustrialTextField(value = modelId, onValueChange = { modelId = it }, label = "MODEL_REF")
                 
                 Column {
-                    Text("TIER_LEVEL: $tier", textColor = RawWhite, fontSize = 10.sp, fontFamily = FontFamily.Monospace)
+                    Text("TIER_LEVEL: $tier", color = RawWhite, fontSize = 10.sp, fontFamily = FontFamily.Monospace)
                     Slider(
                         value = tier.toFloat(), 
                         onValueChange = { tier = it.toInt() }, 
@@ -256,11 +257,11 @@ private fun IndustrialProviderDialog(
                 onClick = { onConfirm(provider.trim(), key, baseUrl.trim().ifBlank { null }, modelId.trim(), tier, priority) },
                 colors = ButtonDefaults.buttonColors(containerColor = SignalGreen),
                 shape = RectangleShape
-            ) { Text("SAVE_CONFIG", textColor = VoidBlack, fontWeight = FontWeight.Black, fontFamily = FontFamily.Monospace) }
+            ) { Text("SAVE_CONFIG", color = VoidBlack, fontWeight = FontWeight.Black, fontFamily = FontFamily.Monospace) }
         },
         dismissButton = {
             TextButton(onClick = onDismiss) { 
-                Text("ABORT", textColor = GhostGrey, fontFamily = FontFamily.Monospace) 
+                Text("ABORT", color = GhostGrey, fontFamily = FontFamily.Monospace) 
             }
         }
     )
@@ -284,7 +285,7 @@ private fun IndustrialTextField(
             containerColor = VoidBlack,
             focusedIndicatorColor = SignalGreen,
             unfocusedIndicatorColor = SteelBorder,
-            textColor = RawWhite,
+            color = RawWhite,
             focusedLabelColor = SignalGreen,
             unfocusedLabelColor = GhostGrey
         ),

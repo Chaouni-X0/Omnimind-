@@ -1,13 +1,20 @@
 package com.example.omnimind.presentation.screens
 
 import androidx.compose.foundation.background
-import androidx.compose.foundation.layout.Arrangement
-import androidx.compose.foundation.layout.Column
-import androidx.compose.foundation.layout.Spacer
-import androidx.compose.foundation.layout.fillMaxSize
-import androidx.compose.foundation.layout.fillMaxWidth
-import androidx.compose.foundation.layout.height
-import androidx.compose.foundation.layout.padding
+import androidx.compose.foundation.layout.*
+import androidx.compose.ui.graphics.RectangleShape
+import androidx.compose.foundation.layout.*
+import androidx.compose.ui.graphics.RectangleShape
+import androidx.compose.foundation.layout.*
+import androidx.compose.ui.graphics.RectangleShape
+import androidx.compose.foundation.layout.*
+import androidx.compose.ui.graphics.RectangleShape
+import androidx.compose.foundation.layout.*
+import androidx.compose.ui.graphics.RectangleShape
+import androidx.compose.foundation.layout.*
+import androidx.compose.ui.graphics.RectangleShape
+import androidx.compose.foundation.layout.*
+import androidx.compose.ui.graphics.RectangleShape
 import androidx.compose.material3.Button
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Text
@@ -34,7 +41,7 @@ fun ProjectWorkspaceScreen(
             text = projectName,
             style = MaterialTheme.typography.headlineSmall,
             fontWeight = FontWeight.Bold,
-            textColor = MaterialTheme.colorScheme.onBackground
+            color = MaterialTheme.colorScheme.onBackground
         )
         Spacer(modifier = Modifier.height(24.dp))
         Button(onClick = onOpenChat, modifier = Modifier.fillMaxWidth()) {

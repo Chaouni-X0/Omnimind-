@@ -4,6 +4,7 @@ import androidx.compose.foundation.background
 import androidx.compose.foundation.border
 import androidx.compose.foundation.layout.*
 import androidx.compose.ui.graphics.RectangleShape
+import androidx.compose.ui.graphics.RectangleShape
 import androidx.compose.foundation.shape.RectangleShape
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.ChevronRight
@@ -39,14 +40,14 @@ fun SettingsScreen() {
                 text = "SYSTEM_PREFERENCES",
                 fontFamily = FontFamily.Monospace,
                 fontWeight = FontWeight.Bold,
-                textColor = SignalGreen,
+                color = SignalGreen,
                 fontSize = 12.sp
             )
             Text(
                 text = "SETTINGS",
                 fontSize = 54.sp,
                 fontWeight = FontWeight.Black,
-                textColor = RawWhite,
+                color = RawWhite,
                 fontFamily = FontFamily.Monospace
             )
             
@@ -81,7 +82,7 @@ fun SettingsScreen() {
                 text = "// OMNIMIND_SYSTEM_STABLE",
                 fontFamily = FontFamily.Monospace,
                 fontSize = 10.sp,
-                textColor = GhostGrey,
+                color = GhostGrey,
                 modifier = Modifier.align(Alignment.Start)
             )
             Spacer(modifier = Modifier.height(8.dp))
@@ -97,7 +98,7 @@ fun IndustrialSettingsGroup(title: String, content: @Composable ColumnScope.() -
             fontFamily = FontFamily.Monospace,
             fontSize = 10.sp,
             fontWeight = FontWeight.Bold,
-            textColor = GhostGrey,
+            color = GhostGrey,
             modifier = Modifier.padding(start = 4.dp, bottom = 8.dp)
         )
         Box(
@@ -118,7 +119,7 @@ fun ColumnScope.IndustrialSettingsItem(icon: ImageVector, title: String, subtitl
     Row(
         modifier = Modifier
             .fillMaxWidth()
-            .border(width = 0.5.dp, textColor = SteelBorder)
+            .border(width = 0.5.dp, color = SteelBorder)
             .padding(16.dp),
         verticalAlignment = Alignment.CenterVertically
     ) {
@@ -129,14 +130,14 @@ fun ColumnScope.IndustrialSettingsItem(icon: ImageVector, title: String, subtitl
         Column(modifier = Modifier.weight(1f)) {
             Text(
                 text = title, 
-                textColor = RawWhite, 
+                color = RawWhite, 
                 fontWeight = FontWeight.Bold, 
                 fontSize = 14.sp,
                 fontFamily = FontFamily.Monospace
             )
             Text(
                 text = subtitle, 
-                textColor = GhostGrey, 
+                color = GhostGrey, 
                 fontSize = 10.sp,
                 fontFamily = FontFamily.Monospace
             )

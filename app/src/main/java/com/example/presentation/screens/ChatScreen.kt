@@ -4,6 +4,7 @@ import androidx.compose.foundation.background
 import androidx.compose.foundation.border
 import androidx.compose.foundation.layout.*
 import androidx.compose.ui.graphics.RectangleShape
+import androidx.compose.ui.graphics.RectangleShape
 import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.lazy.items
 import androidx.compose.foundation.lazy.rememberLazyListState
@@ -48,7 +49,7 @@ fun ChatScreen(
                 val scanlineSpacing = 8.dp.toPx()
                 for (y in 0..size.height.toInt() step scanlineSpacing.toInt()) {
                     drawLine(
-                        textColor = ScanlineColor,
+                        color = ScanlineColor,
                         start = Offset(0f, y.toFloat()),
                         end = Offset(size.width, y.toFloat()),
                         strokeWidth = 1f
@@ -66,20 +67,20 @@ fun ChatScreen(
             Text(
                 text = "TERMINAL_01",
                 style = MaterialTheme.typography.labelSmall,
-                textColor = SignalGreen,
+                color = SignalGreen,
                 fontWeight = FontWeight.Black,
                 letterSpacing = 4.sp
             )
             Divider(
                 modifier = Modifier.padding(vertical = 8.dp).width(40.dp),
-                textColor = SignalGreen,
+                color = SignalGreen,
                 thickness = 2.dp
             )
             Text(
                 text = "OMNIMIND_CORE",
                 fontSize = 42.sp,
                 fontWeight = FontWeight.ExtraBold,
-                textColor = RawWhite,
+                color = RawWhite,
                 lineHeight = 40.sp,
                 fontFamily = FontFamily.Monospace
             )
@@ -105,7 +106,7 @@ fun ChatScreen(
                 .align(Alignment.BottomCenter)
                 .fillMaxWidth()
                 .background(VoidBlack)
-                .border(width = 1.dp, textColor = SteelBorder, shape = RectangleShape)
+                .border(width = 1.dp, color = SteelBorder, shape = RectangleShape)
                 .padding(24.dp)
         ) {
             Row(
@@ -114,7 +115,7 @@ fun ChatScreen(
             ) {
                 Text(
                     text = ">",
-                    textColor = SignalGreen,
+                    color = SignalGreen,
                     fontWeight = FontWeight.Bold,
                     modifier = Modifier.padding(end = 12.dp)
                 )
@@ -124,7 +125,7 @@ fun ChatScreen(
                     placeholder = { 
                         Text(
                             "INITIATE_COMMAND...", 
-                            textColor = GhostGrey,
+                            color = GhostGrey,
                             fontFamily = FontFamily.Monospace
                         ) 
                     },
@@ -134,7 +135,7 @@ fun ChatScreen(
                         focusedIndicatorColor = Color.Transparent,
                         unfocusedIndicatorColor = Color.Transparent,
                         cursorColor = SignalGreen,
-                        textColor = RawWhite
+                        color = RawWhite
                     )
                 )
                 
@@ -182,7 +183,7 @@ private fun IndustrialMessageBubble(message: AgentMessage) {
                 text = message.agentName.uppercase(),
                 style = MaterialTheme.typography.labelSmall,
                 fontWeight = FontWeight.Bold,
-                textColor = if (isAgent) accentColor else GhostGrey,
+                color = if (isAgent) accentColor else GhostGrey,
                 fontFamily = FontFamily.Monospace,
                 letterSpacing = 2.sp
             )
@@ -196,13 +197,13 @@ private fun IndustrialMessageBubble(message: AgentMessage) {
                 .background(if (isAgent) IndustrialGrey else Color.Transparent)
                 .border(
                     width = 1.dp,
-                    textColor = if (isAgent) SteelBorder else SignalGreenDim
+                    color = if (isAgent) SteelBorder else SignalGreenDim
                 )
                 .padding(16.dp)
         ) {
             Text(
                 text = message.messageText,
-                textColor = if (isAgent) RawWhite else SignalGreen,
+                color = if (isAgent) RawWhite else SignalGreen,
                 style = MaterialTheme.typography.bodyMedium,
                 fontFamily = FontFamily.Monospace,
                 lineHeight = 20.sp
@@ -212,7 +213,7 @@ private fun IndustrialMessageBubble(message: AgentMessage) {
         if (message.verdictType != "NONE") {
             Text(
                 text = "[STATUS: ${message.verdictType}]",
-                textColor = accentColor,
+                color = accentColor,
                 fontSize = 10.sp,
                 fontWeight = FontWeight.Bold,
                 modifier = Modifier.padding(top = 4.dp),

@@ -5,6 +5,7 @@ import androidx.compose.foundation.border
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.*
 import androidx.compose.ui.graphics.RectangleShape
+import androidx.compose.ui.graphics.RectangleShape
 import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.lazy.items
 import androidx.compose.foundation.shape.RectangleShape
@@ -52,7 +53,7 @@ fun GitHubScreen(viewModel: OmniMindViewModel) {
             val (name, content) = fileContent!!
             Column(modifier = Modifier.fillMaxSize()) {
                 TopAppBar(
-                    title = { Text(name.uppercase(), fontFamily = FontFamily.Monospace, fontSize = 14.sp, textColor = SignalGreen) },
+                    title = { Text(name.uppercase(), fontFamily = FontFamily.Monospace, fontSize = 14.sp, color = SignalGreen) },
                     navigationIcon = {
                         IconButton(onClick = viewModel::clearGitHubFile) {
                             Icon(Icons.Filled.ArrowBack, contentDescription = null, tint = SignalGreen)
@@ -71,7 +72,7 @@ fun GitHubScreen(viewModel: OmniMindViewModel) {
                     Text(
                         text = content,
                         fontFamily = FontFamily.Monospace,
-                        textColor = RawWhite,
+                        color = RawWhite,
                         fontSize = 12.sp,
                         modifier = Modifier.fillMaxSize()
                     )
@@ -85,7 +86,7 @@ fun GitHubScreen(viewModel: OmniMindViewModel) {
                 text = "GIT_REPOSITORY_MANAGER",
                 fontFamily = FontFamily.Monospace,
                 fontWeight = FontWeight.Bold,
-                textColor = SignalGreen,
+                color = SignalGreen,
                 fontSize = 12.sp
             )
             
@@ -100,19 +101,19 @@ fun GitHubScreen(viewModel: OmniMindViewModel) {
                         .padding(32.dp)
                 ) {
                     Column {
-                        Text("AUTHENTICATION_REQUIRED", textColor = RawWhite, fontWeight = FontWeight.Black, fontFamily = FontFamily.Monospace)
+                        Text("AUTHENTICATION_REQUIRED", color = RawWhite, fontWeight = FontWeight.Black, fontFamily = FontFamily.Monospace)
                         Spacer(modifier = Modifier.height(24.dp))
                         TextField(
                             value = tokenInput,
                             onValueChange = { tokenInput = it },
-                            placeholder = { Text("GITHUB_TOKEN", textColor = GhostGrey, fontFamily = FontFamily.Monospace) },
+                            placeholder = { Text("GITHUB_TOKEN", color = GhostGrey, fontFamily = FontFamily.Monospace) },
                             visualTransformation = PasswordVisualTransformation(),
                             modifier = Modifier.fillMaxWidth(),
                             colors = TextFieldDefaults.textFieldColors(
                                 containerColor = VoidBlack,
                                 focusedIndicatorColor = SignalGreen,
                                 unfocusedIndicatorColor = SteelBorder,
-                                textColor = RawWhite
+                                color = RawWhite
                             ),
                             shape = RectangleShape
                         )
@@ -124,7 +125,7 @@ fun GitHubScreen(viewModel: OmniMindViewModel) {
                             colors = ButtonDefaults.buttonColors(containerColor = SignalGreen),
                             shape = RectangleShape
                         ) {
-                            Text("LINK_ACCOUNT", textColor = VoidBlack, fontWeight = FontWeight.Black, fontFamily = FontFamily.Monospace)
+                            Text("LINK_ACCOUNT", color = VoidBlack, fontWeight = FontWeight.Black, fontFamily = FontFamily.Monospace)
                         }
                     }
                 }
@@ -138,7 +139,7 @@ fun GitHubScreen(viewModel: OmniMindViewModel) {
                         text = (currentRepo?.second ?: "ROOT").uppercase(),
                         fontSize = 32.sp,
                         fontWeight = FontWeight.Black,
-                        textColor = RawWhite,
+                        color = RawWhite,
                         fontFamily = FontFamily.Monospace,
                         modifier = Modifier.weight(1f)
                     )
@@ -151,16 +152,16 @@ fun GitHubScreen(viewModel: OmniMindViewModel) {
                                 currentPath.substringBeforeLast('/', "")
                             )
                         }) {
-                            Text("[BACK]", textColor = SignalGreen, fontFamily = FontFamily.Monospace)
+                            Text("[BACK]", color = SignalGreen, fontFamily = FontFamily.Monospace)
                         }
                     }
                 }
                 
                 Spacer(modifier = Modifier.height(24.dp))
                 
-                if (loading) LinearProgressIndicator(modifier = Modifier.fillMaxWidth(), textColor = SignalGreen, trackColor = SteelBorder)
+                if (loading) LinearProgressIndicator(modifier = Modifier.fillMaxWidth(), color = SignalGreen, trackColor = SteelBorder)
                 
-                error?.let { Text("ERROR: $it", textColor = SignalRed, fontFamily = FontFamily.Monospace, fontSize = 12.sp) }
+                error?.let { Text("ERROR: $it", color = SignalRed, fontFamily = FontFamily.Monospace, fontSize = 12.sp) }
 
                 LazyColumn(
                     modifier = Modifier.fillMaxSize(),
@@ -201,11 +202,11 @@ private fun IndustrialRepoCard(repo: GitHubRepo, onClick: () -> Unit) {
             .padding(16.dp)
     ) {
         Column {
-            Text(repo.full_name.uppercase(), fontWeight = FontWeight.Bold, textColor = RawWhite, fontFamily = FontFamily.Monospace)
+            Text(repo.full_name.uppercase(), fontWeight = FontWeight.Bold, color = RawWhite, fontFamily = FontFamily.Monospace)
             repo.description?.let { 
                 Text(
                     it, 
-                    textColor = GhostGrey, 
+                    color = GhostGrey, 
                     fontSize = 11.sp, 
                     fontFamily = FontFamily.Monospace,
                     modifier = Modifier.padding(top = 4.dp)
@@ -214,14 +215,14 @@ private fun IndustrialRepoCard(repo: GitHubRepo, onClick: () -> Unit) {
             Row(modifier = Modifier.padding(top = 12.dp), verticalAlignment = Alignment.CenterVertically) {
                 Text(
                     "[${repo.language.orEmpty().uppercase()}]", 
-                    textColor = SignalGreen, 
+                    color = SignalGreen, 
                     fontSize = 10.sp, 
                     fontFamily = FontFamily.Monospace
                 )
                 Spacer(modifier = Modifier.width(16.dp))
                 Text(
                     "STARS: ${repo.stargazers_count}", 
-                    textColor = GhostGrey, 
+                    color = GhostGrey, 
                     fontSize = 10.sp, 
                     fontFamily = FontFamily.Monospace
                 )
@@ -243,7 +244,7 @@ private fun IndustrialContentRow(item: GitHubContent, onClick: () -> Unit, onImp
     ) {
         Text(
             text = if (item.type == "dir") "[DIR]" else "[FILE]",
-            textColor = if (item.type == "dir") SignalGreen else GhostGrey,
+            color = if (item.type == "dir") SignalGreen else GhostGrey,
             fontFamily = FontFamily.Monospace,
             fontSize = 10.sp,
             fontWeight = FontWeight.Bold
@@ -251,7 +252,7 @@ private fun IndustrialContentRow(item: GitHubContent, onClick: () -> Unit, onImp
         Text(
             item.name, 
             modifier = Modifier.weight(1f).padding(start = 12.dp),
-            textColor = RawWhite,
+            color = RawWhite,
             fontFamily = FontFamily.Monospace,
             fontSize = 13.sp
         )

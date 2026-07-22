@@ -1,12 +1,18 @@
 package com.example.omnimind.presentation.screens
 
 import androidx.compose.foundation.background
-import androidx.compose.foundation.layout.Arrangement
-import androidx.compose.foundation.layout.Column
-import androidx.compose.foundation.layout.Row
-import androidx.compose.foundation.layout.fillMaxSize
-import androidx.compose.foundation.layout.fillMaxWidth
-import androidx.compose.foundation.layout.padding
+import androidx.compose.foundation.layout.*
+import androidx.compose.ui.graphics.RectangleShape
+import androidx.compose.foundation.layout.*
+import androidx.compose.ui.graphics.RectangleShape
+import androidx.compose.foundation.layout.*
+import androidx.compose.ui.graphics.RectangleShape
+import androidx.compose.foundation.layout.*
+import androidx.compose.ui.graphics.RectangleShape
+import androidx.compose.foundation.layout.*
+import androidx.compose.ui.graphics.RectangleShape
+import androidx.compose.foundation.layout.*
+import androidx.compose.ui.graphics.RectangleShape
 import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.lazy.items
 import androidx.compose.foundation.lazy.rememberLazyListState
@@ -76,7 +82,7 @@ fun TerminalScreen(terminalService: TerminalService) {
                 Text(
                     text = line,
                     fontFamily = FontFamily.Monospace,
-                    textColor = MaterialTheme.colorScheme.onBackground,
+                    color = MaterialTheme.colorScheme.onBackground,
                     style = MaterialTheme.typography.bodySmall
                 )
             }
@@ -88,7 +94,7 @@ fun TerminalScreen(terminalService: TerminalService) {
             Text(
                 text = "$prompt \$",
                 fontFamily = FontFamily.Monospace,
-                textColor = MaterialTheme.colorScheme.primary,
+                color = MaterialTheme.colorScheme.primary,
                 modifier = Modifier.padding(end = 6.dp)
             )
             OutlinedTextField(
