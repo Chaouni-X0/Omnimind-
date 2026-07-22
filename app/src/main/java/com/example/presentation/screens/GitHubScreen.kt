@@ -4,11 +4,9 @@ import androidx.compose.foundation.background
 import androidx.compose.foundation.border
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.*
-import androidx.compose.ui.graphics.RectangleShape
-import androidx.compose.ui.graphics.RectangleShape
 import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.lazy.items
-import androidx.compose.foundation.shape.RectangleShape
+import androidx.compose.ui.graphics.RectangleShape
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.*
 import androidx.compose.material3.*
@@ -19,17 +17,11 @@ import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.text.font.FontFamily
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.input.PasswordVisualTransformation
-import androidx.compose.ui.text.input.VisualTransformation
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import com.example.omnimind.data.model.GitHubRepo
 import com.example.omnimind.data.model.GitHubContent
-import com.example.omnimind.data.model.GitHubContent
-import com.example.omnimind.data.model.GitHubContent
 import com.example.omnimind.presentation.viewmodel.OmniMindViewModel
-import com.example.omnimind.data.model.GitHubRepo
-import com.example.omnimind.data.model.GitHubContent
-import com.example.omnimind.data.model.GitHubContent
 import com.example.omnimind.ui.theme.*
 
 @OptIn(ExperimentalMaterial3Api::class)
@@ -84,7 +76,8 @@ fun GitHubScreen(viewModel: OmniMindViewModel) {
         }
 
         Column(modifier = Modifier.fillMaxSize().padding(24.dp)) {
-            Text(text = "GIT_REPOSITORY_MANAGER",
+            Text(
+                text = "GIT_REPOSITORY_MANAGER",
                 fontFamily = FontFamily.Monospace,
                 fontWeight = FontWeight.Bold,
                 color = SignalGreen,
@@ -107,7 +100,7 @@ fun GitHubScreen(viewModel: OmniMindViewModel) {
                         TextField(
                             value = tokenInput,
                             onValueChange = { tokenInput = it },
-                            placeholder = { Text("GITHUB_TOKEN", textColor = GhostGrey, fontFamily = FontFamily.Monospace) },
+                            placeholder = { Text("GITHUB_TOKEN", color = GhostGrey, fontFamily = FontFamily.Monospace) },
                             visualTransformation = PasswordVisualTransformation(),
                             modifier = Modifier.fillMaxWidth(),
                             colors = TextFieldDefaults.textFieldColors(
