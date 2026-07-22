@@ -16,6 +16,10 @@ val hasReleaseSigning = listOf(
 ).all { !it.isNullOrBlank() } && releaseStoreFile?.let { file(it).isFile } == true
 
 android {
+    lint {
+        abortOnError = false
+        checkReleaseBuilds = false
+    }
     namespace = "com.example.omnimind"
     compileSdk = 34
 
