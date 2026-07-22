@@ -12,7 +12,7 @@ import androidx.compose.ui.unit.dp
 @Composable
 fun AppBuilderScreen() {
     Column(modifier = Modifier.padding(16.dp)) {
-        Text_TAG(text = "App Builder")
-        Text_TAG(text = "Build your custom AI workflow")
+        Text(text = "App Builder")
+        Text(text = "Build your custom AI workflow")
     }
 }

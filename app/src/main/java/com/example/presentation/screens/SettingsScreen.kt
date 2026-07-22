@@ -36,13 +36,13 @@ fun SettingsScreen() {
                 .padding(24.dp)
         ) {
             Spacer(modifier = Modifier.height(32.dp))
-            Text_TAG(text = "SYSTEM_PREFERENCES",
+            Text(text = "SYSTEM_PREFERENCES",
                 fontFamily = FontFamily.Monospace,
                 fontWeight = FontWeight.Bold,
                 color = SignalGreen,
                 fontSize = 12.sp
             )
-            Text_TAG(text = "SETTINGS",
+            Text(text = "SETTINGS",
                 fontSize = 54.sp,
                 fontWeight = FontWeight.Black,
                 color = RawWhite,
@@ -76,7 +76,7 @@ fun SettingsScreen() {
             
             Spacer(modifier = Modifier.weight(1f))
             
-            Text_TAG(text = "// OMNIMIND_SYSTEM_STABLE",
+            Text(text = "// OMNIMIND_SYSTEM_STABLE",
                 fontFamily = FontFamily.Monospace,
                 fontSize = 10.sp,
                 color = GhostGrey,
@@ -125,13 +125,13 @@ fun ColumnScope.IndustrialSettingsItem(icon: ImageVector, title: String, subtitl
         Spacer(modifier = Modifier.width(16.dp))
         
         Column(modifier = Modifier.weight(1f)) {
-            Text_TAG(text = title, 
+            Text(text = title, 
                 color = RawWhite, 
                 fontWeight = FontWeight.Bold, 
                 fontSize = 14.sp,
                 fontFamily = FontFamily.Monospace
             )
-            Text_TAG(text = subtitle, 
+            Text(text = subtitle, 
                 color = GhostGrey, 
                 fontSize = 10.sp,
                 fontFamily = FontFamily.Monospace

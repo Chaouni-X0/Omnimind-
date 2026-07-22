@@ -64,7 +64,7 @@ fun ChatScreen(
         ) {
             // Asymmetric Header
             Spacer(modifier = Modifier.height(48.dp))
-            Text_TAG(text = "TERMINAL_01",
+            Text(text = "TERMINAL_01",
                 style = MaterialTheme.typography.labelSmall,
                 color = SignalGreen,
                 fontWeight = FontWeight.Black,
@@ -75,7 +75,7 @@ fun ChatScreen(
                 color = SignalGreen,
                 thickness = 2.dp
             )
-            Text_TAG(text = "OMNIMIND_CORE",
+            Text(text = "OMNIMIND_CORE",
                 fontSize = 42.sp,
                 fontWeight = FontWeight.ExtraBold,
                 color = RawWhite,
@@ -177,7 +177,7 @@ private fun IndustrialMessageBubble(message: AgentMessage) {
                 Box(modifier = Modifier.size(6.dp).background(accentColor))
                 Spacer(modifier = Modifier.width(8.dp))
             }
-            Text_TAG(text = message.agentName.uppercase(),
+            Text(text = message.agentName.uppercase(),
                 style = MaterialTheme.typography.labelSmall,
                 fontWeight = FontWeight.Bold,
                 color = if (isAgent) accentColor else GhostGrey,
@@ -198,7 +198,7 @@ private fun IndustrialMessageBubble(message: AgentMessage) {
                 )
                 .padding(16.dp)
         ) {
-            Text_TAG(text = message.messageText,
+            Text(text = message.messageText,
                 color = if (isAgent) RawWhite else SignalGreen,
                 style = MaterialTheme.typography.bodyMedium,
                 fontFamily = FontFamily.Monospace,
@@ -207,7 +207,7 @@ private fun IndustrialMessageBubble(message: AgentMessage) {
         }
         
         if (message.verdictType != "NONE") {
-            Text_TAG(text = "[STATUS: ${message.verdictType}]",
+            Text(text = "[STATUS: ${message.verdictType}]",
                 color = accentColor,
                 fontSize = 10.sp,
                 fontWeight = FontWeight.Bold,

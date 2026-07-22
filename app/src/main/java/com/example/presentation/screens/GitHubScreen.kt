@@ -25,8 +25,10 @@ import androidx.compose.ui.unit.sp
 import com.example.omnimind.data.model.GitHubRepo
 import com.example.omnimind.data.model.GitHubContent
 import com.example.omnimind.data.model.GitHubContent
+import com.example.omnimind.data.model.GitHubContent
 import com.example.omnimind.presentation.viewmodel.OmniMindViewModel
 import com.example.omnimind.data.model.GitHubRepo
+import com.example.omnimind.data.model.GitHubContent
 import com.example.omnimind.data.model.GitHubContent
 import com.example.omnimind.ui.theme.*
 
@@ -82,7 +84,7 @@ fun GitHubScreen(viewModel: OmniMindViewModel) {
         }
 
         Column(modifier = Modifier.fillMaxSize().padding(24.dp)) {
-            Text_TAG(text = "GIT_REPOSITORY_MANAGER",
+            Text(text = "GIT_REPOSITORY_MANAGER",
                 fontFamily = FontFamily.Monospace,
                 fontWeight = FontWeight.Bold,
                 color = SignalGreen,

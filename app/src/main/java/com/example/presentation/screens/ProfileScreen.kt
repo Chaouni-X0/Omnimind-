@@ -12,7 +12,7 @@ import androidx.compose.ui.unit.dp
 @Composable
 fun ProfileScreen() {
     Column(modifier = Modifier.padding(16.dp)) {
-        Text_TAG(text = "User Profile")
-        Text_TAG(text = "Manage your account settings")
+        Text(text = "User Profile")
+        Text(text = "Manage your account settings")
     }
 }

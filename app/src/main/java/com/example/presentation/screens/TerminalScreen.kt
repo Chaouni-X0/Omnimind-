@@ -91,7 +91,7 @@ fun TerminalScreen(terminalService: TerminalService) {
             modifier = Modifier.fillMaxWidth(),
             verticalAlignment = androidx.compose.ui.Alignment.CenterVertically
         ) {
-            Text_TAG(text = "$prompt \$",
+            Text(text = "$prompt \$",
                 fontFamily = FontFamily.Monospace,
                 color = MaterialTheme.colorScheme.primary,
                 modifier = Modifier.padding(end = 6.dp)
