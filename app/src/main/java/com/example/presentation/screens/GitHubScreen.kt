@@ -82,8 +82,7 @@ fun GitHubScreen(viewModel: OmniMindViewModel) {
         }
 
         Column(modifier = Modifier.fillMaxSize().padding(24.dp)) {
-            Text(
-                text = "GIT_REPOSITORY_MANAGER",
+            Text_TAG(text = "GIT_REPOSITORY_MANAGER",
                 fontFamily = FontFamily.Monospace,
                 fontWeight = FontWeight.Bold,
                 color = SignalGreen,
@@ -106,14 +105,14 @@ fun GitHubScreen(viewModel: OmniMindViewModel) {
                         TextField(
                             value = tokenInput,
                             onValueChange = { tokenInput = it },
-                            placeholder = { Text("GITHUB_TOKEN", color = GhostGrey, fontFamily = FontFamily.Monospace) },
+                            placeholder = { Text("GITHUB_TOKEN", textColor = GhostGrey, fontFamily = FontFamily.Monospace) },
                             visualTransformation = PasswordVisualTransformation(),
                             modifier = Modifier.fillMaxWidth(),
                             colors = TextFieldDefaults.textFieldColors(
                                 containerColor = VoidBlack,
                                 focusedIndicatorColor = SignalGreen,
                                 unfocusedIndicatorColor = SteelBorder,
-                                color = RawWhite
+                                textColor = RawWhite
                             ),
                             shape = RectangleShape
                         )

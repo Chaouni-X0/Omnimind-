@@ -14,8 +14,8 @@ import androidx.compose.ui.unit.dp
 fun ConnectorCard(title: String, description: String) {
     Card(modifier = Modifier.padding(8.dp)) {
         Column(modifier = Modifier.padding(16.dp)) {
-            Text(text = title)
-            Text(text = description)
+            Text_TAG(text = title)
+            Text_TAG(text = description)
         }
     }
 }

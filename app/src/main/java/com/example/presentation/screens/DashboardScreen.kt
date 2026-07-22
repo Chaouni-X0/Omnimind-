@@ -100,13 +100,13 @@ fun DashboardScreen(
                         TextField(
                             value = newProjectName,
                             onValueChange = { newProjectName = it },
-                            placeholder = { Text("ID: PROJECT_NAME", color = GhostGrey, fontFamily = FontFamily.Monospace) },
+                            placeholder = { Text("ID: PROJECT_NAME", textColor = GhostGrey, fontFamily = FontFamily.Monospace) },
                             modifier = Modifier.fillMaxWidth(),
                             colors = TextFieldDefaults.textFieldColors(
                                 containerColor = Color.Transparent,
                                 focusedIndicatorColor = SignalGreen,
                                 unfocusedIndicatorColor = SteelBorder,
-                                color = RawWhite
+                                textColor = RawWhite
                             )
                         )
                         Spacer(modifier = Modifier.height(24.dp))

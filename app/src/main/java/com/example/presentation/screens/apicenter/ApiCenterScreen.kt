@@ -285,7 +285,7 @@ private fun IndustrialTextField(
             containerColor = VoidBlack,
             focusedIndicatorColor = SignalGreen,
             unfocusedIndicatorColor = SteelBorder,
-            color = RawWhite,
+            textColor = RawWhite,
             focusedLabelColor = SignalGreen,
             unfocusedLabelColor = GhostGrey
         ),

@@ -7,6 +7,6 @@ import androidx.compose.runtime.Composable
 @Composable
 fun PremiumButton(text: String, onClick: () -> Unit) {
     Button(onClick = onClick) {
-        Text(text = text)
+        Text_TAG(text = text)
     }
 }

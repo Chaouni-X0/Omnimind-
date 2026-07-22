@@ -178,9 +178,8 @@ private fun ThemeOption(
                     .background(swatch, RoundedCornerShape(3.dp))
             )
             Spacer(modifier = Modifier.height(10.dp))
-            Text(text = name, fontWeight = FontWeight.Bold, color = MaterialTheme.colorScheme.onSurface)
-            Text(
-                text = description,
+            Text_TAG(text = name, fontWeight = FontWeight.Bold, color = MaterialTheme.colorScheme.onSurface)
+            Text_TAG(text = description,
                 style = MaterialTheme.typography.bodySmall,
                 color = MaterialTheme.colorScheme.onSurface.copy(alpha = 0.7f)
             )

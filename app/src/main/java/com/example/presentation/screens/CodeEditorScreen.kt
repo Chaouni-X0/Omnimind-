@@ -73,8 +73,7 @@ fun CodeEditorScreen(editorService: CodeEditorService) {
             .padding(12.dp)
     ) {
         if (openFile == null) {
-            Text(
-                text = "محرر الأكواد",
+            Text_TAG(text = "محرر الأكواد",
                 style = MaterialTheme.typography.titleMedium,
                 color = MaterialTheme.colorScheme.onBackground
             )
@@ -205,6 +204,6 @@ private fun FileBrowserRow(
             tint = MaterialTheme.colorScheme.onBackground.copy(alpha = 0.7f),
             modifier = Modifier.padding(end = 8.dp)
         )
-        Text(text = entry.name, color = MaterialTheme.colorScheme.onBackground)
+        Text_TAG(text = entry.name, color = MaterialTheme.colorScheme.onBackground)
     }
 }
