@@ -4,6 +4,7 @@ import androidx.compose.foundation.background
 import androidx.compose.foundation.border
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.*
+import androidx.compose.ui.graphics.RectangleShape
 import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.lazy.items
 import androidx.compose.foundation.shape.RectangleShape
@@ -21,6 +22,7 @@ import androidx.compose.ui.text.input.VisualTransformation
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import com.example.omnimind.data.model.GitHubRepo
+import com.example.omnimind.data.model.GitHubContent
 import com.example.omnimind.data.model.GitHubContent
 import com.example.omnimind.presentation.viewmodel.OmniMindViewModel
 import com.example.omnimind.ui.theme.*
@@ -108,7 +110,7 @@ fun GitHubScreen(viewModel: OmniMindViewModel) {
                                 containerColor = VoidBlack,
                                 focusedIndicatorColor = SignalGreen,
                                 unfocusedIndicatorColor = SteelBorder,
-                                textColor = RawWhite
+                                color = RawWhite
                             ),
                             shape = RectangleShape
                         )

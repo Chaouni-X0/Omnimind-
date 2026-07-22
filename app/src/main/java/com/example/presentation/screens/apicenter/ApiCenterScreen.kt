@@ -3,6 +3,7 @@ package com.example.omnimind.presentation.screens.apicenter
 import androidx.compose.foundation.background
 import androidx.compose.foundation.border
 import androidx.compose.foundation.layout.*
+import androidx.compose.ui.graphics.RectangleShape
 import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.lazy.items
 import androidx.compose.foundation.rememberScrollState
@@ -283,7 +284,7 @@ private fun IndustrialTextField(
             containerColor = VoidBlack,
             focusedIndicatorColor = SignalGreen,
             unfocusedIndicatorColor = SteelBorder,
-            textColor = RawWhite,
+            color = RawWhite,
             focusedLabelColor = SignalGreen,
             unfocusedLabelColor = GhostGrey
         ),

@@ -4,6 +4,7 @@ import androidx.compose.foundation.background
 import androidx.compose.foundation.border
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.*
+import androidx.compose.ui.graphics.RectangleShape
 import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.lazy.items
 import androidx.compose.foundation.shape.RectangleShape
@@ -104,7 +105,7 @@ fun DashboardScreen(
                                 containerColor = Color.Transparent,
                                 focusedIndicatorColor = SignalGreen,
                                 unfocusedIndicatorColor = SteelBorder,
-                                textColor = RawWhite
+                                color = RawWhite
                             )
                         )
                         Spacer(modifier = Modifier.height(24.dp))
