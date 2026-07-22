@@ -67,7 +67,7 @@ fun CodeEditorScreen(editorService: CodeEditorService) {
             Text(
                 text = "محرر الأكواد",
                 style = MaterialTheme.typography.titleMedium,
-                color = MaterialTheme.colorScheme.onBackground
+                textColor = MaterialTheme.colorScheme.onBackground
             )
             Spacer(modifier = Modifier.height(8.dp))
             Row(modifier = Modifier.fillMaxWidth()) {
@@ -100,7 +100,7 @@ fun CodeEditorScreen(editorService: CodeEditorService) {
             draggedFile?.let {
                 Text(
                     text = "جار سحب: $it. اضغط على مجلد لنقل الملف إليه.",
-                    color = MaterialTheme.colorScheme.primary
+                    textColor = MaterialTheme.colorScheme.primary
                 )
             }
             Spacer(modifier = Modifier.height(12.dp))
@@ -145,7 +145,7 @@ fun CodeEditorScreen(editorService: CodeEditorService) {
                 Text(
                     text = openFile ?: "",
                     modifier = Modifier.weight(1f),
-                    color = MaterialTheme.colorScheme.onBackground
+                    textColor = MaterialTheme.colorScheme.onBackground
                 )
                 IconButton(onClick = {
                     openFile?.let {
@@ -196,6 +196,6 @@ private fun FileBrowserRow(
             tint = MaterialTheme.colorScheme.onBackground.copy(alpha = 0.7f),
             modifier = Modifier.padding(end = 8.dp)
         )
-        Text(text = entry.name, color = MaterialTheme.colorScheme.onBackground)
+        Text(text = entry.name, textColor = MaterialTheme.colorScheme.onBackground)
     }
 }

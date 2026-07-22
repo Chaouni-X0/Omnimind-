@@ -118,7 +118,7 @@ fun ColumnScope.IndustrialSettingsItem(icon: ImageVector, title: String, subtitl
     Row(
         modifier = Modifier
             .fillMaxWidth()
-            .border(width = 0.5.dp, color = SteelBorder)
+            .border(width = 0.5.dp, textColor = SteelBorder)
             .padding(16.dp),
         verticalAlignment = Alignment.CenterVertically
     ) {

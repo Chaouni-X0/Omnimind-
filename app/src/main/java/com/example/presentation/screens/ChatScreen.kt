@@ -48,7 +48,7 @@ fun ChatScreen(
                 val scanlineSpacing = 8.dp.toPx()
                 for (y in 0..size.height.toInt() step scanlineSpacing.toInt()) {
                     drawLine(
-                        color = ScanlineColor,
+                        textColor = ScanlineColor,
                         start = Offset(0f, y.toFloat()),
                         end = Offset(size.width, y.toFloat()),
                         strokeWidth = 1f
@@ -105,7 +105,7 @@ fun ChatScreen(
                 .align(Alignment.BottomCenter)
                 .fillMaxWidth()
                 .background(VoidBlack)
-                .border(width = 1.dp, color = SteelBorder, shape = RectangleShape)
+                .border(width = 1.dp, textColor = SteelBorder, shape = RectangleShape)
                 .padding(24.dp)
         ) {
             Row(
@@ -182,7 +182,7 @@ private fun IndustrialMessageBubble(message: AgentMessage) {
                 text = message.agentName.uppercase(),
                 style = MaterialTheme.typography.labelSmall,
                 fontWeight = FontWeight.Bold,
-                color = if (isAgent) accentColor else GhostGrey,
+                textColor = if (isAgent) accentColor else GhostGrey,
                 fontFamily = FontFamily.Monospace,
                 letterSpacing = 2.sp
             )
@@ -196,13 +196,13 @@ private fun IndustrialMessageBubble(message: AgentMessage) {
                 .background(if (isAgent) IndustrialGrey else Color.Transparent)
                 .border(
                     width = 1.dp,
-                    color = if (isAgent) SteelBorder else SignalGreenDim
+                    textColor = if (isAgent) SteelBorder else SignalGreenDim
                 )
                 .padding(16.dp)
         ) {
             Text(
                 text = message.messageText,
-                color = if (isAgent) RawWhite else SignalGreen,
+                textColor = if (isAgent) RawWhite else SignalGreen,
                 style = MaterialTheme.typography.bodyMedium,
                 fontFamily = FontFamily.Monospace,
                 lineHeight = 20.sp
@@ -212,7 +212,7 @@ private fun IndustrialMessageBubble(message: AgentMessage) {
         if (message.verdictType != "NONE") {
             Text(
                 text = "[STATUS: ${message.verdictType}]",
-                color = accentColor,
+                textColor = accentColor,
                 fontSize = 10.sp,
                 fontWeight = FontWeight.Bold,
                 modifier = Modifier.padding(top = 4.dp),

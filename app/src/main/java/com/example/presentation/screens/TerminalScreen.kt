@@ -76,7 +76,7 @@ fun TerminalScreen(terminalService: TerminalService) {
                 Text(
                     text = line,
                     fontFamily = FontFamily.Monospace,
-                    color = MaterialTheme.colorScheme.onBackground,
+                    textColor = MaterialTheme.colorScheme.onBackground,
                     style = MaterialTheme.typography.bodySmall
                 )
             }
@@ -88,7 +88,7 @@ fun TerminalScreen(terminalService: TerminalService) {
             Text(
                 text = "$prompt \$",
                 fontFamily = FontFamily.Monospace,
-                color = MaterialTheme.colorScheme.primary,
+                textColor = MaterialTheme.colorScheme.primary,
                 modifier = Modifier.padding(end = 6.dp)
             )
             OutlinedTextField(

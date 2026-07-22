@@ -241,7 +241,7 @@ private fun IndustrialContentRow(item: GitHubContent, onClick: () -> Unit, onImp
     ) {
         Text(
             text = if (item.type == "dir") "[DIR]" else "[FILE]",
-            color = if (item.type == "dir") SignalGreen else GhostGrey,
+            textColor = if (item.type == "dir") SignalGreen else GhostGrey,
             fontFamily = FontFamily.Monospace,
             fontSize = 10.sp,
             fontWeight = FontWeight.Bold

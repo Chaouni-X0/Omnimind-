@@ -34,7 +34,7 @@ fun ProjectWorkspaceScreen(
             text = projectName,
             style = MaterialTheme.typography.headlineSmall,
             fontWeight = FontWeight.Bold,
-            color = MaterialTheme.colorScheme.onBackground
+            textColor = MaterialTheme.colorScheme.onBackground
         )
         Spacer(modifier = Modifier.height(24.dp))
         Button(onClick = onOpenChat, modifier = Modifier.fillMaxWidth()) {
