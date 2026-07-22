@@ -1,35 +1,35 @@
 /** @type {const} */
 const themeColors = {
-  // Primary Colors - Modern Purple/Blue
-  primary: { light: '#7B61FF', dark: '#7B61FF' },
-  
-  // Background Colors
-  background: { light: '#FFFFFF', dark: '#0F0F0F' },
-  surface: { light: '#F8F8F8', dark: '#1A1A1A' },
-  surfaceSecondary: { light: '#F0F0F0', dark: '#252525' },
-  
+  // Primary - Cyan electric accent (Manus-inspired)
+  primary: { light: '#00E5CC', dark: '#00E5CC' },
+
+  // Background Colors - Deep dark with slight warmth
+  background: { light: '#0A0A0F', dark: '#0A0A0F' },
+  surface: { light: '#12121A', dark: '#12121A' },
+  surfaceSecondary: { light: '#1A1A25', dark: '#1A1A25' },
+
   // Text Colors
-  foreground: { light: '#1A1A1A', dark: '#FFFFFF' },
-  muted: { light: '#666666', dark: '#AAAAAA' },
-  mutedLight: { light: '#999999', dark: '#888888' },
-  
+  foreground: { light: '#E8E8F0', dark: '#E8E8F0' },
+  muted: { light: '#8888A0', dark: '#8888A0' },
+  mutedLight: { light: '#55556A', dark: '#55556A' },
+
   // Border Colors
-  border: { light: '#E5E5E5', dark: '#333333' },
-  borderLight: { light: '#F0F0F0', dark: '#2A2A2A' },
-  
+  border: { light: '#2A2A3A', dark: '#2A2A3A' },
+  borderLight: { light: '#1E1E2E', dark: '#1E1E2E' },
+
   // Status Colors
-  success: { light: '#22C55E', dark: '#4ADE80' },
-  warning: { light: '#F59E0B', dark: '#FBBF24' },
-  error: { light: '#EF4444', dark: '#F87171' },
-  info: { light: '#3B82F6', dark: '#60A5FA' },
-  
+  success: { light: '#00E5CC', dark: '#00E5CC' },
+  warning: { light: '#FFB020', dark: '#FFB020' },
+  error: { light: '#FF4466', dark: '#FF4466' },
+  info: { light: '#4488FF', dark: '#4488FF' },
+
   // Accent Colors
-  accent: { light: '#06B6D4', dark: '#06B6D4' },
-  accentSecondary: { light: '#EC4899', dark: '#EC4899' },
-  
-  // Glass Effect Colors (for glassmorphism)
-  glass: { light: 'rgba(255, 255, 255, 0.8)', dark: 'rgba(20, 20, 20, 0.8)' },
-  glassLight: { light: 'rgba(255, 255, 255, 0.5)', dark: 'rgba(40, 40, 40, 0.5)' },
+  accent: { light: '#7C5CFC', dark: '#7C5CFC' },
+  accentSecondary: { light: '#FF6B8A', dark: '#FF6B8A' },
+
+  // Glass Effect Colors
+  glass: { light: 'rgba(18, 18, 26, 0.85)', dark: 'rgba(18, 18, 26, 0.85)' },
+  glassLight: { light: 'rgba(26, 26, 37, 0.6)', dark: 'rgba(26, 26, 37, 0.6)' },
 };
 
 module.exports = { themeColors };

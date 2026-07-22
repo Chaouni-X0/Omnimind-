@@ -11,12 +11,18 @@ const env = {
 const config: ExpoConfig = {
   name: env.appName,
   slug: env.appSlug,
-  version: "2.0.0",
+  version: "2.1.0",
   orientation: "portrait",
   icon: "./assets/images/icon.png",
   scheme: env.scheme,
-  userInterfaceStyle: "automatic",
+  userInterfaceStyle: "dark",
   newArchEnabled: true,
+  splash: {
+    backgroundColor: "#0A0A0F",
+    image: "./assets/images/splash-icon.png",
+    resizeMode: "contain",
+    imageWidth: 200,
+  },
   ios: {
     supportsTablet: true,
     bundleIdentifier: env.iosBundleId,
@@ -26,7 +32,7 @@ const config: ExpoConfig = {
   },
   android: {
     adaptiveIcon: {
-      backgroundColor: "#E6F4FE",
+      backgroundColor: "#0A0A0F",
       foregroundImage: "./assets/images/android-icon-foreground.png",
       backgroundImage: "./assets/images/android-icon-background.png",
       monochromeImage: "./assets/images/android-icon-monochrome.png",
@@ -42,21 +48,16 @@ const config: ExpoConfig = {
   },
   plugins: [
     "expo-router",
-    [
-      "expo-audio",
-      {
-        microphonePermission: "Allow $(PRODUCT_NAME) to access your microphone.",
-      },
-    ],
+    "expo-font",
     [
       "expo-splash-screen",
       {
         image: "./assets/images/splash-icon.png",
         imageWidth: 200,
         resizeMode: "contain",
-        backgroundColor: "#ffffff",
+        backgroundColor: "#0A0A0F",
         dark: {
-          backgroundColor: "#000000",
+          backgroundColor: "#0A0A0F",
         },
       },
     ],

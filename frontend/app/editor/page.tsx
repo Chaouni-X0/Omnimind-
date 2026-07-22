@@ -1,1 +1,63 @@
-import React, { useState, useEffect } from 'react';\nimport { Card, CardHeader, CardBody } from '../../components/Card';\nimport { Button } from '../../components/Button';\nimport { Input } from '../../components/Input';\nimport { Badge } from '../../components/Badge';\nimport { api } from '../../lib/api';\n\ninterface FileInfo {\n  name: string;\n  path: string;\n  isDirectory: boolean;\n  size: number;\n  lastModified: string;\n}\n\nexport default function EditorScreen() {\n  const [files, setFiles] = useState<FileInfo[]>([]);\n  const [currentFile, setCurrentFile] = useState<string | null>(null);\n  const [fileContent, setFileContent] = useState('');\n  const [loading, setLoading] = useState(false);\n  const [currentPath, setCurrentPath] = useState('');\n  const [unsavedChanges, setUnsavedChanges] = useState(false);\n\n  useEffect(() => {\n    loadFiles();\n  }, [currentPath]);\n\n  const loadFiles = async () => {\n    try {\n      setLoading(true);\n      const response = await api.editor.listFiles(currentPath);\n      setFiles(response.data.files || []);\n    } catch (error) {\n      console.error('Failed to load files:', error);\n    } finally {\n      setLoading(false);\n    }\n  };\n\n  const openFile = async (filePath: string) => {\n    try {\n      setLoading(true);\n      const response = await api.editor.readFile(filePath);\n      setCurrentFile(filePath);\n      setFileContent(response.data.file.content);\n      setUnsavedChanges(false);\n    } catch (error) {\n      console.error('Failed to open file:', error);\n    } finally {\n      setLoading(false);\n    }\n  };\n\n  const saveFile = async () => {\n    if (!currentFile) return;\n    try {\n      setLoading(true);\n      await api.editor.writeFile(currentFile, fileContent);\n      setUnsavedChanges(false);\n    } catch (error) {\n      console.error('Failed to save file:', error);\n    } finally {\n      setLoading(false);\n    }\n  };\n\n  const navigateToDirectory = (dirPath: string) => {\n    setCurrentPath(dirPath);\n    setCurrentFile(null);\n    setFileContent('');\n  };\n\n  return (\n    <div className=\"h-full flex gap-6 bg-background p-6\">\n      {/* File Explorer */}\n      <div className=\"w-64 flex flex-col\">\n        <Card variant=\"default\" className=\"flex-1 flex flex-col\">\n          <CardHeader\n            title=\"المستكشف\"\n            subtitle=\"ملفاتك ومجلداتك\"\n          />\n          <CardBody className=\"flex-1 overflow-y-auto\">\n            <div className=\"space-y-1\">\n              {files.map((file) => (\n                <button\n                  key={file.path}\n                  onClick={() =>\n                    file.isDirectory\n                      ? navigateToDirectory(file.path)\n                      : openFile(file.path)\n                  }\n                  className={`w-full text-left px-3 py-2 rounded-lg transition-all ${\n                    currentFile === file.path\n                      ? 'bg-primary text-white'\n                      : 'text-foreground hover:bg-surface-secondary'\n                  }`}\n                >\n                  <div className=\"flex items-center gap-2\">\n                    <span>{file.isDirectory ? '📁' : '📄'}</span>\n                    <span className=\"text-sm truncate\">{file.name}</span>\n                  </div>\n                </button>\n              ))}\n            </div>\n          </CardBody>\n        </Card>\n      </div>\n\n      {/* Editor */}\n      <div className=\"flex-1 flex flex-col\">\n        <Card variant=\"default\" className=\"flex-1 flex flex-col\">\n          <CardHeader\n            title={currentFile ? `تحرير: ${currentFile}` : 'محرر النصوص'}\n            subtitle={currentFile ? 'اضغط Ctrl+S للحفظ' : 'اختر ملف للتحرير'}\n            action={\n              currentFile && (\n                <div className=\"flex gap-2\">\n                  {unsavedChanges && (\n                    <Badge variant=\"warning\">غير محفوظ</Badge>\n                  )}\n                  <Button\n                    variant=\"primary\"\n                    size=\"sm\"\n                    onClick={saveFile}\n                    isLoading={loading}\n                    disabled={!unsavedChanges}\n                  >\n                    حفظ\n                  </Button>\n                </div>\n              )\n            }\n          />\n          <CardBody className=\"flex-1 flex flex-col\">\n            {currentFile ? (\n              <>\n                {/* Line numbers and editor */}\n                <div className=\"flex-1 flex gap-4 bg-black rounded-lg overflow-hidden border border-border\">\n                  {/* Line numbers */}\n                  <div className=\"bg-surface-secondary px-3 py-4 font-mono text-muted text-sm overflow-y-auto\">\n                    {fileContent.split('\\n').map((_, i) => (\n                      <div key={i} className=\"h-6\">\n                        {i + 1}\n                      </div>\n                    ))}\n                  </div>\n                  {/* Editor */}\n                  <textarea\n                    value={fileContent}\n                    onChange={(e) => {\n                      setFileContent(e.target.value);\n                      setUnsavedChanges(true);\n                    }}\n                    onKeyDown={(e) => {\n                      if ((e.ctrlKey || e.metaKey) && e.key === 's') {\n                        e.preventDefault();\n                        saveFile();\n                      }\n                    }}\n                    className=\"flex-1 bg-black text-green-400 font-mono text-sm p-4 outline-none resize-none\"\n                    spellCheck=\"false\"\n                  />\n                </div>\n              </>\n            ) : (\n              <div className=\"flex-1 flex items-center justify-center text-muted\">\n                <p>اختر ملف من المستكشف للبدء</p>\n              </div>\n            )}\n          </CardBody>\n        </Card>\n      </div>\n    </div>\n  );\n}\n
+import React, { useState } from "react";
+import { View, Text, TextInput, TouchableOpacity, FlatList, StyleSheet } from "react-native";
+import { useColors } from "../../hooks/useTheme";
+
+const mockFiles = [
+  { id: "1", name: "src", type: "directory" },
+  { id: "2", name: "index.tsx", type: "file" },
+  { id: "3", name: "app.tsx", type: "file" },
+  { id: "4", name: "package.json", type: "file" },
+  { id: "5", name: "tsconfig.json", type: "file" },
+];
+
+export default function EditorScreen() {
+  const colors = useColors();
+  const [code, setCode] = useState("import React from 'react';\nimport { View, Text } from 'react-native';\n\nexport default function App() {\n  return (\n    <View style={{ flex: 1, justifyContent: 'center', alignItems: 'center' }}>\n      <Text>Hello OmniMind!</Text>\n    </View>\n  );\n}");
+  const [unsaved, setUnsaved] = useState(false);
+
+  const s = StyleSheet.create({
+    container: { flex: 1, backgroundColor: colors.background },
+    header: { flexDirection: "row", justifyContent: "space-between", alignItems: "center", paddingHorizontal: 20, paddingTop: 60, paddingBottom: 16, borderBottomWidth: 1, borderBottomColor: colors.border },
+    headerTitle: { fontSize: 18, fontWeight: "700", color: colors.foreground },
+    saveBtn: { backgroundColor: unsaved ? colors.primary : "transparent", paddingHorizontal: 16, paddingVertical: 8, borderRadius: 10, borderWidth: 1, borderColor: colors.primary },
+    saveText: { color: unsaved ? "#0A0A0F" : colors.muted, fontSize: 13, fontWeight: "600" },
+    body: { flex: 1, flexDirection: "row" },
+    fileList: { width: 180, borderRightWidth: 1, borderRightColor: colors.border, paddingVertical: 8 },
+    fileItem: { flexDirection: "row", alignItems: "center", paddingVertical: 8, paddingHorizontal: 12 },
+    fileText: { fontSize: 12, color: colors.muted, marginLeft: 8 },
+    editorArea: { flex: 1, padding: 16 },
+    lineNum: { fontSize: 13, color: colors.mutedLight, textAlign: "right", width: 30 },
+    codeInput: { flex: 1, fontSize: 14, color: "#00E5CC", fontFamily: "monospace", lineHeight: 22, textAlignVertical: "top" },
+    codeRow: { flexDirection: "row", flex: 1 },
+    lineNums: { paddingTop: 4 },
+  });
+
+  return (
+    <View style={s.container}>
+      <View style={s.header}>
+        <Text style={s.headerTitle}>المحرر</Text>
+        <TouchableOpacity style={s.saveBtn} onPress={() => setUnsaved(false)}>
+          <Text style={s.saveText}>{unsaved ? "حفظ" : "تم الحفظ"}</Text>
+        </TouchableOpacity>
+      </View>
+      <View style={s.body}>
+        <View style={s.fileList}>
+          <FlatList data={mockFiles} keyExtractor={(item) => item.id} renderItem={({ item }) => (
+            <View style={s.fileItem}>
+              <Text>{item.type === "directory" ? "📁" : "📄"}</Text>
+              <Text style={s.fileText}>{item.name}</Text>
+            </View>
+          )} />
+        </View>
+        <View style={s.editorArea}>
+          <View style={s.codeRow}>
+            <View style={s.lineNums}>
+              {code.split("\n").map((_, i) => <Text key={i} style={s.lineNum}>{i + 1}</Text>)}
+            </View>
+            <TextInput style={s.codeInput} value={code} onChangeText={(t) => { setCode(t); setUnsaved(true); }} multiline editable />
+          </View>
+        </View>
+      </View>
+    </View>
+  );
+}

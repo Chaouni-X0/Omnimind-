@@ -1,1 +1,65 @@
-import React, { useState, useEffect, useRef } from 'react';\nimport { Card, CardHeader, CardBody } from '../../components/Card';\nimport { Button } from '../../components/Button';\nimport { Input } from '../../components/Input';\nimport { ChatMessage } from '../../components/ChatMessage';\nimport { Badge } from '../../components/Badge';\nimport { api } from '../../lib/api';\n\ninterface Room {\n  id: string;\n  name: string;\n  description: string;\n  members: string[];\n}\n\ninterface Message {\n  id: string;\n  roomId: string;\n  userId: string;\n  userName: string;\n  content: string;\n  timestamp: string;\n  type: 'text' | 'code' | 'system' | 'command';\n  language?: string;\n}\n\nexport default function ChatScreen() {\n  const [rooms, setRooms] = useState<Room[]>([]);\n  const [selectedRoom, setSelectedRoom] = useState<Room | null>(null);\n  const [messages, setMessages] = useState<Message[]>([]);\n  const [newMessage, setNewMessage] = useState('');\n  const [newRoomName, setNewRoomName] = useState('');\n  const [loading, setLoading] = useState(false);\n  const [typingUsers, setTypingUsers] = useState<Set<string>>(new Set());\n  const messagesEndRef = useRef<HTMLDivElement>(null);\n  const typingTimeoutRef = useRef<NodeJS.Timeout>();\n\n  useEffect(() => {\n    loadRooms();\n  }, []);\n\n  useEffect(() => {\n    if (selectedRoom) {\n      loadMessages(selectedRoom.id);\n    }\n  }, [selectedRoom]);\n\n  useEffect(() => {\n    scrollToBottom();\n  }, [messages]);\n\n  const scrollToBottom = () => {\n    messagesEndRef.current?.scrollIntoView({ behavior: 'smooth' });\n  };\n\n  const loadRooms = async () => {\n    try {\n      setLoading(true);\n      const response = await api.chat.getMessages();\n      // For now, we'll create some default rooms\n      const defaultRooms: Room[] = [\n        {\n          id: 'general',\n          name: 'عام',\n          description: 'غرفة النقاش العامة',\n          members: [],\n        },\n        {\n          id: 'dev',\n          name: 'التطوير',\n          description: 'نقاشات التطوير والبرمجة',\n          members: [],\n        },\n        {\n          id: 'support',\n          name: 'الدعم',\n          description: 'طلبات الدعم والمساعدة',\n          members: [],\n        },\n      ];\n      setRooms(defaultRooms);\n      if (defaultRooms.length > 0) {\n        setSelectedRoom(defaultRooms[0]);\n      }\n    } catch (error) {\n      console.error('Failed to load rooms:', error);\n    } finally {\n      setLoading(false);\n    }\n  };\n\n  const loadMessages = async (roomId: string) => {\n    try {\n      setLoading(true);\n      // For now, we'll use mock messages\n      const mockMessages: Message[] = [\n        {\n          id: '1',\n          roomId,\n          userId: 'user1',\n          userName: 'أحمد',\n          content: 'مرحباً بالجميع! 👋',\n          timestamp: new Date(Date.now() - 3600000).toISOString(),\n          type: 'text',\n        },\n        {\n          id: '2',\n          roomId,\n          userId: 'user2',\n          userName: 'فاطمة',\n          content: 'كيف حالك؟',\n          timestamp: new Date(Date.now() - 1800000).toISOString(),\n          type: 'text',\n        },\n      ];\n      setMessages(mockMessages);\n    } catch (error) {\n      console.error('Failed to load messages:', error);\n    } finally {\n      setLoading(false);\n    }\n  };\n\n  const handleSendMessage = async () => {\n    if (!newMessage.trim() || !selectedRoom) return;\n\n    try {\n      const message: Message = {\n        id: Date.now().toString(),\n        roomId: selectedRoom.id,\n        userId: 'current-user',\n        userName: 'أنت',\n        content: newMessage,\n        timestamp: new Date().toISOString(),\n        type: 'text',\n      };\n\n      setMessages((prev) => [...prev, message]);\n      setNewMessage('');\n    } catch (error) {\n      console.error('Failed to send message:', error);\n    }\n  };\n\n  const handleCreateRoom = async () => {\n    if (!newRoomName.trim()) return;\n\n    try {\n      const newRoom: Room = {\n        id: Date.now().toString(),\n        name: newRoomName,\n        description: '',\n        members: [],\n      };\n\n      setRooms((prev) => [...prev, newRoom]);\n      setNewRoomName('');\n      setSelectedRoom(newRoom);\n    } catch (error) {\n      console.error('Failed to create room:', error);\n    }\n  };\n\n  const handleKeyPress = (e: React.KeyboardEvent) => {\n    if (e.key === 'Enter' && !e.shiftKey) {\n      e.preventDefault();\n      handleSendMessage();\n    }\n  };\n\n  return (\n    <div className=\"h-full flex gap-6 bg-background p-6\">\n      {/* Rooms Sidebar */}\n      <div className=\"w-64 flex flex-col\">\n        <Card variant=\"default\" className=\"flex-1 flex flex-col\">\n          <CardHeader title=\"الغرف\" subtitle=\"غرف الدردشة\" />\n          <CardBody className=\"flex-1 overflow-y-auto space-y-2\">\n            {rooms.map((room) => (\n              <button\n                key={room.id}\n                onClick={() => setSelectedRoom(room)}\n                className={`w-full text-left px-3 py-2 rounded-lg transition-all ${\n                  selectedRoom?.id === room.id\n                    ? 'bg-primary text-white'\n                    : 'text-foreground hover:bg-surface-secondary'\n                }`}\n              >\n                <div className=\"font-medium text-sm\">{room.name}</div>\n                <div className=\"text-xs opacity-75\">{room.description}</div>\n              </button>\n            ))}\n          </CardBody>\n          <div className=\"p-4 border-t border-border space-y-2\">\n            <Input\n              placeholder=\"اسم الغرفة الجديدة\"\n              value={newRoomName}\n              onChange={(e) => setNewRoomName(e.target.value)}\n              size=\"sm\"\n            />\n            <Button\n              variant=\"primary\"\n              size=\"sm\"\n              onClick={handleCreateRoom}\n              className=\"w-full\"\n            >\n              إنشاء غرفة\n            </Button>\n          </div>\n        </Card>\n      </div>\n\n      {/* Chat Area */}\n      <div className=\"flex-1 flex flex-col\">\n        <Card variant=\"default\" className=\"flex-1 flex flex-col\">\n          {selectedRoom ? (\n            <>\n              <CardHeader\n                title={selectedRoom.name}\n                subtitle={`${selectedRoom.members.length} أعضاء`}\n                action={\n                  <div className=\"flex gap-2\">\n                    <Badge variant=\"info\">{messages.length} رسالة</Badge>\n                  </div>\n                }\n              />\n              <CardBody className=\"flex-1 flex flex-col\">\n                {/* Messages Area */}\n                <div className=\"flex-1 overflow-y-auto mb-4 pr-2\">\n                  {messages.length > 0 ? (\n                    messages.map((msg) => (\n                      <ChatMessage\n                        key={msg.id}\n                        id={msg.id}\n                        userName={msg.userName}\n                        content={msg.content}\n                        timestamp={msg.timestamp}\n                        type={msg.type}\n                        language={msg.language}\n                        isOwn={msg.userId === 'current-user'}\n                      />\n                    ))\n                  ) : (\n                    <div className=\"flex items-center justify-center h-full text-muted\">\n                      <p>لا توجد رسائل بعد. ابدأ المحادثة!</p>\n                    </div>\n                  )}\n                  <div ref={messagesEndRef} />\n                </div>\n\n                {/* Typing Indicator */}\n                {typingUsers.size > 0 && (\n                  <div className=\"text-sm text-muted mb-2 italic\">\n                    {Array.from(typingUsers).join(', ')} يكتب...\n                  </div>\n                )}\n\n                {/* Input Area */}\n                <div className=\"flex gap-2\">\n                  <textarea\n                    value={newMessage}\n                    onChange={(e) => setNewMessage(e.target.value)}\n                    onKeyPress={handleKeyPress}\n                    placeholder=\"اكتب رسالتك...\"\n                    className=\"flex-1 px-4 py-3 rounded-lg bg-background border border-border text-foreground placeholder-muted focus:outline-none focus:ring-2 focus:ring-primary focus:border-transparent resize-none max-h-24\"\n                    rows={3}\n                  />\n                  <Button\n                    variant=\"primary\"\n                    onClick={handleSendMessage}\n                    isLoading={loading}\n                    disabled={!newMessage.trim()}\n                    className=\"self-end\"\n                  >\n                    إرسال\n                  </Button>\n                </div>\n              </CardBody>\n            </>\n          ) : (\n            <div className=\"flex-1 flex items-center justify-center text-muted\">\n              <p>اختر غرفة للبدء</p>\n            </div>\n          )}\n        </Card>\n      </div>\n    </div>\n  );\n}\n
+import React, { useState, useRef } from "react";
+import { View, Text, TextInput, TouchableOpacity, ScrollView, StyleSheet } from "react-native";
+import { useColors } from "../../hooks/useTheme";
+
+export default function ChatScreen() {
+  const colors = useColors();
+  const [message, setMessage] = useState("");
+  const [messages, setMessages] = useState<any[]>([
+    { id: "1", content: "مرحباً! أنا OmniMind. كيف يمكنني مساعدتك؟", sender: "assistant", timestamp: Date.now() },
+  ]);
+  const scrollViewRef = useRef<ScrollView>(null);
+
+  const handleSend = () => {
+    if (!message.trim()) return;
+    setMessages((prev: any[]) => [...prev, { id: `u-${Date.now()}`, content: message, sender: "user", timestamp: Date.now() }]);
+    setMessage("");
+    setTimeout(() => {
+      setMessages((prev: any[]) => [...prev, { id: `a-${Date.now()}`, content: "شكراً! سأقوم بمعالجة طلبك...", sender: "assistant", timestamp: Date.now() }]);
+      scrollViewRef.current?.scrollToEnd({ animated: true });
+    }, 500);
+  };
+
+  const s = StyleSheet.create({
+    container: { flex: 1, backgroundColor: colors.background },
+    header: { paddingHorizontal: 20, paddingTop: 60, paddingBottom: 16, borderBottomWidth: 1, borderBottomColor: colors.border },
+    headerTitle: { fontSize: 18, fontWeight: "700", color: colors.foreground },
+    headerSub: { fontSize: 13, color: colors.muted, marginTop: 4 },
+    messages: { flex: 1, paddingHorizontal: 16, paddingTop: 16 },
+    msgRow: { flexDirection: "row", marginBottom: 12 },
+    msgRowUser: { justifyContent: "flex-end" },
+    msgRowAi: { justifyContent: "flex-start" },
+    bubble: { maxWidth: "80%", paddingHorizontal: 16, paddingVertical: 12, borderRadius: 16 },
+    bubbleUser: { backgroundColor: colors.primary, borderBottomRightRadius: 4 },
+    bubbleAi: { backgroundColor: colors.surface, borderWidth: 1, borderColor: colors.border, borderBottomLeftRadius: 4 },
+    msgText: { fontSize: 15, lineHeight: 22 },
+    msgTextUser: { color: "#0A0A0F" },
+    msgTextAi: { color: colors.foreground },
+    inputBar: { flexDirection: "row", alignItems: "center", paddingHorizontal: 16, paddingVertical: 12, borderTopWidth: 1, borderTopColor: colors.border, gap: 10 },
+    input: { flex: 1, backgroundColor: colors.surface, borderRadius: 24, paddingHorizontal: 18, paddingVertical: 12, fontSize: 15, color: colors.foreground, borderWidth: 1, borderColor: colors.border },
+    sendBtn: { width: 44, height: 44, borderRadius: 22, backgroundColor: colors.primary, justifyContent: "center", alignItems: "center" },
+    sendText: { color: "#0A0A0F", fontSize: 18, fontWeight: "700" },
+  });
+
+  return (
+    <View style={s.container}>
+      <View style={s.header}>
+        <Text style={s.headerTitle}>الدردشة</Text>
+        <Text style={s.headerSub}>OmniMind Assistant</Text>
+      </View>
+      <ScrollView ref={scrollViewRef} style={s.messages} contentContainerStyle={{ paddingBottom: 16 }}>
+        {messages.map((msg) => (
+          <View key={msg.id} style={[s.msgRow, msg.sender === "user" ? s.msgRowUser : s.msgRowAi]}>
+            <View style={[s.bubble, msg.sender === "user" ? s.bubbleUser : s.bubbleAi]}>
+              <Text style={[s.msgText, msg.sender === "user" ? s.msgTextUser : s.msgTextAi]}>{msg.content}</Text>
+            </View>
+          </View>
+        ))}
+      </ScrollView>
+      <View style={s.inputBar}>
+        <TextInput style={s.input} value={message} onChangeText={setMessage} placeholder="اكتب رسالتك..." placeholderTextColor={colors.muted} onSubmitEditing={handleSend} returnKeyType="send" />
+        <TouchableOpacity style={s.sendBtn} onPress={handleSend}><Text style={s.sendText}>↑</Text></TouchableOpacity>
+      </View>
+    </View>
+  );
+}

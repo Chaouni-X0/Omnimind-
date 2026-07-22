@@ -11,3 +11,11 @@ keystore.properties
 .env
 local.env
 *.log
+
+node_modules/
+package-lock.json
+.expo/
+android/.gradle/
+android/app/build/
+ios/Pods/
+

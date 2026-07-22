@@ -1,1 +1,20 @@
-import React, { useEffect, useState } from 'react';\nimport { useColorScheme } from '../hooks/useTheme';\n\nexport default function RootLayout() {\n  const colorScheme = useColorScheme();\n  const [mounted, setMounted] = useState(false);\n\n  useEffect(() => {\n    setMounted(true);\n    // Set theme on document\n    const isDark = colorScheme === 'dark';\n    document.documentElement.setAttribute('data-theme', isDark ? 'dark' : 'light');\n    document.documentElement.classList.toggle('dark', isDark);\n  }, [colorScheme]);\n\n  if (!mounted) {\n    return null;\n  }\n\n  return (\n    <html lang=\"ar\" dir=\"rtl\" data-theme={colorScheme}>\n      <head>\n        <meta charSet=\"utf-8\" />\n        <meta name=\"viewport\" content=\"width=device-width, initial-scale=1\" />\n        <title>OmniMind - Multi-Agent Development Environment</title>\n        <meta\n          name=\"description\"\n          content=\"OmniMind is a hybrid multi-agent development environment with terminal, editor, and GitHub integration.\"\n        />\n        <link rel=\"icon\" href=\"/favicon.ico\" />\n      </head>\n      <body className=\"bg-background text-foreground\">\n        <div id=\"root\" />\n      </body>\n    </html>\n  );\n}\n
+import { Stack } from "expo-router";
+import { StatusBar } from "expo-status-bar";
+import { ThemeProvider } from "../lib/theme-provider";
+
+export default function RootLayout() {
+  return (
+    <ThemeProvider>
+      <StatusBar style="light" />
+      <Stack
+        screenOptions={{
+          headerShown: false,
+          contentStyle: { backgroundColor: "#0A0A0F" },
+          animation: "fade",
+        }}
+      >
+        <Stack.Screen name="(tabs)" />
+      </Stack>
+    </ThemeProvider>
+  );
+}

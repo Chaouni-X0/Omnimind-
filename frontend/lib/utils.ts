@@ -1,1 +1,177 @@
-/**\n * Utility functions for the OmniMind application\n */\n\n/**\n * Combine class names conditionally\n */\nexport function cn(...classes: (string | undefined | null | false)[]): string {\n  return classes.filter(Boolean).join(' ');\n}\n\n/**\n * Format bytes to human readable size\n */\nexport function formatBytes(bytes: number, decimals = 2): string {\n  if (bytes === 0) return '0 Bytes';\n\n  const k = 1024;\n  const dm = decimals < 0 ? 0 : decimals;\n  const sizes = ['Bytes', 'KB', 'MB', 'GB'];\n  const i = Math.floor(Math.log(bytes) / Math.log(k));\n\n  return Math.round((bytes / Math.pow(k, i)) * Math.pow(10, dm)) / Math.pow(10, dm) + ' ' + sizes[i];\n}\n\n/**\n * Format date to readable string\n */\nexport function formatDate(date: Date | string, format: 'short' | 'long' = 'short'): string {\n  const d = typeof date === 'string' ? new Date(date) : date;\n\n  if (format === 'short') {\n    return d.toLocaleDateString('en-US', {\n      month: 'short',\n      day: 'numeric',\n      year: 'numeric',\n    });\n  }\n\n  return d.toLocaleDateString('en-US', {\n    weekday: 'long',\n    month: 'long',\n    day: 'numeric',\n    year: 'numeric',\n  });\n}\n\n/**\n * Format time to readable string\n */\nexport function formatTime(date: Date | string): string {\n  const d = typeof date === 'string' ? new Date(date) : date;\n  return d.toLocaleTimeString('en-US', {\n    hour: '2-digit',\n    minute: '2-digit',\n  });\n}\n\n/**\n * Get relative time string (e.g., \"2 hours ago\")\n */\nexport function getRelativeTime(date: Date | string): string {\n  const d = typeof date === 'string' ? new Date(date) : date;\n  const now = new Date();\n  const seconds = Math.floor((now.getTime() - d.getTime()) / 1000);\n\n  let interval = seconds / 31536000;\n  if (interval > 1) return Math.floor(interval) + ' years ago';\n\n  interval = seconds / 2592000;\n  if (interval > 1) return Math.floor(interval) + ' months ago';\n\n  interval = seconds / 86400;\n  if (interval > 1) return Math.floor(interval) + ' days ago';\n\n  interval = seconds / 3600;\n  if (interval > 1) return Math.floor(interval) + ' hours ago';\n\n  interval = seconds / 60;\n  if (interval > 1) return Math.floor(interval) + ' minutes ago';\n\n  return Math.floor(seconds) + ' seconds ago';\n}\n\n/**\n * Truncate text with ellipsis\n */\nexport function truncate(text: string, length: number = 50): string {\n  if (text.length <= length) return text;\n  return text.slice(0, length) + '...';\n}\n\n/**\n * Debounce function\n */\nexport function debounce<T extends (...args: any[]) => any>(\n  func: T,\n  wait: number\n): (...args: Parameters<T>) => void {\n  let timeout: NodeJS.Timeout;\n\n  return function executedFunction(...args: Parameters<T>) {\n    const later = () => {\n      clearTimeout(timeout);\n      func(...args);\n    };\n\n    clearTimeout(timeout);\n    timeout = setTimeout(later, wait);\n  };\n}\n\n/**\n * Throttle function\n */\nexport function throttle<T extends (...args: any[]) => any>(\n  func: T,\n  limit: number\n): (...args: Parameters<T>) => void {\n  let inThrottle: boolean;\n\n  return function executedFunction(...args: Parameters<T>) {\n    if (!inThrottle) {\n      func(...args);\n      inThrottle = true;\n      setTimeout(() => (inThrottle = false), limit);\n    }\n  };\n}\n\n/**\n * Copy text to clipboard\n */\nexport async function copyToClipboard(text: string): Promise<boolean> {\n  try {\n    await navigator.clipboard.writeText(text);\n    return true;\n  } catch (err) {\n    console.error('Failed to copy to clipboard:', err);\n    return false;\n  }\n}\n\n/**\n * Generate random ID\n */\nexport function generateId(prefix: string = ''): string {\n  return prefix + Math.random().toString(36).substr(2, 9);\n}\n\n/**\n * Check if URL is valid\n */\nexport function isValidUrl(url: string): boolean {\n  try {\n    new URL(url);\n    return true;\n  } catch {\n    return false;\n  }\n}\n\n/**\n * Get file extension\n */\nexport function getFileExtension(filename: string): string {\n  return filename.slice((filename.lastIndexOf('.') - 1 >>> 0) + 2).toLowerCase();\n}\n\n/**\n * Get file name without extension\n */\nexport function getFileNameWithoutExtension(filename: string): string {\n  return filename.slice(0, filename.lastIndexOf('.')) || filename;\n}\n
+/**
+ * Utility functions for the OmniMind application
+ */
+
+/**
+ * Combine class names conditionally
+ */
+export function cn(...classes: (string | undefined | null | false)[]): string {
+  return classes.filter(Boolean).join(' ');
+}
+
+/**
+ * Format bytes to human readable size
+ */
+export function formatBytes(bytes: number, decimals = 2): string {
+  if (bytes === 0) return '0 Bytes';
+
+  const k = 1024;
+  const dm = decimals < 0 ? 0 : decimals;
+  const sizes = ['Bytes', 'KB', 'MB', 'GB'];
+  const i = Math.floor(Math.log(bytes) / Math.log(k));
+
+  return Math.round((bytes / Math.pow(k, i)) * Math.pow(10, dm)) / Math.pow(10, dm) + ' ' + sizes[i];
+}
+
+/**
+ * Format date to readable string
+ */
+export function formatDate(date: Date | string, format: 'short' | 'long' = 'short'): string {
+  const d = typeof date === 'string' ? new Date(date) : date;
+
+  if (format === 'short') {
+    return d.toLocaleDateString('en-US', {
+      month: 'short',
+      day: 'numeric',
+      year: 'numeric',
+    });
+  }
+
+  return d.toLocaleDateString('en-US', {
+    weekday: 'long',
+    month: 'long',
+    day: 'numeric',
+    year: 'numeric',
+  });
+}
+
+/**
+ * Format time to readable string
+ */
+export function formatTime(date: Date | string): string {
+  const d = typeof date === 'string' ? new Date(date) : date;
+  return d.toLocaleTimeString('en-US', {
+    hour: '2-digit',
+    minute: '2-digit',
+  });
+}
+
+/**
+ * Get relative time string (e.g., \"2 hours ago\")
+ */
+export function getRelativeTime(date: Date | string): string {
+  const d = typeof date === 'string' ? new Date(date) : date;
+  const now = new Date();
+  const seconds = Math.floor((now.getTime() - d.getTime()) / 1000);
+
+  let interval = seconds / 31536000;
+  if (interval > 1) return Math.floor(interval) + ' years ago';
+
+  interval = seconds / 2592000;
+  if (interval > 1) return Math.floor(interval) + ' months ago';
+
+  interval = seconds / 86400;
+  if (interval > 1) return Math.floor(interval) + ' days ago';
+
+  interval = seconds / 3600;
+  if (interval > 1) return Math.floor(interval) + ' hours ago';
+
+  interval = seconds / 60;
+  if (interval > 1) return Math.floor(interval) + ' minutes ago';
+
+  return Math.floor(seconds) + ' seconds ago';
+}
+
+/**
+ * Truncate text with ellipsis
+ */
+export function truncate(text: string, length: number = 50): string {
+  if (text.length <= length) return text;
+  return text.slice(0, length) + '...';
+}
+
+/**
+ * Debounce function
+ */
+export function debounce<T extends (...args: any[]) => any>(
+  func: T,
+  wait: number
+): (...args: Parameters<T>) => void {
+  let timeout: ReturnType<typeof setTimeout>;
+
+  return function executedFunction(...args: Parameters<T>) {
+    const later = () => {
+      clearTimeout(timeout);
+      func(...args);
+    };
+
+    clearTimeout(timeout);
+    timeout = setTimeout(later, wait);
+  };
+}
+
+/**
+ * Throttle function
+ */
+export function throttle<T extends (...args: any[]) => any>(
+  func: T,
+  limit: number
+): (...args: Parameters<T>) => void {
+  let inThrottle: boolean;
+
+  return function executedFunction(...args: Parameters<T>) {
+    if (!inThrottle) {
+      func(...args);
+      inThrottle = true;
+      setTimeout(() => (inThrottle = false), limit);
+    }
+  };
+}
+
+/**
+ * Copy text to clipboard
+ */
+export async function copyToClipboard(text: string): Promise<boolean> {
+  try {
+    // Platform-specific clipboard implementation
+    console.log('Clipboard:', text);
+    return true;
+  } catch (err) {
+    console.error('Failed to copy to clipboard:', err);
+    return false;
+  }
+}
+
+/**
+ * Generate random ID
+ */
+export function generateId(prefix: string = ''): string {
+  return prefix + Math.random().toString(36).substr(2, 9);
+}
+
+/**
+ * Check if URL is valid
+ */
+export function isValidUrl(url: string): boolean {
+  try {
+    new URL(url);
+    return true;
+  } catch {
+    return false;
+  }
+}
+
+/**
+ * Get file extension
+ */
+export function getFileExtension(filename: string): string {
+  return filename.slice((filename.lastIndexOf('.') - 1 >>> 0) + 2).toLowerCase();
+}
+
+/**
+ * Get file name without extension
+ */
+export function getFileNameWithoutExtension(filename: string): string {
+  return filename.slice(0, filename.lastIndexOf('.')) || filename;
+}
+

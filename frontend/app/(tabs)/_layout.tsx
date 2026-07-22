@@ -1,1 +1,64 @@
-import React from 'react';\nimport { useColors } from '../../hooks/useTheme';\n\nconst tabs = [\n  { name: 'لوحة التحكم', icon: '📊', href: '/' },\n  { name: 'الترمنال', icon: '💻', href: '/terminal' },\n  { name: 'المحرر', icon: '📝', href: '/editor' },\n  { name: 'الدردشة', icon: '💬', href: '/chat' },\n  { name: 'GitHub', icon: '🐙', href: '/github' },\n];\n\nexport default function TabsLayout() {\n  const colors = useColors();\n  const [activeTab, setActiveTab] = React.useState('/');\n\n  return (\n    <div className=\"flex h-screen bg-background\">\n      {/* Sidebar */}\n      <div\n        className=\"w-64 border-r border-border bg-surface flex flex-col\"\n        style={{ borderRightColor: colors.border }}\n      >\n        {/* Logo */}\n        <div className=\"p-6 border-b border-border\">\n          <h1 className=\"text-2xl font-bold text-primary\">OmniMind</h1>\n          <p className=\"text-xs text-muted mt-1\">v2.0.0</p>\n        </div>\n\n        {/* Navigation */}\n        <nav className=\"flex-1 p-4 space-y-2\">\n          {tabs.map((tab) => (\n            <button\n              key={tab.href}\n              onClick={() => setActiveTab(tab.href)}\n              className={`w-full flex items-center gap-3 px-4 py-3 rounded-lg transition-all ${\n                activeTab === tab.href\n                  ? 'bg-primary text-white'\n                  : 'text-foreground hover:bg-surface-secondary'\n              }`}\n            >\n              <span className=\"text-xl\">{tab.icon}</span>\n              <span className=\"font-medium\">{tab.name}</span>\n            </button>\n          ))}\n        </nav>\n\n        {/* Footer */}\n        <div className=\"p-4 border-t border-border space-y-2\">\n          <button className=\"w-full px-4 py-2 rounded-lg bg-surface-secondary text-foreground hover:bg-border transition-all text-sm font-medium\">\n            الإعدادات\n          </button>\n          <button className=\"w-full px-4 py-2 rounded-lg bg-error/10 text-error hover:bg-error/20 transition-all text-sm font-medium\">\n            تسجيل الخروج\n          </button>\n        </div>\n      </div>\n\n      {/* Main Content */}\n      <div className=\"flex-1 flex flex-col overflow-hidden\">\n        {/* Top Bar */}\n        <div className=\"h-16 border-b border-border bg-surface flex items-center px-6 justify-between\">\n          <div>\n            <h2 className=\"text-xl font-semibold text-foreground\">\n              {tabs.find((t) => t.href === activeTab)?.name}\n            </h2>\n          </div>\n          <div className=\"flex items-center gap-4\">\n            <button className=\"p-2 rounded-lg hover:bg-surface-secondary transition-all\">\n              🔔\n            </button>\n            <button className=\"p-2 rounded-lg hover:bg-surface-secondary transition-all\">\n              👤\n            </button>\n          </div>\n        </div>\n\n        {/* Content Area */}\n        <div className=\"flex-1 overflow-auto\">\n          <div id=\"tab-content\" />\n        </div>\n      </div>\n    </div>\n  );\n}\n
+import { Tabs } from "expo-router";
+import { useColors } from "../../hooks/useTheme";
+
+export default function TabsLayout() {
+  const colors = useColors();
+
+  return (
+    <Tabs
+      screenOptions={{
+        headerShown: false,
+        tabBarActiveTintColor: colors.primary,
+        tabBarInactiveTintColor: colors.muted,
+        tabBarStyle: {
+          backgroundColor: colors.surface,
+          borderTopColor: colors.border,
+          borderTopWidth: 1,
+          paddingTop: 8,
+          paddingBottom: 8,
+          height: 64,
+        },
+        tabBarLabelStyle: {
+          fontSize: 11,
+          fontWeight: "600",
+        },
+      }}
+    >
+      <Tabs.Screen
+        name="index"
+        options={{
+          title: "الرئيسية",
+          tabBarIcon: ({ color, size }) => null,
+        }}
+      />
+      <Tabs.Screen
+        name="editor/page"
+        options={{
+          title: "المحرر",
+          href: null,
+        }}
+      />
+      <Tabs.Screen
+        name="terminal/page"
+        options={{
+          title: "الترمنال",
+          href: null,
+        }}
+      />
+      <Tabs.Screen
+        name="chat/page"
+        options={{
+          title: "الدردشة",
+          href: null,
+        }}
+      />
+      <Tabs.Screen
+        name="github/page"
+        options={{
+          title: "GitHub",
+          href: null,
+        }}
+      />
+    </Tabs>
+  );
+}

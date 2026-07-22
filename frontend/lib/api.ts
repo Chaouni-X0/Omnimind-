@@ -1,1 +1,132 @@
-import axios, { AxiosInstance, AxiosError } from 'axios';\n\nconst API_URL = process.env.EXPO_PUBLIC_API_URL || 'http://localhost:3000';\n\nclass APIClient {\n  private client: AxiosInstance;\n\n  constructor() {\n    this.client = axios.create({\n      baseURL: API_URL,\n      headers: {\n        'Content-Type': 'application/json',\n      },\n    });\n\n    // Add request interceptor\n    this.client.interceptors.request.use(\n      (config) => {\n        const token = localStorage.getItem('authToken');\n        if (token) {\n          config.headers.Authorization = `Bearer ${token}`;\n        }\n        return config;\n      },\n      (error) => Promise.reject(error)\n    );\n\n    // Add response interceptor\n    this.client.interceptors.response.use(\n      (response) => response,\n      (error: AxiosError) => {\n        if (error.response?.status === 401) {\n          // Handle unauthorized\n          localStorage.removeItem('authToken');\n          window.location.href = '/login';\n        }\n        return Promise.reject(error);\n      }\n    );\n  }\n\n  // Health check\n  async health() {\n    return this.client.get('/health');\n  }\n\n  // Terminal API\n  terminal = {\n    createSession: (cwd?: string) =>\n      this.client.post('/api/terminal/sessions', { cwd }),\n    execute: (sessionId: string, command: string) =>\n      this.client.post('/api/terminal/execute', { sessionId, command }),\n    getOutput: (sessionId: string) =>\n      this.client.get(`/api/terminal/output/${sessionId}`),\n    clearOutput: (sessionId: string) =>\n      this.client.delete(`/api/terminal/output/${sessionId}`),\n    closeSession: (sessionId: string) =>\n      this.client.delete(`/api/terminal/sessions/${sessionId}`),\n    getSessions: () => this.client.get('/api/terminal/sessions'),\n  };\n\n  // Editor API\n  editor = {\n    init: () => this.client.post('/api/editor/init'),\n    listFiles: (path?: string) =>\n      this.client.get('/api/editor/files', { params: { path } }),\n    readFile: (path: string) =>\n      this.client.get('/api/editor/read', { params: { path } }),\n    writeFile: (path: string, content: string) =>\n      this.client.post('/api/editor/write', { path, content }),\n    createFile: (path: string, content?: string) =>\n      this.client.post('/api/editor/create', { path, content }),\n    deleteFile: (path: string) =>\n      this.client.delete('/api/editor/delete', { params: { path } }),\n    createDirectory: (path: string) =>\n      this.client.post('/api/editor/mkdir', { path }),\n    getSyntaxHighlighting: (path: string) =>\n      this.client.get('/api/editor/syntax', { params: { path } }),\n  };\n\n  // GitHub API\n  github = {\n    auth: (accessToken: string) =>\n      this.client.post('/api/github/auth', { accessToken }),\n    getStatus: () => this.client.get('/api/github/status'),\n    getRepos: () => this.client.get('/api/github/repos'),\n    getRepo: (owner: string, repo: string) =>\n      this.client.get(`/api/github/repos/${owner}/${repo}`),\n    getBranches: (owner: string, repo: string) =>\n      this.client.get(`/api/github/repos/${owner}/${repo}/branches`),\n    getPullRequests: (owner: string, repo: string, state?: string) =>\n      this.client.get(`/api/github/repos/${owner}/${repo}/pulls`, {\n        params: { state },\n      }),\n    createPullRequest: (\n      owner: string,\n      repo: string,\n      title: string,\n      head: string,\n      base: string,\n      body?: string\n    ) =>\n      this.client.post(`/api/github/repos/${owner}/${repo}/pulls`, {\n        title,\n        head,\n        base,\n        body,\n      }),\n    getCommits: (owner: string, repo: string, branch?: string) =>\n      this.client.get(`/api/github/repos/${owner}/${repo}/commits`, {\n        params: { branch },\n      }),\n    getIssues: (owner: string, repo: string, state?: string) =>\n      this.client.get(`/api/github/repos/${owner}/${repo}/issues`, {\n        params: { state },\n      }),\n    logout: () => this.client.post('/api/github/logout'),\n  };\n\n  // Projects API\n  projects = {\n    getAll: () => this.client.get('/api/projects'),\n    create: (data: any) => this.client.post('/api/projects', data),\n  };\n\n  // Chat API\n  chat = {\n    getMessages: () => this.client.get('/api/chat/messages'),\n    sendMessage: (message: string) =>\n      this.client.post('/api/chat/messages', { message }),\n  };\n}\n\nexport const api = new APIClient();\n
+import axios, { AxiosInstance, AxiosError } from "axios";
+import AsyncStorage from "@react-native-async-storage/async-storage";
+
+const API_URL =
+  process.env.EXPO_PUBLIC_API_URL || "http://localhost:3000";
+
+class APIClient {
+  private client: AxiosInstance;
+
+  constructor() {
+    this.client = axios.create({
+      baseURL: API_URL,
+      headers: {
+        "Content-Type": "application/json",
+      },
+    });
+
+    // Add request interceptor
+    this.client.interceptors.request.use(async (config) => {
+      const token = await AsyncStorage.getItem("authToken");
+      if (token) {
+        config.headers.Authorization = `Bearer ${token}`;
+      }
+      return config;
+    });
+
+    // Add response interceptor
+    this.client.interceptors.response.use(
+      (response) => response,
+      (error: AxiosError) => {
+        if (error.response?.status === 401) {
+          AsyncStorage.removeItem("authToken");
+        }
+        return Promise.reject(error);
+      }
+    );
+  }
+
+  // Health check
+  async health() {
+    return this.client.get("/health");
+  }
+
+  // Terminal API
+  terminal = {
+    createSession: (cwd?: string) =>
+      this.client.post("/api/terminal/sessions", { cwd }),
+    execute: (sessionId: string, command: string) =>
+      this.client.post("/api/terminal/execute", { sessionId, command }),
+    getOutput: (sessionId: string) =>
+      this.client.get(`/api/terminal/output/${sessionId}`),
+    clearOutput: (sessionId: string) =>
+      this.client.delete(`/api/terminal/output/${sessionId}`),
+    closeSession: (sessionId: string) =>
+      this.client.delete(`/api/terminal/sessions/${sessionId}`),
+    getSessions: () => this.client.get("/api/terminal/sessions"),
+  };
+
+  // Editor API
+  editor = {
+    init: () => this.client.post("/api/editor/init"),
+    listFiles: (path?: string) =>
+      this.client.get("/api/editor/files", { params: { path } }),
+    readFile: (path: string) =>
+      this.client.get("/api/editor/read", { params: { path } }),
+    writeFile: (path: string, content: string) =>
+      this.client.post("/api/editor/write", { path, content }),
+    createFile: (path: string, content?: string) =>
+      this.client.post("/api/editor/create", { path, content }),
+    deleteFile: (path: string) =>
+      this.client.delete("/api/editor/delete", { params: { path } }),
+    createDirectory: (path: string) =>
+      this.client.post("/api/editor/mkdir", { path }),
+    getSyntaxHighlighting: (path: string) =>
+      this.client.get("/api/editor/syntax", { params: { path } }),
+  };
+
+  // GitHub API
+  github = {
+    auth: (accessToken: string) =>
+      this.client.post("/api/github/auth", { accessToken }),
+    getStatus: () => this.client.get("/api/github/status"),
+    getRepos: () => this.client.get("/api/github/repos"),
+    getRepo: (owner: string, repo: string) =>
+      this.client.get(`/api/github/repos/${owner}/${repo}`),
+    getBranches: (owner: string, repo: string) =>
+      this.client.get(`/api/github/repos/${owner}/${repo}/branches`),
+    getPullRequests: (owner: string, repo: string, state?: string) =>
+      this.client.get(`/api/github/repos/${owner}/${repo}/pulls`, {
+        params: { state },
+      }),
+    createPullRequest: (
+      owner: string,
+      repo: string,
+      title: string,
+      head: string,
+      base: string,
+      body?: string
+    ) =>
+      this.client.post(`/api/github/repos/${owner}/${repo}/pulls`, {
+        title,
+        head,
+        base,
+        body,
+      }),
+    getCommits: (owner: string, repo: string, branch?: string) =>
+      this.client.get(`/api/github/repos/${owner}/${repo}/commits`, {
+        params: { branch },
+      }),
+    getIssues: (owner: string, repo: string, state?: string) =>
+      this.client.get(`/api/github/repos/${owner}/${repo}/issues`, {
+        params: { state },
+      }),
+    logout: () => this.client.post("/api/github/logout"),
+  };
+
+  // Projects API
+  projects = {
+    getAll: () => this.client.get("/api/projects"),
+    create: (data: any) => this.client.post("/api/projects", data),
+  };
+
+  // Chat API
+  chat = {
+    getMessages: (roomId: string) =>
+      this.client.get(`/api/chat/rooms/${roomId}/messages`),
+    sendMessage: (roomId: string, userId: string, userName: string, content: string) =>
+      this.client.post("/api/chat/messages", { roomId, userId, userName, content }),
+  };
+}
+
+export const api = new APIClient();

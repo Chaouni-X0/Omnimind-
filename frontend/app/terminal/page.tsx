@@ -1,1 +1,66 @@
-import React, { useState, useEffect, useRef } from 'react';\nimport { Card, CardHeader, CardBody } from '../../components/Card';\nimport { Button } from '../../components/Button';\nimport { Input } from '../../components/Input';\nimport { api } from '../../lib/api';\n\ninterface TerminalSession {\n  id: string;\n  cwd: string;\n  output: string[];\n}\n\nexport default function TerminalScreen() {\n  const [session, setSession] = useState<TerminalSession | null>(null);\n  const [command, setCommand] = useState('');\n  const [output, setOutput] = useState<string[]>([]);\n  const [loading, setLoading] = useState(false);\n  const outputRef = useRef<HTMLDivElement>(null);\n\n  useEffect(() => {\n    initializeTerminal();\n  }, []);\n\n  useEffect(() => {\n    // Auto-scroll to bottom\n    if (outputRef.current) {\n      outputRef.current.scrollTop = outputRef.current.scrollHeight;\n    }\n  }, [output]);\n\n  const initializeTerminal = async () => {\n    try {\n      setLoading(true);\n      const response = await api.terminal.createSession();\n      const sessionId = response.data.sessionId;\n      setSession({\n        id: sessionId,\n        cwd: process.cwd?.() || '/home',\n        output: [],\n      });\n      setOutput(['Terminal initialized. Type your commands below.']);\n    } catch (error) {\n      console.error('Failed to initialize terminal:', error);\n      setOutput(['Error: Failed to initialize terminal']);\n    } finally {\n      setLoading(false);\n    }\n  };\n\n  const executeCommand = async () => {\n    if (!command.trim() || !session) return;\n\n    try {\n      setLoading(true);\n      setOutput((prev) => [...prev, `$ ${command}`]);\n\n      const response = await api.terminal.execute(session.id, command);\n      const result = response.data;\n\n      if (result.success) {\n        setOutput((prev) => [...prev, result.output]);\n      } else {\n        setOutput((prev) => [...prev, `Error: ${result.error}`]);\n      }\n\n      setCommand('');\n    } catch (error: any) {\n      console.error('Failed to execute command:', error);\n      setOutput((prev) => [...prev, `Error: ${error.message}`]);\n    } finally {\n      setLoading(false);\n    }\n  };\n\n  const handleKeyPress = (e: React.KeyboardEvent) => {\n    if (e.key === 'Enter' && !e.shiftKey) {\n      e.preventDefault();\n      executeCommand();\n    }\n  };\n\n  const clearTerminal = async () => {\n    if (!session) return;\n    try {\n      await api.terminal.clearOutput(session.id);\n      setOutput([]);\n    } catch (error) {\n      console.error('Failed to clear terminal:', error);\n    }\n  };\n\n  return (\n    <div className=\"h-full flex flex-col bg-background p-6\">\n      <Card variant=\"default\" className=\"flex-1 flex flex-col\">\n        <CardHeader\n          title=\"الترمنال\"\n          subtitle=\"تنفيذ الأوامر والعمليات\"\n          action={\n            <Button variant=\"ghost\" size=\"sm\" onClick={clearTerminal}>\n              مسح\n            </Button>\n          }\n        />\n        <CardBody className=\"flex-1 flex flex-col\">\n          {/* Output Area */}\n          <div\n            ref={outputRef}\n            className=\"flex-1 bg-black rounded-lg p-4 font-mono text-sm text-green-400 overflow-y-auto mb-4 border border-border\"\n          >\n            {output.map((line, index) => (\n              <div key={index} className=\"whitespace-pre-wrap break-words\">\n                {line}\n              </div>\n            ))}\n            {loading && <div className=\"animate-pulse\">▌</div>}\n          </div>\n\n          {/* Input Area */}\n          <div className=\"flex gap-2\">\n            <div className=\"flex-1 flex items-center bg-black rounded-lg border border-border px-3\">\n              <span className=\"text-green-400 font-mono mr-2\">$</span>\n              <input\n                type=\"text\"\n                value={command}\n                onChange={(e) => setCommand(e.target.value)}\n                onKeyPress={handleKeyPress}\n                placeholder=\"أدخل الأمر...\"\n                className=\"flex-1 bg-transparent text-green-400 font-mono outline-none\"\n                disabled={loading}\n              />\n            </div>\n            <Button\n              variant=\"primary\"\n              onClick={executeCommand}\n              isLoading={loading}\n              disabled={!command.trim()}\n            >\n              تنفيذ\n            </Button>\n          </div>\n        </CardBody>\n      </Card>\n    </div>\n  );\n}\n
+import React, { useState, useRef } from "react";
+import { View, Text, TextInput, TouchableOpacity, ScrollView, StyleSheet } from "react-native";
+import { useColors } from "../../hooks/useTheme";
+
+export default function TerminalScreen() {
+  const colors = useColors();
+  const [input, setInput] = useState("");
+  const [lines, setLines] = useState<any[]>([
+    { id: "0", type: "output", content: "OmniMind Terminal v2.1.0" },
+    { id: "1", type: "output", content: 'اكتب "help" للحصول على المساعدة' },
+    { id: "2", type: "output", content: "" },
+  ]);
+  const scrollViewRef = useRef<ScrollView>(null);
+
+  const handleCommand = () => {
+    if (!input.trim()) return;
+    const cmd = input.trim();
+    let output: any[] = [];
+    switch (cmd.toLowerCase()) {
+      case "help": output = [{ id: `o-${Date.now()}`, type: "output", content: "help - عرض المساعدة\nclear - مسح الشاشة\nls - عرض الملفات\necho - طباعة نص\ndate - عرض التاريخ" }]; break;
+      case "clear": setLines([]); setInput(""); return;
+      case "ls": output = [{ id: `o-${Date.now()}`, type: "output", content: "src/  public/  package.json  tsconfig.json" }]; break;
+      case "date": output = [{ id: `o-${Date.now()}`, type: "output", content: new Date().toISOString() }]; break;
+      default: if (cmd.startsWith("echo ")) output = [{ id: `o-${Date.now()}`, type: "output", content: cmd.slice(5) }]; else output = [{ id: `o-${Date.now()}`, type: "error", content: `خطأ: أمر غير معروف "${cmd}"` }];
+    }
+    setLines((prev) => [...prev, { id: `i-${Date.now()}`, type: "input", content: `$ ${cmd}` }, ...output]);
+    setInput("");
+    setTimeout(() => scrollViewRef.current?.scrollToEnd({ animated: true }), 100);
+  };
+
+  const s = StyleSheet.create({
+    container: { flex: 1, backgroundColor: "#0D0D12" },
+    header: { flexDirection: "row", justifyContent: "space-between", alignItems: "center", paddingHorizontal: 20, paddingTop: 60, paddingBottom: 12, borderBottomWidth: 1, borderBottomColor: colors.border },
+    headerTitle: { fontSize: 18, fontWeight: "700", color: "#00E5CC" },
+    clearBtn: { paddingHorizontal: 12, paddingVertical: 6, borderRadius: 8, backgroundColor: colors.surfaceSecondary },
+    clearText: { fontSize: 12, color: colors.muted, fontWeight: "600" },
+    terminal: { flex: 1, paddingHorizontal: 16, paddingTop: 12 },
+    line: { marginBottom: 4 },
+    inputLine: { fontSize: 13, color: "#00E5CC", fontFamily: "monospace" },
+    outputLine: { fontSize: 13, color: colors.foreground, fontFamily: "monospace" },
+    errorLine: { fontSize: 13, color: "#FF4466", fontFamily: "monospace" },
+    inputBar: { flexDirection: "row", alignItems: "center", paddingHorizontal: 16, paddingVertical: 12, borderTopWidth: 1, borderTopColor: colors.border, backgroundColor: "#0D0D12" },
+    prompt: { fontSize: 13, color: "#00E5CC", fontFamily: "monospace", marginLeft: 8 },
+    textInput: { flex: 1, fontSize: 13, color: colors.foreground, fontFamily: "monospace" },
+  });
+
+  return (
+    <View style={s.container}>
+      <View style={s.header}>
+        <Text style={s.headerTitle}>Terminal</Text>
+        <TouchableOpacity style={s.clearBtn} onPress={() => setLines([])}><Text style={s.clearText}>مسح</Text></TouchableOpacity>
+      </View>
+      <ScrollView ref={scrollViewRef} style={s.terminal} contentContainerStyle={{ paddingBottom: 8 }}>
+        {lines.map((line) => (
+          <View key={line.id} style={s.line}>
+            <Text style={line.type === "input" ? s.inputLine : line.type === "error" ? s.errorLine : s.outputLine}>{line.content}</Text>
+          </View>
+        ))}
+      </ScrollView>
+      <View style={s.inputBar}>
+        <Text style={s.prompt}>$</Text>
+        <TextInput style={s.textInput} value={input} onChangeText={setInput} onSubmitEditing={handleCommand} returnKeyType="send" placeholder="اكتب أمر..." placeholderTextColor={colors.muted} />
+      </View>
+    </View>
+  );
+}
