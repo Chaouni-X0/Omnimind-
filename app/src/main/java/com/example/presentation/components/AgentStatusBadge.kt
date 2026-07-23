@@ -3,12 +3,7 @@ package com.example.omnimind.presentation.components
 import androidx.compose.foundation.background
 import androidx.compose.foundation.border
 import androidx.compose.foundation.layout.*
-import androidx.compose.ui.graphics.RectangleShape
-import androidx.compose.ui.graphics.RectangleShape
-import androidx.compose.foundation.layout.*
-import androidx.compose.ui.graphics.RectangleShape
-import androidx.compose.ui.graphics.RectangleShape
-import androidx.compose.foundation.shape.RectangleShape
+import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
@@ -32,7 +27,7 @@ fun AgentStatusBadge(status: String) {
     
     Box(
         modifier = Modifier
-            .border(width = 1.dp, color = color, shape = RectangleShape)
+            .border(width = 1.dp, color = color, shape = RoundedCornerShape(4.dp))
             .background(color.copy(alpha = 0.05f))
             .padding(horizontal = 10.dp, vertical = 4.dp),
         contentAlignment = Alignment.Center

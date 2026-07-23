@@ -3,21 +3,18 @@ package com.example.omnimind.presentation.screens
 import androidx.compose.foundation.background
 import androidx.compose.foundation.border
 import androidx.compose.foundation.layout.*
-import androidx.compose.ui.graphics.RectangleShape
-import androidx.compose.ui.graphics.RectangleShape
 import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.lazy.items
 import androidx.compose.foundation.lazy.rememberLazyListState
-import androidx.compose.foundation.shape.RectangleShape
+import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material.icons.Icons
-import androidx.compose.material.icons.filled.ArrowForward
+import androidx.compose.material.icons.automirrored.filled.ArrowBack
+import androidx.compose.material.icons.filled.Send
 import androidx.compose.material3.*
 import androidx.compose.runtime.*
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
-import androidx.compose.ui.draw.drawWithContent
-import androidx.compose.ui.geometry.Offset
-import androidx.compose.ui.graphics.Brush
+import androidx.compose.ui.draw.clip
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.text.font.FontFamily
 import androidx.compose.ui.text.font.FontWeight
@@ -30,7 +27,8 @@ import com.example.omnimind.ui.theme.*
 @Composable
 fun ChatScreen(
     messages: List<AgentMessage>,
-    onSendTask: (title: String, description: String) -> Unit
+    onSendTask: (title: String, description: String) -> Unit,
+    onBack: () -> Unit = {}
 ) {
     var taskInput by remember { mutableStateOf("") }
     val listState = rememberLazyListState()
@@ -39,119 +37,83 @@ fun ChatScreen(
         if (messages.isNotEmpty()) listState.animateScrollToItem(messages.size - 1)
     }
 
-    Box(
-        modifier = Modifier
-            .fillMaxSize()
-            .background(VoidBlack)
-            .drawWithContent {
-                drawContent()
-                // Scanline Effect
-                val scanlineSpacing = 8.dp.toPx()
-                for (y in 0..size.height.toInt() step scanlineSpacing.toInt()) {
-                    drawLine(
-                        color = ScanlineColor,
-                        start = Offset(0f, y.toFloat()),
-                        end = Offset(size.width, y.toFloat()),
-                        strokeWidth = 1f
-                    )
-                }
-            }
-    ) {
-        Column(
-            modifier = Modifier
-                .fillMaxSize()
-                .padding(horizontal = 24.dp)
-        ) {
-            // Asymmetric Header
-            Spacer(modifier = Modifier.height(48.dp))
-            Text(text = "TERMINAL_01",
-                style = MaterialTheme.typography.labelSmall,
-                color = SignalGreen,
-                fontWeight = FontWeight.Black,
-                letterSpacing = 4.sp
+    Scaffold(
+        containerColor = VoidBlack,
+        topBar = {
+            TopAppBar(
+                title = {
+                    Column {
+                        Text("SWARM CHAT", style = MaterialTheme.typography.labelLarge, color = ElectricCyan, letterSpacing = 2.sp)
+                        Spacer(modifier = Modifier.height(2.dp))
+                        Text("${messages.size} رسالة", color = DimText, fontSize = 12.sp)
+                    }
+                },
+                navigationIcon = {
+                    IconButton(onClick = onBack) {
+                        Icon(Icons.AutoMirrored.Filled.ArrowBack, contentDescription = "Back", tint = DimText)
+                    }
+                },
+                colors = TopAppBarDefaults.topAppBarColors(containerColor = SurfaceDark)
             )
-            Divider(
-                modifier = Modifier.padding(vertical = 8.dp).width(40.dp),
-                color = SignalGreen,
-                thickness = 2.dp
-            )
-            Text(text = "OMNIMIND_CORE",
-                fontSize = 42.sp,
-                fontWeight = FontWeight.ExtraBold,
-                color = RawWhite,
-                lineHeight = 40.sp,
-                fontFamily = FontFamily.Monospace
-            )
-            
-            Spacer(modifier = Modifier.height(32.dp))
-
-            // Messages List with Raw Industrial Style
-            LazyColumn(
-                modifier = Modifier.weight(1f),
-                state = listState,
-                verticalArrangement = Arrangement.spacedBy(24.dp),
-                contentPadding = PaddingValues(bottom = 120.dp)
+        },
+        bottomBar = {
+            Box(
+                modifier = Modifier
+                    .fillMaxWidth()
+                    .background(SurfaceDark)
+                    .border(0.5.dp, SteelBorder)
+                    .padding(horizontal = 16.dp, vertical = 12.dp)
             ) {
-                items(messages, key = { it.id }) { message ->
-                    IndustrialMessageBubble(message)
-                }
-            }
-        }
-
-        // Brutalist Input Bar
-        Column(
-            modifier = Modifier
-                .align(Alignment.BottomCenter)
-                .fillMaxWidth()
-                .background(VoidBlack)
-                .border(width = 1.dp, color = SteelBorder, shape = RectangleShape)
-                .padding(24.dp)
-        ) {
-            Row(
-                verticalAlignment = Alignment.CenterVertically,
-                modifier = Modifier.fillMaxWidth()
-            ) {
-                Text(
-                    text = ">",
-                    color = SignalGreen,
-                    fontWeight = FontWeight.Bold,
-                    modifier = Modifier.padding(end = 12.dp)
-                )
-                TextField(
-                    value = taskInput,
-                    onValueChange = { taskInput = it },
-                    placeholder = { 
-                        Text(
-                            "INITIATE_COMMAND...", 
-                            textColor = GhostGrey,
-                            fontFamily = FontFamily.Monospace
-                        ) 
-                    },
-                    modifier = Modifier.weight(1f),
-                    colors = TextFieldDefaults.textFieldColors(
-                        containerColor = Color.Transparent,
-                        focusedIndicatorColor = Color.Transparent,
-                        unfocusedIndicatorColor = Color.Transparent,
-                        cursorColor = SignalGreen,
-                        textColor = RawWhite
+                Row(verticalAlignment = Alignment.CenterVertically, modifier = Modifier.fillMaxWidth()) {
+                    TextField(
+                        value = taskInput,
+                        onValueChange = { taskInput = it },
+                        placeholder = { Text("اكتب مهمتك للوكلاء...", color = DimText, fontSize = 14.sp) },
+                        modifier = Modifier.weight(1f),
+                        colors = TextFieldDefaults.textFieldColors(
+                            containerColor = Color.Transparent,
+                            focusedIndicatorColor = Color.Transparent,
+                            unfocusedIndicatorColor = Color.Transparent,
+                            cursorColor = ElectricCyan,
+                            focusedTextColor = RawWhite,
+                            unfocusedTextColor = RawWhite
+                        )
                     )
-                )
-                
-                IconButton(
-                    onClick = {
+                    Spacer(modifier = Modifier.width(8.dp))
+                    IconButton(onClick = {
                         if (taskInput.isNotBlank()) {
                             onSendTask(taskInput.take(60), taskInput)
                             taskInput = ""
                         }
-                    },
-                    modifier = Modifier
-                        .border(1.dp, if (taskInput.isNotBlank()) SignalGreen else SteelBorder)
-                ) {
-                    Icon(
-                        imageVector = Icons.Default.ArrowForward,
-                        contentDescription = "EXECUTE",
-                        tint = if (taskInput.isNotBlank()) SignalGreen else SteelBorder
-                    )
+                    }) {
+                        Icon(Icons.Filled.Send, contentDescription = "Send", tint = if (taskInput.isNotBlank()) ElectricCyan else SteelBorder)
+                    }
+                }
+            }
+        }
+    ) { padding ->
+        Column(modifier = Modifier.fillMaxSize().padding(padding)) {
+            // Status indicator
+            Row(
+                modifier = Modifier.fillMaxWidth().padding(horizontal = 20.dp, vertical = 8.dp),
+                verticalAlignment = Alignment.CenterVertically
+            ) {
+                Spacer(modifier = Modifier.weight(1f))
+                Row(horizontalArrangement = Arrangement.spacedBy(6.dp)) {
+                    Box(modifier = Modifier.size(8.dp).clip(RoundedCornerShape(4.dp)).background(SignalGreen))
+                    Text("متصل", color = SignalGreen, fontSize = 11.sp, fontFamily = FontFamily.Monospace)
+                }
+            }
+
+            // Messages
+            LazyColumn(
+                modifier = Modifier.weight(1f).fillMaxWidth(),
+                state = listState,
+                verticalArrangement = Arrangement.spacedBy(12.dp),
+                contentPadding = PaddingValues(horizontal = 16.dp, vertical = 8.dp)
+            ) {
+                items(messages, key = { it.id }) { message ->
+                    MessageBubble(message)
                 }
             }
         }
@@ -159,61 +121,67 @@ fun ChatScreen(
 }
 
 @Composable
-private fun IndustrialMessageBubble(message: AgentMessage) {
-    val isAgent = message.agentName != "User"
-    
+private fun MessageBubble(message: AgentMessage) {
+    val isUser = message.agentName == "User"
+
     val accentColor = when (message.verdictType) {
         "APPROVE" -> SignalGreen
         "REJECT", "VETO" -> SignalRed
-        else -> SignalGreen
+        else -> if (isUser) ElectricCyan else AmberAccent
     }
 
-    Column(
-        modifier = Modifier.fillMaxWidth(),
-        horizontalAlignment = if (isAgent) Alignment.Start else Alignment.End
-    ) {
-        Row(verticalAlignment = Alignment.CenterVertically) {
-            if (isAgent) {
-                Box(modifier = Modifier.size(6.dp).background(accentColor))
+    Column(modifier = Modifier.fillMaxWidth(), horizontalAlignment = if (isUser) Alignment.End else Alignment.Start) {
+        if (!isUser) {
+            Row(verticalAlignment = Alignment.CenterVertically) {
+                Box(modifier = Modifier.size(8.dp).clip(RoundedCornerShape(4.dp)).background(accentColor))
                 Spacer(modifier = Modifier.width(8.dp))
+                Text(
+                    message.agentName.uppercase(),
+                    style = MaterialTheme.typography.labelSmall,
+                    fontWeight = FontWeight.Bold,
+                    color = accentColor,
+                    fontFamily = FontFamily.Monospace,
+                    letterSpacing = 1.5.sp
+                )
             }
-            Text(text = message.agentName.uppercase(),
-                style = MaterialTheme.typography.labelSmall,
-                fontWeight = FontWeight.Bold,
-                color = if (isAgent) accentColor else GhostGrey,
-                fontFamily = FontFamily.Monospace,
-                letterSpacing = 2.sp
-            )
+            Spacer(modifier = Modifier.height(6.dp))
         }
-        
-        Spacer(modifier = Modifier.height(8.dp))
-        
+
         Box(
             modifier = Modifier
-                .fillMaxWidth(0.9f)
-                .background(if (isAgent) IndustrialGrey else Color.Transparent)
-                .border(
-                    width = 1.dp,
-                    color = if (isAgent) SteelBorder else SignalGreenDim
-                )
-                .padding(16.dp)
+                .fillMaxWidth(if (isUser) 0.7f else 0.9f)
+                .clip(RoundedCornerShape(12.dp))
+                .background(if (isUser) ElectricCyan.copy(alpha = 0.15f) else SurfaceElevated)
+                .border(0.5.dp, if (isUser) ElectricCyan.copy(alpha = 0.3f) else SteelBorder, RoundedCornerShape(12.dp))
+                .padding(14.dp)
         ) {
-            Text(text = message.messageText,
-                color = if (isAgent) RawWhite else SignalGreen,
-                style = MaterialTheme.typography.bodyMedium,
-                fontFamily = FontFamily.Monospace,
-                lineHeight = 20.sp
-            )
-        }
-        
-        if (message.verdictType != "NONE") {
-            Text(text = "[STATUS: ${message.verdictType}]",
-                color = accentColor,
-                fontSize = 10.sp,
-                fontWeight = FontWeight.Bold,
-                modifier = Modifier.padding(top = 4.dp),
-                fontFamily = FontFamily.Monospace
-            )
+            Column {
+                Text(
+                    text = message.messageText,
+                    color = if (isUser) ElectricCyan else RawWhite,
+                    style = MaterialTheme.typography.bodyMedium,
+                    lineHeight = 20.sp
+                )
+
+                if (message.verdictType != "NONE") {
+                    Spacer(modifier = Modifier.height(8.dp))
+                    Box(
+                        modifier = Modifier
+                            .clip(RoundedCornerShape(4.dp))
+                            .background(accentColor.copy(alpha = 0.15f))
+                            .padding(horizontal = 8.dp, vertical = 4.dp)
+                    ) {
+                        Text(
+                            text = message.verdictType,
+                            color = accentColor,
+                            fontSize = 10.sp,
+                            fontWeight = FontWeight.Bold,
+                            fontFamily = FontFamily.Monospace,
+                            letterSpacing = 1.sp
+                        )
+                    }
+                }
+            }
         }
     }
 }

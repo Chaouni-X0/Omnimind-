@@ -8,48 +8,34 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.graphics.Color
 import com.example.omnimind.data.prefs.AppTheme
 
-/**
- * OmniMind Industrial Theme Engine
- * Strictly follows the Brutal Minimalism / Cyber-Industrial aesthetic.
- */
-private val IndustrialColorScheme = darkColorScheme(
-    primary = SignalGreen,
-    secondary = RawWhite,
+private val OmniMindDarkScheme = darkColorScheme(
+    primary = ElectricCyan,
+    onPrimary = VoidBlack,
+    secondary = AmberAccent,
+    onSecondary = VoidBlack,
     tertiary = SignalGreen,
     background = VoidBlack,
-    surface = IndustrialGrey,
-    onPrimary = VoidBlack,
-    onSecondary = VoidBlack,
     onBackground = RawWhite,
+    surface = SurfaceDark,
     onSurface = RawWhite,
+    surfaceVariant = DeepNavy,
+    onSurfaceVariant = DimText,
     outline = SteelBorder,
-    surfaceVariant = VoidBlack,
-    onSurfaceVariant = GhostGrey,
-    error = SignalRed
-)
-
-private val DarkColorScheme = IndustrialColorScheme
-
-private val LightColorScheme = lightColorScheme(
-    primary = SignalGreen,
-    secondary = VoidBlack,
-    background = RawWhite,
-    surface = Color(0xFFEEEEEE),
-    onBackground = VoidBlack,
-    onSurface = VoidBlack
+    outlineVariant = MutedGrey,
+    error = SignalRed,
+    onError = RawWhite
 )
 
 @Composable
 fun OmniMindTheme(
     appTheme: AppTheme? = null,
-    darkTheme: Boolean = isSystemInDarkTheme(),
+    darkTheme: Boolean = true,
     content: @Composable () -> Unit
 ) {
-    // We commit to the Industrial aesthetic regardless of the selected legacy theme
-    val colorScheme = IndustrialColorScheme
-    
+    val colorScheme = OmniMindDarkScheme
     MaterialTheme(
         colorScheme = colorScheme,
+        typography = Typography,
         content = content
     )
 }

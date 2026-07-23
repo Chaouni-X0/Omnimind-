@@ -46,10 +46,8 @@ class OmniMindApplication : Application() {
         gitHubService = GitHubService(NetworkModule.gitHubApiService)
     }
 
-    /** مجلد العمل المعزول (Sandbox) الخاص بمشروع معيّن — يشترك فيه الترمنال ومحرر الأكواد. */
-    fun workspaceDirFor(projectId: String): File {
-        return File(filesDir, "projects/$projectId/workspace").apply { mkdirs() }
-    }
+    fun workspaceDirFor(projectId: String): File =
+        File(filesDir, "projects/$projectId/workspace").apply { mkdirs() }
 
     fun terminalServiceFor(projectId: String): TerminalService =
         TerminalService(workspaceDirFor(projectId))

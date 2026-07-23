@@ -10,14 +10,16 @@ import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import androidx.navigation.compose.rememberNavController
 import androidx.navigation.navArgument
+import com.example.omnimind.presentation.screens.ApiCenterScreen
 import com.example.omnimind.presentation.screens.ChatScreen
 import com.example.omnimind.presentation.screens.CodeEditorScreen
 import com.example.omnimind.presentation.screens.DashboardScreen
 import com.example.omnimind.presentation.screens.GitHubScreen
 import com.example.omnimind.presentation.screens.OnboardingScreen
-import com.example.omnimind.presentation.screens.ProjectWorkspaceScreen
+import com.example.omnimind.presentation.screens.ProfileScreen
+import com.example.omnimind.presentation.screens.SettingsScreen
 import com.example.omnimind.presentation.screens.TerminalScreen
-import com.example.omnimind.presentation.screens.apicenter.ApiCenterScreen
+import com.example.omnimind.presentation.screens.WorkspaceScreen
 import com.example.omnimind.presentation.viewmodel.OmniMindViewModel
 import java.net.URLDecoder
 import java.net.URLEncoder
@@ -31,6 +33,8 @@ fun OmniMindNavigation() {
     val startDestination = if (onboardingComplete) "dashboard" else "onboarding"
 
     NavHost(navController = navController, startDestination = startDestination) {
+
+        // ── Onboarding ──
         composable("onboarding") {
             val selectedTheme by viewModel.selectedTheme.collectAsState()
             OnboardingScreen(
@@ -45,6 +49,7 @@ fun OmniMindNavigation() {
             )
         }
 
+        // ── Dashboard ──
         composable("dashboard") {
             val projects by viewModel.projects.collectAsState()
             DashboardScreen(
@@ -55,10 +60,13 @@ fun OmniMindNavigation() {
                     navController.navigate("workspace/${project.id}/$encodedName")
                 },
                 onOpenGitHub = { navController.navigate("github") },
-                onOpenApiCenter = { navController.navigate("api-center") }
+                onOpenApiCenter = { navController.navigate("api-center") },
+                onOpenSettings = { navController.navigate("settings") },
+                onOpenProfile = { navController.navigate("profile") }
             )
         }
 
+        // ── Workspace ──
         composable(
             route = "workspace/{projectId}/{projectName}",
             arguments = listOf(
@@ -69,32 +77,22 @@ fun OmniMindNavigation() {
             val projectId = backStackEntry.arguments?.getString("projectId") ?: ""
             val encodedName = backStackEntry.arguments?.getString("projectName") ?: ""
             val projectName = remember(encodedName) { URLDecoder.decode(encodedName, "UTF-8") }
-            ProjectWorkspaceScreen(
+
+            WorkspaceScreen(
+                projectId = projectId,
                 projectName = projectName,
                 onOpenTerminal = { navController.navigate("terminal/$projectId") },
                 onOpenEditor = { navController.navigate("editor/$projectId") },
-                onOpenChat = { navController.navigate("chat/$projectId") }
+                onOpenChat = { navController.navigate("chat/$projectId") },
+                onOpenGitHub = { navController.navigate("github") },
+                onOpenSettings = { navController.navigate("settings") },
+                onOpenApiCenter = { navController.navigate("api-center") },
+                onOpenProfile = { navController.navigate("profile") },
+                onBack = { navController.popBackStack() }
             )
         }
 
-        composable(
-            route = "terminal/{projectId}",
-            arguments = listOf(navArgument("projectId") { type = NavType.StringType })
-        ) { backStackEntry ->
-            val projectId = backStackEntry.arguments?.getString("projectId") ?: ""
-            val terminalService = remember(projectId) { viewModel.terminalServiceFor(projectId) }
-            TerminalScreen(terminalService = terminalService)
-        }
-
-        composable(
-            route = "editor/{projectId}",
-            arguments = listOf(navArgument("projectId") { type = NavType.StringType })
-        ) { backStackEntry ->
-            val projectId = backStackEntry.arguments?.getString("projectId") ?: ""
-            val editorService = remember(projectId) { viewModel.codeEditorServiceFor(projectId) }
-            CodeEditorScreen(editorService = editorService)
-        }
-
+        // ── Chat ──
         composable(
             route = "chat/{projectId}",
             arguments = listOf(navArgument("projectId") { type = NavType.StringType })
@@ -103,23 +101,64 @@ fun OmniMindNavigation() {
             val activeTaskId by viewModel.activeTaskId.collectAsState()
             val messagesFlow = remember(activeTaskId) {
                 activeTaskId?.let { viewModel.messagesForTask(it) }
-                    ?: kotlinx.coroutines.flow.MutableStateFlow(emptyList<com.example.omnimind.data.model.AgentMessage>())
+                    ?: kotlinx.coroutines.flow.MutableStateFlow(
+                        emptyList<com.example.omnimind.data.model.AgentMessage>()
+                    )
             }
             val messages by messagesFlow.collectAsState()
+
             ChatScreen(
                 messages = messages,
                 onSendTask = { title, description ->
                     viewModel.startTask(projectId, title, description)
-                }
+                },
+                onBack = { navController.popBackStack() }
             )
         }
 
-        composable("github") {
-            GitHubScreen(viewModel = viewModel)
+        // ── Terminal ──
+        composable(
+            route = "terminal/{projectId}",
+            arguments = listOf(navArgument("projectId") { type = NavType.StringType })
+        ) { backStackEntry ->
+            val projectId = backStackEntry.arguments?.getString("projectId") ?: ""
+            val terminalService = remember(projectId) { viewModel.terminalServiceFor(projectId) }
+            TerminalScreen(terminalService = terminalService, onBack = { navController.popBackStack() })
         }
 
+        // ── Code Editor ──
+        composable(
+            route = "editor/{projectId}",
+            arguments = listOf(navArgument("projectId") { type = NavType.StringType })
+        ) { backStackEntry ->
+            val projectId = backStackEntry.arguments?.getString("projectId") ?: ""
+            val editorService = remember(projectId) { viewModel.codeEditorServiceFor(projectId) }
+            CodeEditorScreen(editorService = editorService, onBack = { navController.popBackStack() })
+        }
+
+        // ── GitHub ──
+        composable("github") {
+            GitHubScreen(viewModel = viewModel, onBack = { navController.popBackStack() })
+        }
+
+        // ── API Center ──
         composable("api-center") {
-            ApiCenterScreen(viewModel)
+            ApiCenterScreen(viewModel = viewModel, onBack = { navController.popBackStack() })
+        }
+
+        // ── Settings ──
+        composable("settings") {
+            val selectedTheme by viewModel.selectedTheme.collectAsState()
+            SettingsScreen(
+                selectedTheme = selectedTheme,
+                onThemeChange = { theme -> viewModel.selectTheme(theme) },
+                onBack = { navController.popBackStack() }
+            )
+        }
+
+        // ── Profile ──
+        composable("profile") {
+            ProfileScreen(onBack = { navController.popBackStack() })
         }
     }
 }

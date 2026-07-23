@@ -1,209 +1,165 @@
 package com.example.omnimind.presentation.screens
 
 import androidx.compose.foundation.background
-import androidx.compose.foundation.ExperimentalFoundationApi
-import androidx.compose.foundation.combinedClickable
+import androidx.compose.foundation.border
 import androidx.compose.foundation.layout.*
-import androidx.compose.ui.graphics.RectangleShape
-import androidx.compose.foundation.layout.*
-import androidx.compose.ui.graphics.RectangleShape
-import androidx.compose.foundation.layout.*
-import androidx.compose.ui.graphics.RectangleShape
-import androidx.compose.foundation.layout.*
-import androidx.compose.ui.graphics.RectangleShape
-import androidx.compose.foundation.layout.*
-import androidx.compose.ui.graphics.RectangleShape
-import androidx.compose.foundation.layout.*
-import androidx.compose.ui.graphics.RectangleShape
-import androidx.compose.foundation.layout.*
-import androidx.compose.ui.graphics.RectangleShape
-import androidx.compose.foundation.layout.*
-import androidx.compose.ui.graphics.RectangleShape
-import androidx.compose.foundation.layout.*
-import androidx.compose.ui.graphics.RectangleShape
 import androidx.compose.foundation.lazy.LazyColumn
-import androidx.compose.foundation.lazy.items
+import androidx.compose.foundation.lazy.itemsIndexed
+import androidx.compose.foundation.lazy.rememberLazyListState
+import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material.icons.Icons
-import androidx.compose.material.icons.filled.ArrowBack
-import androidx.compose.material.icons.filled.Folder
-import androidx.compose.material.icons.filled.InsertDriveFile
+import androidx.compose.material.icons.automirrored.filled.ArrowBack
+import androidx.compose.material.icons.filled.Description
 import androidx.compose.material.icons.filled.Save
-import androidx.compose.material.icons.filled.Search
-import androidx.compose.material3.Icon
-import androidx.compose.material3.IconButton
-import androidx.compose.material3.MaterialTheme
-import androidx.compose.material3.OutlinedTextField
-import androidx.compose.material3.Text
-import androidx.compose.runtime.Composable
-import androidx.compose.runtime.LaunchedEffect
-import androidx.compose.runtime.getValue
-import androidx.compose.runtime.mutableStateOf
-import androidx.compose.runtime.remember
-import androidx.compose.runtime.setValue
+import androidx.compose.material3.*
+import androidx.compose.runtime.*
+import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.draw.clip
+import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.text.font.FontFamily
+import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
+import androidx.compose.ui.unit.sp
 import com.example.omnimind.domain.editor.CodeEditorService
+import com.example.omnimind.ui.theme.*
 
+@OptIn(ExperimentalMaterial3Api::class)
 @Composable
-fun CodeEditorScreen(editorService: CodeEditorService) {
-    var currentDir by remember { mutableStateOf("") }
-    var openFile by remember { mutableStateOf<String?>(null) }
-    var fileContent by remember { mutableStateOf("") }
-    var files by remember { mutableStateOf(editorService.listFiles(currentDir)) }
-    var newFileName by remember { mutableStateOf("") }
-    var saved by remember { mutableStateOf(true) }
-    var searchQuery by remember { mutableStateOf("") }
-    var draggedFile by remember { mutableStateOf<String?>(null) }
+fun CodeEditorScreen(
+    editorService: CodeEditorService,
+    onBack: () -> Unit
+) {
+    var files by remember { mutableStateOf(editorService.listFiles("")) }
+    var selectedFile by remember { mutableStateOf<String?>(null) }
+    var codeText by remember { mutableStateOf("") }
+    var isReadOnly by remember { mutableStateOf(true) }
+    val listState = rememberLazyListState()
 
-    fun refresh() {
-        files = editorService.listFiles(currentDir)
-    }
-
-    val filteredFiles = remember(files, searchQuery) {
-        if (searchQuery.isBlank()) files else files.filter {
-            it.name.contains(searchQuery, ignoreCase = true)
-        }
-    }
-
-    Column(
-        modifier = Modifier
-            .fillMaxSize()
-            .background(MaterialTheme.colorScheme.background)
-            .padding(12.dp)
-    ) {
-        if (openFile == null) {
-            Text(text = "محرر الأكواد",
-                style = MaterialTheme.typography.titleMedium,
-                color = MaterialTheme.colorScheme.onBackground
-            )
-            Spacer(modifier = Modifier.height(8.dp))
-            Row(modifier = Modifier.fillMaxWidth()) {
-                OutlinedTextField(
-                    value = newFileName,
-                    onValueChange = { newFileName = it },
-                    placeholder = { Text("اسم ملف جديد (مثال: main.kt)") },
-                    modifier = Modifier.weight(1f)
-                )
-                IconButton(onClick = {
-                    if (newFileName.isNotBlank()) {
-                        val path = if (currentDir.isBlank()) newFileName else "$currentDir/$newFileName"
-                        editorService.createFile(path)
-                        newFileName = ""
-                        refresh()
+    Scaffold(
+        containerColor = VoidBlack,
+        topBar = {
+            TopAppBar(
+                title = {
+                    Column {
+                        Text("EDITOR", color = RawWhite, fontWeight = FontWeight.Bold, fontSize = 16.sp, fontFamily = FontFamily.Monospace)
+                        Text(selectedFile?.substringAfterLast("/") ?: "محرر الأكواد", color = ElectricCyan, fontSize = 12.sp, fontFamily = FontFamily.Monospace)
                     }
-                }) {
-                    Icon(Icons.Filled.Save, contentDescription = "إنشاء", tint = MaterialTheme.colorScheme.primary)
-                }
-            }
-            Spacer(modifier = Modifier.height(12.dp))
-            OutlinedTextField(
-                value = searchQuery,
-                onValueChange = { searchQuery = it },
-                leadingIcon = { Icon(Icons.Filled.Search, contentDescription = null) },
-                placeholder = { Text("بحث وفلترة الملفات") },
-                singleLine = true,
-                modifier = Modifier.fillMaxWidth()
-            )
-            draggedFile?.let {
-                Text(
-                    text = "جار سحب: $it. اضغط على مجلد لنقل الملف إليه.",
-                    color = MaterialTheme.colorScheme.primary
-                )
-            }
-            Spacer(modifier = Modifier.height(12.dp))
-            LazyColumn {
-                items(filteredFiles, key = { it.relativePath }) { entry ->
-                    FileBrowserRow(
-                        entry = entry,
-                        isDragged = draggedFile == entry.relativePath,
-                        onClick = {
-                            if (entry.isDirectory) {
-                                val source = draggedFile
-                                if (source == null) {
-                                    currentDir = entry.relativePath
-                                } else {
-                                    val destination = "${entry.relativePath}/${source.substringAfterLast('/')}"
-                                    editorService.moveFile(source, destination)
-                                    draggedFile = null
-                                }
-                                refresh()
-                            } else if (draggedFile == null) {
-                                openFile = entry.relativePath
-                                fileContent = editorService.readFile(entry.relativePath)
-                                saved = true
+                },
+                navigationIcon = {
+                    IconButton(onClick = {
+                        if (selectedFile != null) {
+                            selectedFile = null
+                            codeText = ""
+                        } else {
+                            onBack()
+                        }
+                    }) {
+                        Icon(Icons.AutoMirrored.Filled.ArrowBack, contentDescription = "Back", tint = DimText)
+                    }
+                },
+                actions = {
+                    if (selectedFile != null) {
+                        IconButton(onClick = { isReadOnly = !isReadOnly }) {
+                            Icon(Icons.Default.Description, contentDescription = "Toggle Edit", tint = if (isReadOnly) DimText else ElectricCyan)
+                        }
+                        IconButton(onClick = {
+                            selectedFile?.let {
+                                editorService.writeFile(it, codeText)
+                                isReadOnly = true
                             }
-                        },
-                        onLongClick = {
+                        }) {
+                            Icon(Icons.Default.Save, contentDescription = "Save", tint = ElectricCyan)
+                        }
+                    }
+                },
+                colors = TopAppBarDefaults.topAppBarColors(containerColor = SurfaceDark)
+            )
+        }
+    ) { padding ->
+        Column(modifier = Modifier.fillMaxSize().padding(padding)) {
+            if (selectedFile == null) {
+                // File browser
+                LazyColumn(
+                    modifier = Modifier
+                        .weight(1f)
+                        .fillMaxWidth()
+                        .background(Color(0xFF0A0E14))
+                        .border(0.5.dp, SteelBorder),
+                    contentPadding = PaddingValues(8.dp),
+                    verticalArrangement = Arrangement.spacedBy(2.dp)
+                ) {
+                    itemsIndexed(files) { _, entry ->
+                        Row(
+                            modifier = Modifier
+                                .fillMaxWidth()
+                                .background(SurfaceDark)
+                                .padding(12.dp)
+                                .background(if (entry.isDirectory) ElectricCyan.copy(alpha = 0.05f) else Color.Transparent),
+                            verticalAlignment = Alignment.CenterVertically
+                        ) {
+                            Text(
+                                text = if (entry.isDirectory) "[DIR]" else "[FILE]",
+                                color = if (entry.isDirectory) SignalGreen else DimText,
+                                fontSize = 10.sp,
+                                fontFamily = FontFamily.Monospace,
+                                fontWeight = FontWeight.Bold
+                            )
+                            Text(
+                                entry.name,
+                                modifier = Modifier.weight(1f).padding(start = 12.dp),
+                                color = RawWhite,
+                                fontSize = 13.sp,
+                                fontFamily = FontFamily.Monospace
+                            )
                             if (!entry.isDirectory) {
-                                draggedFile = if (draggedFile == entry.relativePath) null else entry.relativePath
+                                IconButton(onClick = {
+                                    selectedFile = entry.relativePath
+                                    codeText = editorService.readFile(entry.relativePath)
+                                }, modifier = Modifier.size(24.dp)) {
+                                    Icon(Icons.Default.Description, null, tint = ElectricCyan, modifier = Modifier.size(16.dp))
+                                }
                             }
                         }
-                    )
-                }
-            }
-        } else {
-            Row(
-                modifier = Modifier.fillMaxWidth(),
-                verticalAlignment = androidx.compose.ui.Alignment.CenterVertically
-            ) {
-                IconButton(onClick = { openFile = null; refresh() }) {
-                    Icon(Icons.Filled.ArrowBack, contentDescription = null, tint = MaterialTheme.colorScheme.onBackground)
-                }
-                Text(
-                    text = openFile ?: "",
-                    modifier = Modifier.weight(1f),
-                    color = MaterialTheme.colorScheme.onBackground
-                )
-                IconButton(onClick = {
-                    openFile?.let {
-                        editorService.writeFile(it, fileContent)
-                        saved = true
                     }
-                }) {
-                    Icon(
-                        Icons.Filled.Save,
-                        contentDescription = "حفظ",
-                        tint = if (saved) MaterialTheme.colorScheme.onBackground.copy(alpha = 0.4f) else MaterialTheme.colorScheme.primary
-                    )
+                }
+            } else {
+                // Code area
+                LazyColumn(
+                    modifier = Modifier
+                        .weight(1f)
+                        .fillMaxWidth()
+                        .background(Color(0xFF0A0E14))
+                        .border(0.5.dp, SteelBorder),
+                    state = listState,
+                    contentPadding = PaddingValues(12.dp)
+                ) {
+                    itemsIndexed(codeText.lines()) { index, line ->
+                        Row(modifier = Modifier.fillMaxWidth()) {
+                            Text("${index + 1}", color = MutedGrey, fontSize = 11.sp, fontFamily = FontFamily.Monospace, modifier = Modifier.width(32.dp).padding(end = 8.dp))
+                            Text(
+                                line,
+                                color = if (isReadOnly) RawWhite else ElectricCyan,
+                                fontSize = 12.sp,
+                                fontFamily = FontFamily.Monospace,
+                                lineHeight = 18.sp
+                            )
+                        }
+                    }
+                }
+
+                // Status bar
+                Row(
+                    modifier = Modifier.fillMaxWidth().background(SurfaceDark).border(0.5.dp, SteelBorder).padding(horizontal = 12.dp, vertical = 6.dp),
+                    verticalAlignment = Alignment.CenterVertically
+                ) {
+                    Text("Kotlin", color = SignalGreen, fontSize = 10.sp, fontFamily = FontFamily.Monospace)
+                    Spacer(modifier = Modifier.width(16.dp))
+                    Text("${codeText.lines().size} lines", color = DimText, fontSize = 10.sp, fontFamily = FontFamily.Monospace)
+                    Spacer(modifier = Modifier.weight(1f))
+                    Text(if (isReadOnly) "Read Only" else "Editing", color = if (isReadOnly) DimText else AmberAccent, fontSize = 10.sp, fontFamily = FontFamily.Monospace)
                 }
             }
-            Spacer(modifier = Modifier.height(8.dp))
-            OutlinedTextField(
-                value = fileContent,
-                onValueChange = { fileContent = it; saved = false },
-                modifier = Modifier.fillMaxSize(),
-                textStyle = MaterialTheme.typography.bodySmall.copy(fontFamily = FontFamily.Monospace)
-            )
         }
-    }
-}
-
-@OptIn(ExperimentalFoundationApi::class)
-@Composable
-private fun FileBrowserRow(
-    entry: CodeEditorService.FileEntry,
-    isDragged: Boolean,
-    onClick: () -> Unit,
-    onLongClick: () -> Unit
-) {
-    Row(
-        modifier = Modifier
-            .fillMaxWidth()
-            .background(
-                if (isDragged) MaterialTheme.colorScheme.tertiaryContainer
-                else MaterialTheme.colorScheme.background
-            )
-            .combinedClickable(onClick = onClick, onLongClick = onLongClick)
-            .padding(vertical = 10.dp),
-        verticalAlignment = androidx.compose.ui.Alignment.CenterVertically
-    ) {
-        Icon(
-            imageVector = if (entry.isDirectory) Icons.Filled.Folder else Icons.Filled.InsertDriveFile,
-            contentDescription = null,
-            tint = MaterialTheme.colorScheme.onBackground.copy(alpha = 0.7f),
-            modifier = Modifier.padding(end = 8.dp)
-        )
-        Text(text = entry.name, color = MaterialTheme.colorScheme.onBackground)
     }
 }

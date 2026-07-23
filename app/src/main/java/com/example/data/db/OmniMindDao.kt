@@ -14,9 +14,8 @@ import kotlinx.coroutines.flow.Flow
 
 @Dao
 interface OmniMindDao {
-
     // ---------- AgentTask ----------
-    @Insert
+    @Insert(onConflict = OnConflictStrategy.REPLACE)
     suspend fun insertTask(task: AgentTask): Long
 
     @Update
@@ -28,12 +27,21 @@ interface OmniMindDao {
     @Query("SELECT * FROM agent_tasks WHERE projectId = :projectId ORDER BY lastUpdated DESC")
     fun getTasksByProject(projectId: String): Flow<List<AgentTask>>
 
+    @Query("SELECT * FROM agent_tasks ORDER BY lastUpdated DESC LIMIT 10")
+    fun getRecentTasks(): Flow<List<AgentTask>>
+
+    @Query("DELETE FROM agent_tasks WHERE projectId = :projectId")
+    suspend fun deleteTasksByProject(projectId: String)
+
     // ---------- AgentMessage ----------
     @Insert(onConflict = OnConflictStrategy.REPLACE)
     suspend fun insertMessage(message: AgentMessage): Long
 
     @Query("SELECT * FROM agent_messages WHERE taskId = :taskId ORDER BY timestamp ASC")
     fun getMessagesByTask(taskId: String): Flow<List<AgentMessage>>
+
+    @Query("DELETE FROM agent_messages WHERE taskId = :taskId")
+    suspend fun deleteMessagesByTask(taskId: String)
 
     // ---------- Project ----------
     @Insert(onConflict = OnConflictStrategy.REPLACE)
@@ -47,6 +55,9 @@ interface OmniMindDao {
 
     @Query("SELECT * FROM projects WHERE id = :projectId")
     fun getProjectById(projectId: String): Flow<Project?>
+
+    @Query("DELETE FROM projects WHERE id = :projectId")
+    suspend fun deleteProject(projectId: String)
 
     // ---------- ApiKeyConfig ----------
     @Insert(onConflict = OnConflictStrategy.REPLACE)
@@ -68,7 +79,7 @@ interface OmniMindDao {
     suspend fun deleteApiKey(id: String)
 
     // ---------- SandboxRun ----------
-    @Insert
+    @Insert(onConflict = OnConflictStrategy.REPLACE)
     suspend fun insertSandboxRun(run: SandboxRun): Long
 
     @Query("SELECT * FROM sandbox_runs WHERE taskId = :taskId ORDER BY timestamp DESC")

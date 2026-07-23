@@ -10,12 +10,7 @@ import javax.crypto.KeyGenerator
 import javax.crypto.SecretKey
 import javax.crypto.spec.GCMParameterSpec
 
-/**
- * Encrypts API keys with AES-GCM backed by Android Keystore. Legacy XOR values
- * remain readable so existing installations can migrate without losing keys.
- */
 class SecurityManager {
-
     private val obfuscationKey = "OmniMindLocalKey".toByteArray(Charsets.UTF_8)
 
     fun encrypt(data: String): String {
@@ -37,7 +32,10 @@ class SecurityManager {
                     getOrCreateKey(),
                     GCMParameterSpec(128, payload.copyOfRange(0, IV_SIZE_BYTES))
                 )
-                String(cipher.doFinal(payload.copyOfRange(IV_SIZE_BYTES, payload.size)), StandardCharsets.UTF_8)
+                String(
+                    cipher.doFinal(payload.copyOfRange(IV_SIZE_BYTES, payload.size)),
+                    StandardCharsets.UTF_8
+                )
             } else {
                 decryptLegacy(data)
             }
@@ -58,7 +56,8 @@ class SecurityManager {
                 KeyGenParameterSpec.Builder(
                     KEY_ALIAS,
                     KeyProperties.PURPOSE_ENCRYPT or KeyProperties.PURPOSE_DECRYPT
-                ).setBlockModes(KeyProperties.BLOCK_MODE_GCM)
+                )
+                    .setBlockModes(KeyProperties.BLOCK_MODE_GCM)
                     .setEncryptionPaddings(KeyProperties.ENCRYPTION_PADDING_NONE)
                     .setRandomizedEncryptionRequired(true)
                     .build()
@@ -69,9 +68,12 @@ class SecurityManager {
 
     private fun decryptLegacy(data: String): String {
         val input = Base64.decode(data, Base64.NO_WRAP)
-        return String(ByteArray(input.size) { index ->
-            (input[index].toInt() xor obfuscationKey[index % obfuscationKey.size].toInt()).toByte()
-        }, Charsets.UTF_8)
+        return String(
+            ByteArray(input.size) { index ->
+                (input[index].toInt() xor obfuscationKey[index % obfuscationKey.size].toInt()).toByte()
+            },
+            Charsets.UTF_8
+        )
     }
 
     private companion object {

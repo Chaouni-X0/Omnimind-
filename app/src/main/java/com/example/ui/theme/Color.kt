@@ -2,41 +2,45 @@ package com.example.omnimind.ui.theme
 
 import androidx.compose.ui.graphics.Color
 
-/**
- * OmniMind Bold Aesthetic: Cyber-Industrial / Brutal Minimalism
- * Focus: High contrast, technical precision, grain texture, and asymmetric flow.
- */
+// ── Primary Palette: Deep Void ──
+val VoidBlack = Color(0xFF0A0E17)
+val DeepNavy = Color(0xFF0D1321)
+val SurfaceDark = Color(0xFF111827)
+val SurfaceElevated = Color(0xFF1A2332)
+val SurfaceRaised = Color(0xFF243044)
 
-// The Void - Primary Base
-val VoidBlack = Color(0xFF020202)
-val IndustrialGrey = Color(0xFF0D0D0D)
-val SteelBorder = Color(0xFF1A1A1A)
+// ── Accent: Electric Cyan + Amber ──
+val ElectricCyan = Color(0xFF00E5FF)
+val CyanDim = Color(0xFF0097A7)
+val CyanGlow = Color(0x4000E5FF)
+val AmberAccent = Color(0xFFFFB300)
+val AmberDim = Color(0xFFFF8F00)
 
-// Neon Signal - Accents
-val SignalGreen = Color(0xFF00FF41) // Classic Terminal Green
-val SignalGreenDim = Color(0x3300FF41)
-val SignalRed = Color(0xFFFF0033) // Sharp Warning Red
+// ── Functional ──
+val SignalGreen = Color(0xFF00E676)
+val SignalRed = Color(0xFFFF5252)
+val SignalYellow = Color(0xFFFFD54F)
+val GhostGrey = Color(0xFF6B7B8D)
+val MutedGrey = Color(0xFF3D4F63)
+val SteelBorder = Color(0xFF2A3A4C)
 
-// Typography & Content
-val RawWhite = Color(0xFFF0F0F0)
-val GhostGrey = Color(0xFF444444)
-val DeepMuted = Color(0xFF222222)
+// ── Text ──
+val RawWhite = Color(0xFFF0F4F8)
+val SoftWhite = Color(0xFFE0E7EE)
+val DimText = Color(0xFF8899AA)
 
-// Textures & Overlays
-val GrainOverlay = Color(0x0DFFFFFF)
-val ScanlineColor = Color(0x0500FF41)
-
-// Legacy Mapping (Redefined for the new bold aesthetic)
-val ObsidianPrimary = SignalGreen
-val ObsidianSecondary = RawWhite
-val ObsidianBackground = VoidBlack
-val ObsidianSurface = IndustrialGrey
-val ObsidianOnSurface = RawWhite
-
-// Theme Overrides for standard Material 3 mapping
-val Purple80 = SignalGreen
-val PurpleGrey80 = GhostGrey
-val Pink80 = SignalRed
-val Purple40 = SignalGreen
-val PurpleGrey40 = DeepMuted
-val Pink40 = SignalRed
+// ── Material 3 overrides ──
+val Primary = ElectricCyan
+val OnPrimary = VoidBlack
+val Secondary = AmberAccent
+val OnSecondary = VoidBlack
+val Background = VoidBlack
+val Surface = SurfaceDark
+val OnSurface = RawWhite
+val OnBackground = RawWhite
+val Error = SignalRed
+val OnError = RawWhite
+val Outline = SteelBorder
+val OutlineVariant = MutedGrey
+val SurfaceVariant = DeepNavy
+val OnSurfaceVariant = DimText
